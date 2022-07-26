@@ -1,4 +1,4 @@
-package com.ciandt.summit.bootcamp2022.controller;
+package com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/music")
-public class MusicController {
+@RequestMapping("/api/v1/musicas")
+public class MusicaController {
 
     @GetMapping
     public ResponseEntity<String> get() {
