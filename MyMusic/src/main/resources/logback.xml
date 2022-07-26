@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <springProfile name="default">
+
+        <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>logs/api/api.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>logs/api/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>10MB</maxFileSize>
+                <totalSizeCap>10MB</totalSizeCap>
+                <maxHistory>60</maxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="com.ciandt.summit.bootcamp2022" level="INFO"/>
+        <root level="ERROR">
+            <appender-ref ref="FILE-ROLLING"/>
+        </root>
+    </springProfile>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %green(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="console" />
+    </root>
+</configuration>
