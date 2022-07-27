@@ -2,7 +2,6 @@ package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.enti
 
 import com.ciandt.summit.bootcamp2022.domain.models.Musica;
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Table(name = "Musicas")
-
 public class MusicaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
