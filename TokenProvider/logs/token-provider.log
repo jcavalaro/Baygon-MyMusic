@@ -1,0 +1,12 @@
+2022-07-27 09:26:23,111 INFO org.springframework.boot.StartupInfoLogger [main] Starting TokenProviderApplication using Java 11.0.15 on lnb035997spo with PID 2705763 (/home/anaalves/Baygon-MyMusic/TokenProvider/target/classes started by CIANDT\anaalves in /home/anaalves/Baygon-MyMusic/TokenProvider)
+2022-07-27 09:26:23,113 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-07-27 09:26:23,898 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-07-27 09:26:23,909 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-07-27 09:26:23,910 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-07-27 09:26:23,910 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-07-27 09:26:23,951 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-07-27 09:26:23,951 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 797 ms
+2022-07-27 09:26:24,323 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-07-27 09:26:24,337 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-07-27 09:26:24,346 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-07-27 09:26:24,355 INFO org.springframework.boot.StartupInfoLogger [main] Started TokenProviderApplication in 1.581 seconds (JVM running for 1.916)
