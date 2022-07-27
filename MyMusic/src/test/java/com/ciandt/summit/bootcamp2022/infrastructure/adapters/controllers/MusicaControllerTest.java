@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.*;
 
 @WebMvcTest
-public class MusicaControllerTest {
+class MusicaControllerTest {
 
     @Autowired
     private MusicaController musicaController;
@@ -18,22 +18,20 @@ public class MusicaControllerTest {
     @MockBean
     private MusicaServicePort musicaServicePortice;
 
+
+
     @BeforeEach
-    public void setup(){
+    void setup(){
         RestAssuredMockMvc.standaloneSetup(this.musicaController);
     }
 
-
-
     @Test
-    public void deveRetornar200_get(){
+    void deveRetornar200_get(){
         RestAssuredMockMvc.given()
                 .when()
                     .get("/api/v1/musicas/")
                 .then()
                     .statusCode(HttpStatus.SC_OK);
     }
-
-
 
 }
