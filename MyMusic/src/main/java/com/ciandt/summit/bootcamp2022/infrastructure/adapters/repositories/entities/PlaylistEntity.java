@@ -3,6 +3,7 @@ package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.enti
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Table(name = "Playlists")
-public class PlaylistEntity {
+public class PlaylistEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
