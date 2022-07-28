@@ -35,9 +35,9 @@ public class MusicaServiceImplTest extends ApplicationConfigTest {
     public void TrazerTodasAsMusicas() {
 
         String filter = " ";
-        List<Musica> list = Collections.singletonList(Mockito.mock(Musica.class));
+        List<Musica> musicas = Collections.singletonList(Mockito.mock(Musica.class));
 
-        Mockito.when(musicaRepositoryPort.findByNameArtistaOrNameMusica(filter)).thenReturn(list);
+        Mockito.when(musicaRepositoryPort.findByNameArtistaOrNameMusica(filter)).thenReturn(musicas);
 
 
 
