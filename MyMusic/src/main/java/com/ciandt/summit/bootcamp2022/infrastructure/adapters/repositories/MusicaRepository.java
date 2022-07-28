@@ -15,13 +15,16 @@ public class MusicaRepository implements MusicaRepositoryPort {
     @Autowired
     private MusicaJpaRepository musicaJpaRepository;
 
-    public List<Musica> findAll() {
-        List<MusicaEntity> musicaEntities = this.musicaJpaRepository.findAll();
-        return musicaEntities.stream().map(MusicaEntity::toMusica).collect(Collectors.toList());
+    @Override
+    public List<Musica> findByNameArtistaOrNameMusica(String name) {
+        List<MusicaEntity> musicas = musicaJpaRepository.findByNameArtistaOrNameMusica(name);
+        return musicas.stream().map(MusicaEntity::toMusica).collect(Collectors.toList());
     }
 
-    public List<Musica> findByNameArtistaOrNameMusica(String filtro) {
-        List<MusicaEntity> musicaEntities = this.musicaJpaRepository.findByNameArtistaOrNameMusica(filtro);
-        return musicaEntities.stream().map(MusicaEntity::toMusica).collect(Collectors.toList());
+    @Override
+    public List<Musica> findAll() {
+        List<MusicaEntity> musicas = musicaJpaRepository.findAll();
+        return musicas.stream().map(MusicaEntity::toMusica).collect(Collectors.toList());
     }
+
 }

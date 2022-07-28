@@ -1,4 +1,4 @@
-package com.ciandt.summit.bootcamp2022.domain.models;
+package com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Usuario {
+public class ErrorResponse {
 
-    private String id;
-    private String nome;
-    private Playlist playlist;
+    private int status;
+    private String message;
 
 }
