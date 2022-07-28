@@ -1,6 +1,7 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities;
 
 import com.ciandt.summit.bootcamp2022.domain.models.Artista;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,4 +50,5 @@ public class ArtistaEntity implements Serializable {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }
