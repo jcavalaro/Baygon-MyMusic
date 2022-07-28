@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MusicaServicePort {
 
-    List<MusicaDTO> findMusicasByFiltro(String filtro);
+    List<MusicaDTO> findByNameArtistaOrNameMusica(String name);
     List<MusicaDTO> findAll();
 
 }
