@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface MusicaJpaRepository extends JpaRepository<MusicaEntity, String> {
 
-    @Query("SELECT m FROM MusicaEntity m JOIN ArtistaEntity a on a.id = m.artista WHERE lower(a.nome) like lower(concat('%', :filtro,'%')) or lower(m.nome) like lower(concat('%', :filtro,'%')) ORDER BY a.nome, m.nome ASC")
-    List<MusicaEntity> findByNameArtistaOrNameMusica(@Param("filtro") String filtro);
+    @Query("SELECT m FROM MusicaEntity m JOIN ArtistaEntity a on a.id = m.artista WHERE lower(a.nome) like lower(concat('%', :name,'%')) or lower(m.nome) like lower(concat('%', :name,'%')) ORDER BY a.nome, m.nome ASC")
+    List<MusicaEntity> findByNameArtistaOrNameMusica(@Param("name") String name);
 
 }
