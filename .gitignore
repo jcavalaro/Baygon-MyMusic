@@ -161,5 +161,11 @@ buildNumber.properties
 
 *TokenProvider/.idea/
 *MyMusic/.idea/
+*/.idea/
+*TokenProvider/token-provider.iml
+*MyMusic/summit-bootcamp.iml
+*token-provider.iml
+*summit-bootcamp.iml
+*.gitignore~
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,maven
