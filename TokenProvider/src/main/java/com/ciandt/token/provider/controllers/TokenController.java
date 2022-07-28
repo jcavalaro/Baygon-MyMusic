@@ -3,6 +3,10 @@ package com.ciandt.token.provider.controllers;
 import com.ciandt.token.provider.controllers.dto.request.CreateTokenRequest;
 import com.ciandt.token.provider.controllers.dto.request.CreateTokenRequestData;
 import com.ciandt.token.provider.core.usecases.CreateTokenUseCase;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/v1/token")
+@Tag(description = "Api para gerar e validar Token", name = "Token Controller")
 public class TokenController {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthorizerController.class);
@@ -26,6 +31,12 @@ public class TokenController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Criar Token", description = "Gera um Token a partir de uma Chave (Nome)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Token gerado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+            @ApiResponse(responseCode = "500", description = "Erro na requisição")
+    })
     public ResponseEntity<String> createToken(@RequestBody CreateTokenRequest createTokenRequest) {
         try {
             CreateTokenRequestData data = createTokenRequest.getData();
