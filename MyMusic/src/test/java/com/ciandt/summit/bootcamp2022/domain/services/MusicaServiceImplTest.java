@@ -27,6 +27,11 @@ public class MusicaServiceImplTest extends ApplicationConfigTest {
 
     }
 
+    @Test
+    @DisplayName("deve trazer todas as musicas")
+    public void TrazerTodasAsMusicas() {
 
 
+
+    }
 }
