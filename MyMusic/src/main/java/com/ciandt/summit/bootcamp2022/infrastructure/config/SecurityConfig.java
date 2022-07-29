@@ -22,6 +22,10 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/swagger-ui.html/**")
                 .excludePathPatterns("/swagger-ui/**")
                 .excludePathPatterns("/v3/api-docs/**")
+                .excludePathPatterns("/configuration/ui")
+                .excludePathPatterns("/swagger-resources/**")
+                .excludePathPatterns("/configuration/security")
+                .excludePathPatterns("/webjars/**")
                 .addPathPatterns("/**");
     }
 
