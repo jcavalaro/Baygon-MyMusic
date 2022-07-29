@@ -3,6 +3,7 @@ package com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicaServicePort;
+import com.ciandt.summit.bootcamp2022.domain.services.MusicaServiceImpl;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions.RuleLengthViolationException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,24 +39,8 @@ public class MusicaController {
             @ApiResponse(responseCode = "204", description = "Sem resultados"),
             @ApiResponse(responseCode = "400", description = "Caracteres insuficientes")})
     public ResponseEntity<?> findMusicas(@RequestParam(required = false, name = "filtro") Optional<String> filtro) {
-        if (!filtro.isPresent()) {
-            logger.info("Filtro não informado, retornando todas as musicas.");
-            return new ResponseEntity<>(new DataDTO(musicaServicePort.findAll()), HttpStatus.OK);
-        }
-
-        if (filtro.get().length() < 2) {
-            logger.warn("Filtro informado com menos de 2 caracteres, lançando exceção.");
-            throw new RuleLengthViolationException();
-        }
-
         List<MusicaDTO> musicas = musicaServicePort.findByNameArtistaOrNameMusica(filtro.get());
 
-        if (musicas.isEmpty()) {
-            logger.info("Musicas não encontradas com o filtro " + filtro.get());
-            return new ResponseEntity<>(new DataDTO(), HttpStatus.NO_CONTENT);
-        }
-
-        logger.info("Foram encontradas " + musicas.size() + " musicas com o filtro " + filtro.get());
         return new ResponseEntity<>(new DataDTO(musicas), HttpStatus.OK);
     }
 
