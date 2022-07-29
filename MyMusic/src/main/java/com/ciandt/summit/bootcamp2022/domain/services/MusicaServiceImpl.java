@@ -1,5 +1,6 @@
 package com.ciandt.summit.bootcamp2022.domain.services;
 
+import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
 import com.ciandt.summit.bootcamp2022.domain.models.Musica;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicaServicePort;
@@ -9,6 +10,8 @@ import com.ciandt.summit.bootcamp2022.domain.services.exceptions.RuleLengthViola
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
