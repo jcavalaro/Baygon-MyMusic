@@ -24,7 +24,7 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.when;
 public class MusicaServiceImplTest extends ApplicationConfigTest {
 
 
-    @MockBean
+    @Mock
     private MusicaRepositoryPort musicaRepositoryPort;
 
     @Test
@@ -46,8 +46,10 @@ public class MusicaServiceImplTest extends ApplicationConfigTest {
 
         String filter = "musicas";
         List<Musica> musicas = Collections.singletonList(Mockito.mock(Musica.class));
-        Mockito.when(musicaRepositoryPort.findAll(ArgumentMatchers.eq(filter)))
+        Mockito.when(musicaRepositoryPort.findAll())
                 .thenReturn(musicas);
+
+
 
 
     }
