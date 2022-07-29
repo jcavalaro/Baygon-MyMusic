@@ -23,7 +23,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Token");
 
         if (name == null || token == null || name.isBlank() || token.isBlank() || name.isEmpty() || token.isEmpty()) {
-            throw new NaoAutorizadoException("Requisão não autorizada. Para Realizar Qualquer Requisição na API MyMusic Informe um Nome de Usuario no Header 'Name' e um Token no Header 'Token'.");
+            throw new NaoAutorizadoException("Requisição não autorizada. Para Realizar Qualquer Requisição na API MyMusic Informe um Nome de Usuario no Header 'Name' e um Token no Header 'Token'.");
         }
 
         final String baseUrl = "https://baygon-token-provider.herokuapp.com/api/v1/token/authorizer";
@@ -43,7 +43,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
             return responseEntity.getStatusCodeValue() == 201;
         } catch (Exception ex) {
-            throw new NaoAutorizadoException("Requisão não autorizada.");
+            throw new NaoAutorizadoException("Requisição não autorizada.");
         }
     }
 
