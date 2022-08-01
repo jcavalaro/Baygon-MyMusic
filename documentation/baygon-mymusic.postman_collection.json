@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "715aafdd-083a-47cb-82c9-5601b692e2d3",
+		"name": "baygon-mymusic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21574223"
+	},
+	"item": [
+		{
+			"name": "Sprint 1",
+			"item": [
+				{
+					"name": "Get Music By Filter Sem Headers De Autenticacao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/musicas?filtro=u2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"musicas"
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "u2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Music By Filter Filtro Menor que 2 Caracteres",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    let tokenReceived = res.text();\r",
+									"    pm.environment.set(\"Token\", tokenReceived);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=a",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"musicas",
+								""
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Music By Filter Sem Filtro",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    let tokenReceived = res.text();\r",
+									"    pm.environment.set(\"Token\", tokenReceived);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/musicas/",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"musicas",
+								""
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "a",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Music By Filter Filtro Valido",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    let tokenReceived = res.text();\r",
+									"    pm.environment.set(\"Token\", tokenReceived);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=u2",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"musicas",
+								""
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "u2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Music By Filter Filtro Valido Musica",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    let tokenReceived = res.text();\r",
+									"    pm.environment.set(\"Token\", tokenReceived);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=with or without you",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"musicas",
+								""
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "with or without you"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Music By Filter Filtro Valido Artista",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    let tokenReceived = res.text();\r",
+									"    pm.environment.set(\"Token\", tokenReceived);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=NIRVANA",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"musicas",
+								""
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "NIRVANA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Music By Filter Filtro Valido Mas Sem Retorno",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    let tokenReceived = res.text();\r",
+									"    pm.environment.set(\"Token\", tokenReceived);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=naoTemRetorno",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"musicas",
+								""
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "naoTemRetorno"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token-url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "mymusic-url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "Name",
+			"value": "ana"
+		}
+	]
+}
