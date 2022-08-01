@@ -1,6 +1,5 @@
 package com.ciandt.summit.bootcamp2022.domain.services;
 
-import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
 import com.ciandt.summit.bootcamp2022.domain.models.Musica;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicaServicePort;
@@ -10,9 +9,8 @@ import com.ciandt.summit.bootcamp2022.domain.services.exceptions.RuleLengthViola
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +25,7 @@ public class MusicaServiceImpl implements MusicaServicePort {
 
     @Override
     public List<MusicaDTO> findByNameArtistaOrNameMusica(String name) {
-        if (name == null || name.isEmpty() || name.isBlank()) {
+        if (StringUtils.isBlank(name)) {
             logger.info("Filtro não informado, retornando todas as musicas.");
             return findAll();
         }

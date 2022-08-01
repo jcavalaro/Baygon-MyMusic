@@ -3,6 +3,7 @@
 API responsável por gerenciar as musicas favoritas do usuário. Possui como principais funcionalidades:
 
 ● Permitir o usuário buscar novas músicas:
+
 1. O serviço deve validar se o usuário informou ao menos 2 caracteres, retornando um HTTP 400
    caso a consulta tenha menos de 2 caracteres.
 2. A busca deve ser realizada através do nome de artista e nome da música.
@@ -12,11 +13,15 @@ API responsável por gerenciar as musicas favoritas do usuário. Possui como pri
 5. O retorno deve estar ordenado pelo nome do artista e depois pelo nome da música. 
 
 ● Permitir adicionar as músicas favoritas do usuário na playlist:
+
 1. Deve receber um request contendo o identificador da música e o identificador da playlist.
+
 2. Deve validar se o identificador da música e o identificador da playlist existem.
 
 ● Permitir o usuário remover músicas de sua playlist:
+
 3. Deve receber um request contendo o identificador da música e o identificador da playlist.
+
 4. Deve validar se o identificador da música e o identificador da playlist existem.
 
 Todos os endpoints devem possuir uma camada de segurança para proteger o dominio de dados. Para implementar

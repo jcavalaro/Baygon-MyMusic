@@ -76,18 +76,6 @@ class MusicaServiceImplTest {
         assertEquals(musicas.size(), musicaDTOS.size());
     }
 
-//    @Test
-//    void deveRetornarTodasAsMusicasQuandoParametroNaoForInformado() throws Exception {
-//        List<Musica> musicas = new ArrayList<>(List.of(musica1, musica2, musica3));
-//
-//        when(musicaRepositoryPort.findByNameArtistaOrNameMusica(null)).thenReturn(musicas);
-//
-//        List<MusicaDTO> musicaDTOS = musicaServicePort.findByNameArtistaOrNameMusica(null);
-//
-//        assertNotNull(musicaDTOS);
-//        assertEquals(musicas.size(), musicaDTOS.size());
-//    }
-
     @Test
     void deveLancarExcecaoQuandoParametroForMenorQueDoisCaracteres() throws Exception {
         String filtro = "a";

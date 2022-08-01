@@ -1,6 +1,10 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor;
 
 import com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor.exceptions.NaoAutorizadoException;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,17 +21,25 @@ import java.util.Collections;
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
 
+    private static final Logger logger = LoggerFactory.getLogger(TokenInterceptor.class.getName());
+
+    @Value("${base.token.url}")
+    private String baseTokenUrl;
+
+    @Value("${token.authorizer.url}")
+    private String authorizerUrl;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String name = request.getHeader("Name");
         String token = request.getHeader("Token");
 
-        if (name == null || token == null || name.isBlank() || token.isBlank() || name.isEmpty() || token.isEmpty()) {
+        if (StringUtils.isBlank(name) || StringUtils.isBlank(token)) {
+            logger.warn("Credencias não informadas, lançando exceção!");
             throw new NaoAutorizadoException("Requisição não autorizada. Para Realizar Qualquer Requisição na API MyMusic Informe um Nome de Usuario no Header 'Name' e um Token no Header 'Token'.");
         }
 
-        final String baseUrl = "https://baygon-token-provider.herokuapp.com/api/v1/token/authorizer";
-        URI url = new URI(baseUrl);
+        URI url = new URI(String.format("%s%s", baseTokenUrl, authorizerUrl));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
