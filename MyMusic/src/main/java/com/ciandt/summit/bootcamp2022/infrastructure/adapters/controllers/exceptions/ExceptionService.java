@@ -1,5 +1,6 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions;
 
+import com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor.exceptions.CredentialsMissingException;
 import com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor.exceptions.NaoAutorizadoException;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.RuleLengthViolationException;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,14 @@ public class ExceptionService {
         errorResponse.setStatus(HttpStatus.FORBIDDEN.value());
         errorResponse.setMessage(err.getMessage());
         return new ResponseEntity(errorResponse, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler
+    ResponseEntity<CredentialsMissingException> handleCredentialsMissingException(CredentialsMissingException err) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+        errorResponse.setMessage(err.getMessage());
+        return new ResponseEntity(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
 }
