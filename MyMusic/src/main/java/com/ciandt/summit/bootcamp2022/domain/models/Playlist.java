@@ -26,8 +26,10 @@ public class Playlist {
 
     public Playlist(PlaylistDTO playlistDTO) {
         playlistDTO.setId(id);
-        playlistDTO.setMusicId(musicId);
         playlistDTO.setMusicas(playlistDTO.getMusicas());
+    }
+
+    public Playlist(String id) {
     }
 }
 

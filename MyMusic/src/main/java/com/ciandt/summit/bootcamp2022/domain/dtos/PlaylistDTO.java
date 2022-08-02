@@ -18,12 +18,11 @@ import java.util.List;
 public class PlaylistDTO {
 
     private String id;
-    private String musicId;
+
 
     private List<Musica> musicas = new ArrayList<>();
     public PlaylistDTO(Playlist playlist) {
     playlist.setId(id);
-    playlist.setMusicId(musicId);
     playlist.setMusicas(playlist.getMusicas());
 
 
