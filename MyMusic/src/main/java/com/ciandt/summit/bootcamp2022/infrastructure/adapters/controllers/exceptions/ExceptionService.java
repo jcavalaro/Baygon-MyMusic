@@ -21,9 +21,9 @@ public class ExceptionService {
     @ExceptionHandler
     ResponseEntity<NaoAutorizadoException> handleNaoAutorizadoException(NaoAutorizadoException err) {
         ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setStatus(HttpStatus.FORBIDDEN.value());
+        errorResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         errorResponse.setMessage(err.getMessage());
-        return new ResponseEntity(errorResponse, HttpStatus.FORBIDDEN);
+        return new ResponseEntity(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
 }
