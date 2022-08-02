@@ -10,6 +10,7 @@ import com.ciandt.summit.bootcamp2022.domain.ports.repositories.PlaylistReposito
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.PlaylistJpaRepository;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicEntity;
+import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,19 +70,21 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
             throw new BusinessRuleException("Playlist not found!");
         }
 
+        PlaylistEntity playlistEntity = playlist.toPlaylistEntity();
+
         for (MusicEntity music : musicEntityList) {
              if (musicRepositoryPort.findById(music.getId()) == null) {
                 throw new BusinessRuleException("Music not found!");
             }
 
              if (!playlist.getMusics().stream().anyMatch(m -> music.getId().equals(m.getId()))) {
-                 playlist.toPlaylistEntity().getMusics().add(music);
+                 playlistEntity.getMusics().add(music);
              } else {
                  logger.info("Music " + music.getId() + " already exists in the playlist " + playlistId);
              }
         }
 
-        playlistRepositoryPort.addMusicsToPlaylist(playlist.toPlaylistEntity());
+        playlistRepositoryPort.addMusicsToPlaylist(playlistEntity);
     }
 
 }

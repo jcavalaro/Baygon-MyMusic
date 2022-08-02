@@ -22,7 +22,7 @@ public class Playlist {
     private List<Music> musics;
 
     public PlaylistEntity toPlaylistEntity() {
-        return new PlaylistEntity(getId());
+        return new PlaylistEntity(getId(), getMusics().stream().map(Music::toMusicEntity).collect(Collectors.toList()));
     }
 
     public PlaylistDTO toPlaylistDTO() {
