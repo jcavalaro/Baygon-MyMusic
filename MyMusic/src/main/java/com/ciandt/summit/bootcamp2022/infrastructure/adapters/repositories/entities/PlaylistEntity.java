@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -27,18 +28,28 @@ public class PlaylistEntity implements Serializable {
     @Column(name = "Id")
     private String id;
 
-    @ManyToMany
-    @JoinTable(name = "PlaylistMusicas",
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "PlaylistMusicas",
             joinColumns = @JoinColumn(name = "PlaylistId", referencedColumnName = "Id"),
-            inverseJoinColumns = @JoinColumn(name = "MusicaId", referencedColumnName = "Id"))
-    private List<MusicaEntity> musicas = new ArrayList<>();
+            inverseJoinColumns = @JoinColumn(name = "MusicaId", referencedColumnName = "Id")
+    )
+    private List<MusicEntity> musics = new ArrayList<>();
 
     public PlaylistEntity(Playlist playlist) {
         setId(playlist.getId());
     }
 
-    public Playlist toPlayList() {
-        return new Playlist(getId());
+    public PlaylistEntity(String id) {
+        setId(id);
+    }
+
+    public Playlist toPlaylist() {
+        return new Playlist(getId(), getMusics().stream().map(MusicEntity::toMusic).collect(Collectors.toList()));
+    }
+
+    public void addMusicsToPlaylist(List<MusicEntity> musica) {
+        getMusics().addAll(musica);
     }
 
     @Override
@@ -53,4 +64,5 @@ public class PlaylistEntity implements Serializable {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

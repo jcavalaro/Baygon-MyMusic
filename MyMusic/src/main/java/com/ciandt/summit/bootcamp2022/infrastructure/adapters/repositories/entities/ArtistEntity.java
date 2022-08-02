@@ -1,8 +1,12 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities;
 
-import com.ciandt.summit.bootcamp2022.domain.models.Artista;
-import com.ciandt.summit.bootcamp2022.domain.models.Musica;
-import lombok.*;
+import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistDTO;
+import com.ciandt.summit.bootcamp2022.domain.models.Artist;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -14,8 +18,8 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Musicas")
-public class MusicaEntity implements Serializable {
+@Table(name = "Artistas")
+public class ArtistEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -24,27 +28,27 @@ public class MusicaEntity implements Serializable {
     private String id;
 
     @Column(name = "Nome")
-    private String nome;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "ArtistaId", referencedColumnName = "Id")
-    private ArtistaEntity artista;
-
-    public MusicaEntity(Musica musica) {
-        setId(musica.getId());
-        setNome(musica.getNome());
-        setArtista(new ArtistaEntity(musica.getArtista()));
+    public ArtistEntity(Artist artist) {
+        setId(artist.getId());
+        setName(artist.getName());
     }
 
-    public Musica toMusica() {
-        return new Musica(getId(), getNome(), new Artista(artista.getId(), artista.getNome()));
+    public ArtistEntity(ArtistDTO artistDTO) {
+        setId(artistDTO.getId());
+        setName(artistDTO.getName());
+    }
+
+    public Artist toArtista() {
+        return new Artist(getId(), getName());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        MusicaEntity that = (MusicaEntity) o;
+        ArtistEntity that = (ArtistEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 

@@ -9,9 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ErrorResponse {
+public class FieldValidationErrorResponse {
 
-    private int status;
+    private String field;
     private String message;
 
 }
