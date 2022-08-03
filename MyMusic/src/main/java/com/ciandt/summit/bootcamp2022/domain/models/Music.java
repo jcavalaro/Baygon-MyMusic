@@ -35,4 +35,8 @@ public class Music {
         return new MusicDTO(getId(), getNome(), new ArtistDTO(getArtist()));
     }
 
+    public MusicEntity toMusicEntity() {
+        return new MusicEntity(getId(), getNome(), new ArtistEntity(getArtist()));
+    }
+
 }

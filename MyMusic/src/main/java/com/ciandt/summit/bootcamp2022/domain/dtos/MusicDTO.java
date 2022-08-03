@@ -23,7 +23,8 @@ public class MusicDTO {
     @NotBlank(message = "Music must contain name")
     private String name;
 
-    @NotBlank(message = "Music must contain artist")
+    @Valid
+    @NotNull(message = "Music must contain artist")
     private ArtistDTO artist;
 
     public MusicEntity toMusicEntity() {
