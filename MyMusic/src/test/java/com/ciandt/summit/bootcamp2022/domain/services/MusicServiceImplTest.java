@@ -106,7 +106,12 @@ public class MusicServiceImplTest {
 
         when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(new ArrayList<>());
 
-        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findByNameArtistOrNameMusic(filter));
+        try {
+            musicServiceImpl.findByNameArtistOrNameMusic(filter);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Filter must be at least 2 characters long.", e.getMessage());
+        }
     }
 
     @Test
@@ -124,14 +129,14 @@ public class MusicServiceImplTest {
 
     @Test
     public void shouldReturnAllMusic() throws Exception {
-        List<Music> music = new ArrayList<>(List.of(music1, music2, music3));
+        List<Music> musics = new ArrayList<>(List.of(music1, music2, music3));
 
-        when(musicRepositoryPort.findAll()).thenReturn(music);
+        when(musicRepositoryPort.findAll()).thenReturn(musics);
 
         List<MusicDTO> musicsDTO = musicServiceImpl.findAll();
 
         assertNotNull(musicsDTO);
-        assertEquals(music.size(), musicsDTO.size());
+        assertEquals(musics.size(), musicsDTO.size());
         assertEquals("Bruno Mars", musicsDTO.get(0).getArtist().getName());
         assertEquals("The Beatles", musicsDTO.get(1).getArtist().getName());
         assertEquals("Michael Jackson", musicsDTO.get(2).getArtist().getName());
@@ -165,18 +170,26 @@ public class MusicServiceImplTest {
     public void shouldThrowExceptionWhenIdNotInformed() throws Exception {
         String id = "";
 
-        when(musicRepositoryPort.findById(id)).thenReturn(music3);
-
-        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findById(id));
+        try {
+            musicServiceImpl.findById(id);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music Id not informed.", e.getMessage());
+        }
     }
 
     @Test
     public void shouldThrowExceptionWhenMusicDoesNotExists() throws Exception {
-        String filter = "naoExisteMusica";
+        String id = "naoExisteMusica";
 
-        when(musicRepositoryPort.findById(filter)).thenReturn(null);
+        when(musicRepositoryPort.findById(id)).thenReturn(null);
 
-        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findById(filter));
+        try {
+            musicServiceImpl.findById(id);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music does not exist in the database.", e.getMessage());
+        }
     }
 
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Getter
@@ -16,7 +16,7 @@ import java.util.List;
 public class DataDTO {
 
     @Valid
-    @NotNull(message = "The data cannot be empty")
+    @NotEmpty(message = "The data cannot be empty")
     private List<MusicDTO> data;
 
 }

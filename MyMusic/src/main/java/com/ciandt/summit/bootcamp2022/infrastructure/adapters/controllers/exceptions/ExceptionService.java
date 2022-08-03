@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -50,6 +51,14 @@ public class ExceptionService {
         });
 
         return new ResponseEntity<>(new FieldValidationErrorResponse(HttpStatus.BAD_REQUEST.value(), "Some fields were not filled in correctly", errors), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException err) {
+        DefaultResponseError defaultResponseError = new DefaultResponseError();
+        defaultResponseError.setStatus(HttpStatus.BAD_REQUEST.value());
+        defaultResponseError.setMessage("Request Body were not filled in correctly");
+        return new ResponseEntity(defaultResponseError, HttpStatus.BAD_REQUEST);
     }
 
 }
