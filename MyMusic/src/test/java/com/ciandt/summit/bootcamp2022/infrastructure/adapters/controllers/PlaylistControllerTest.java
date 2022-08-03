@@ -4,6 +4,7 @@ import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
+import com.ciandt.summit.bootcamp2022.domain.services.MusicServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.PlaylistServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,28 +39,21 @@ public class PlaylistControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
     @Mock
     PlaylistServiceImpl playlistService;
-
     @InjectMocks
     private PlaylistController playlistController;
 
-    final String id = "a39926f4-6acb-4497-884f-d4e5296ef652";
-
+    final String id = "942acd1b-e2a4-42e4-bb9c-1226d28d5e53";
     ArtistDTO artist1 = new ArtistDTO(UUID.randomUUID().toString(), "Bruno Mars");
     MusicDTO music1 = new MusicDTO(UUID.randomUUID().toString(), "Talking to the moon", artist1);
     ArtistDTO artist2 = new ArtistDTO(UUID.randomUUID().toString(), "The Beatles");
     MusicDTO music2 = new MusicDTO(UUID.randomUUID().toString(), "Here Comes the Sun", artist2);
     ArtistDTO artist3 = new ArtistDTO(UUID.randomUUID().toString(), "Michael Jackson");
     MusicDTO music3 = new MusicDTO(UUID.randomUUID().toString(), "Billie Jean", artist3);
-
     ArtistDTO artist4 = new ArtistDTO(UUID.randomUUID().toString(), "Mumford and Sons");
-
     MusicDTO music4 = new MusicDTO(UUID.randomUUID().toString(), "Guiding Light", artist4);
-
     MusicDTO music5 = new MusicDTO(UUID.randomUUID().toString(), " ", artist4);
-
     DataDTO dataDTORequest = new DataDTO(new ArrayList<>(Arrays.asList(music1, music2, music3)));
     DataDTO dataDTORequestError = new DataDTO(new ArrayList<>(Arrays.asList(music4)));
     DataDTO dataPayloadBodyError = new DataDTO(new ArrayList<>(Arrays.asList(music5)));
@@ -83,7 +79,8 @@ public class PlaylistControllerTest {
                         .param("playlistId", playlistId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dataDTORequest)))
-                .andExpect(status().isCreated());
+                        .andExpect(status().isCreated())
+                        .andExpect(MockMvcResultMatchers.jsonPath("$.id",hasSize(1)));
 
     }
 
