@@ -137,15 +137,4 @@ public class PlaylistServiceImplTest {
         assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTO1));
     }
 
-    @Test
-    public void shouldThrowExceptionWhenMusicIdDoesNotExists() throws Exception {
-        String playlistId = "Id Playlist 2";
-
-        when(musicRepositoryPort.findById("naoExisteEssaMusica")).thenReturn(null);
-
-        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTO2));
-    }
-
-
-
 }
