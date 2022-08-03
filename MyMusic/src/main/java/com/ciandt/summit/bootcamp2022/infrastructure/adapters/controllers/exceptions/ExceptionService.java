@@ -40,16 +40,16 @@ public class ExceptionService {
     @ExceptionHandler
     ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException err) {
 
-        List<FieldValidationErrorResponse> errors = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
         List<FieldError> fieldErrors = err.getBindingResult().getFieldErrors();
 
-        fieldErrors.forEach(error -> {
-            String message = messageSource.getMessage(error, Locale.US);
-            FieldValidationErrorResponse errorResponse = new FieldValidationErrorResponse(error.getField(), message);
-            errors.add(errorResponse);
+        fieldErrors.forEach(fieldError -> {
+            String message = messageSource.getMessage(fieldError, Locale.US);
+            String error = String.format("Field: %s - Error: %s", fieldError.getField(), message);
+            errors.add(error);
         });
 
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new FieldValidationErrorResponse(HttpStatus.BAD_REQUEST.value(), "Some fields were not filled in correctly", errors), HttpStatus.BAD_REQUEST);
     }
 
 }

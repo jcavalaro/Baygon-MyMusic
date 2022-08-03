@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -21,7 +23,8 @@ public class MusicDTO {
     @NotBlank(message = "Music must contain name")
     private String name;
 
-    @NotBlank(message = "Music must contain artist")
+    @Valid
+    @NotNull(message = "Music must contain artist")
     private ArtistDTO artist;
 
     public MusicEntity toMusicEntity() {
