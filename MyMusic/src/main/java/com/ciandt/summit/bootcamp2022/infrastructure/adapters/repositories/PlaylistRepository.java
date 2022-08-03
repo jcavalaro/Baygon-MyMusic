@@ -33,9 +33,9 @@ public class PlaylistRepository implements PlaylistRepositoryPort {
     }
 
     @Override
-    public void addMusicsToPlaylist(PlaylistEntity playlist) {
-        playlistJpaRepository.save(playlist);
+    public Playlist addMusicsToPlaylist(PlaylistEntity playlist) {
         logger.info("Musics added successfully!");
+        return playlistJpaRepository.save(playlist).toPlaylist();
     }
 
 }

@@ -34,10 +34,9 @@ public class PlaylistController {
             @ApiResponse(responseCode = "401", description = "Unauthorized")})
     public ResponseEntity<?> addMusicsToPlaylist(@PathVariable("playlistId") String playlistId, @Valid @RequestBody DataDTO musics) {
         logger.info("Adding songs to the playlist " + playlistId);
-        playlistServicePort.addMusicsToPlaylist(playlistId, musics);
+        PlaylistDTO playlistDTO = playlistServicePort.addMusicsToPlaylist(playlistId, musics);
 
         logger.info("Returning updated playlist");
-        PlaylistDTO playlistDTO = playlistServicePort.findById(playlistId);
         return new ResponseEntity<>(playlistDTO, HttpStatus.CREATED);
     }
 

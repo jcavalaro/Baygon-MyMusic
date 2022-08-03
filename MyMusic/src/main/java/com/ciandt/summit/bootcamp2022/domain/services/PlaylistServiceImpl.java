@@ -43,30 +43,32 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
     @Override
     public PlaylistDTO findById(String id) {
         if (StringUtils.isBlank(id)) {
-            logger.info("Id Playlist não informado.");
-            throw new BusinessRuleException("Id Playlist não informado.");
+            logger.info("Playlist Id not informed.");
+            throw new BusinessRuleException("Playlist Id not informed!");
         }
 
         Playlist playlist = playlistRepositoryPort.findById(id);
 
         if (playlist == null) {
-            throw new BusinessRuleException("Playlist não encontrada!");
+            logger.info("Playlist not found.");
+            throw new BusinessRuleException("Playlist not found!");
         }
 
         return playlist.toPlaylistDTO();
     }
 
     @Override
-    public void addMusicsToPlaylist(String playlistId, DataDTO musics) {
+    public PlaylistDTO addMusicsToPlaylist(String playlistId, DataDTO musics) {
         if (StringUtils.isBlank(playlistId)) {
             logger.info("Playlist Id not informed.");
-            throw new BusinessRuleException("Playlist Id not informed.");
+            throw new BusinessRuleException("Playlist Id not informed!");
         }
 
         List<MusicEntity> musicEntityList = musics.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
 
         Playlist playlist = playlistRepositoryPort.findById(playlistId);
         if (playlist == null) {
+            logger.info("Playlist not found.");
             throw new BusinessRuleException("Playlist not found!");
         }
 
@@ -74,17 +76,19 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
 
         for (MusicEntity music : musicEntityList) {
              if (musicRepositoryPort.findById(music.getId()) == null) {
+                 logger.info("Music not found.");
                 throw new BusinessRuleException("Music not found!");
             }
 
              if (!playlist.getMusics().stream().anyMatch(m -> music.getId().equals(m.getId()))) {
+                 logger.info("Music " + music.getId() + " does not exist in the playlist " + playlistId + ", adding.");
                  playlistEntity.getMusics().add(music);
              } else {
                  logger.info("Music " + music.getId() + " already exists in the playlist " + playlistId);
              }
         }
 
-        playlistRepositoryPort.addMusicsToPlaylist(playlistEntity);
+        return playlistRepositoryPort.addMusicsToPlaylist(playlistEntity).toPlaylistDTO();
     }
 
 }
