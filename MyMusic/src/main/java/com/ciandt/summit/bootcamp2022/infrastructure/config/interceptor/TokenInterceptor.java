@@ -1,6 +1,6 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor;
 
-import com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor.exceptions.NaoAutorizadoException;
+import com.ciandt.summit.bootcamp2022.infrastructure.config.interceptor.exceptions.UnauthorizedException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +35,8 @@ public class TokenInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Token");
 
         if (StringUtils.isBlank(name) || StringUtils.isBlank(token)) {
-            logger.warn("Credencias não informadas, lançando exceção!");
-            throw new NaoAutorizadoException("Requisição não autorizada. Para Realizar Qualquer Requisição na API MyMusic Informe um Nome de Usuario no Header 'Name' e um Token no Header 'Token'.");
+            logger.warn("Credentials invalid, throwing exception!");
+            throw new UnauthorizedException("Unauthorized request. To make any request to the MyMusic API, enter a username in the 'Name' header and a token in the 'Token' header.");
         }
 
         URI url = new URI(String.format("%s%s", baseTokenUrl, authorizerUrl));
@@ -55,7 +55,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
             return responseEntity.getStatusCodeValue() == 201;
         } catch (Exception ex) {
-            throw new NaoAutorizadoException("Requisição não autorizada.");
+            throw new UnauthorizedException("Unauthorized request.");
         }
     }
 

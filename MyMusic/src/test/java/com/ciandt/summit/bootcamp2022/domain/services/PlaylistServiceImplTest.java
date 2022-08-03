@@ -1,8 +1,140 @@
 package com.ciandt.summit.bootcamp2022.domain.services;
 
-import com.ciandt.summit.bootcamp2022.ApplicationConfigTest;
-import org.junit.jupiter.api.DisplayName;
+import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
+import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
+import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
+import com.ciandt.summit.bootcamp2022.domain.models.Artist;
+import com.ciandt.summit.bootcamp2022.domain.models.Music;
+import com.ciandt.summit.bootcamp2022.domain.models.Playlist;
+import com.ciandt.summit.bootcamp2022.domain.ports.repositories.MusicRepositoryPort;
+import com.ciandt.summit.bootcamp2022.domain.ports.repositories.PlaylistRepositoryPort;
+import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
+import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicEntity;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@DisplayName("PlaylistServiceImplTest")
-public class PlaylistServiceImplTest extends ApplicationConfigTest {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
+
+@SpringBootTest
+public class PlaylistServiceImplTest {
+
+    @Mock
+    PlaylistRepositoryPort playlistRepositoryPort;
+
+    @Mock
+    MusicRepositoryPort musicRepositoryPort;
+
+    @InjectMocks
+    PlaylistServiceImpl playlistServiceImpl;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    Artist artist1 = new Artist("Id Artist 1", "Bruno Mars");
+    Music music1 = new Music("Id Music 1", "Talking to the moon", artist1);
+    Artist artist2 = new Artist("Id Artist 2", "The Beatles");
+    Music music2 = new Music("Id Music 2", "Here Comes the Sun", artist2);
+    Artist artist3 = new Artist("Id Artist 3", "Michael Jackson");
+    Music music3 = new Music("Id Music 3", "Billie Jean", artist3);
+
+    List<Music> musics1 = new ArrayList<>(List.of(music1, music2, music3));
+    List<Music> musics2 = new ArrayList<>();
+
+    Playlist playlist1 = new Playlist("Id Playlist 1", musics1);
+    Playlist playlist2 = new Playlist("Id Playlist 2", musics2);
+
+    List<MusicDTO> musicsDTO1 = musics1.stream().map(Music::toMusicDTO).collect(Collectors.toList());
+    List<MusicDTO> musicsDTO2 = musics2.stream().map(Music::toMusicDTO).collect(Collectors.toList());
+
+    DataDTO dataDTO1 = new DataDTO(musicsDTO1);
+    DataDTO dataDTO2 = new DataDTO(musicsDTO2);
+
+    List<MusicEntity> musicsEntity1 = dataDTO1.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
+    List<MusicEntity> musicsEntity2 = dataDTO2.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
+
+    @Test
+    public void shouldReturnAllPlaylist() throws Exception {
+        List<Playlist> playlists = new ArrayList<>(List.of(playlist1, playlist2));
+
+        when(playlistRepositoryPort.findAll()).thenReturn(playlists);
+
+        List<PlaylistDTO> playlistsDTO = playlistServiceImpl.findAll();
+
+        assertNotNull(playlistsDTO);
+        assertEquals(playlists.size(), playlistsDTO.size());
+        assertEquals("Id Playlist 1", playlistsDTO.get(0).getId());
+        assertEquals("Id Playlist 2", playlistsDTO.get(1).getId());
+    }
+
+    @Test
+    public void shouldReturnEmptyList() throws Exception {
+        when(playlistRepositoryPort.findAll()).thenReturn(Collections.emptyList());
+
+        List<PlaylistDTO> playlistsDTO = playlistServiceImpl.findAll();
+
+        assertThat(playlistsDTO).isEmpty();
+        assertThat(playlistsDTO.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnPlaylistById() throws Exception {
+        String id = "Id Playlist 1";
+
+        when(playlistRepositoryPort.findById(id)).thenReturn(playlist1);
+
+        PlaylistDTO playlistFound = playlistServiceImpl.findById(id);
+
+        assertNotNull(playlistFound);
+        assertEquals("Id Playlist 1", playlistFound.getId());
+        assertEquals("Id Music 1", playlistFound.getMusics().get(0).getId());
+        assertEquals("Id Music 2", playlistFound.getMusics().get(1).getId());
+        assertEquals("Id Music 3", playlistFound.getMusics().get(2).getId());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIdNotInformed() throws Exception {
+        String id = "";
+
+        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.findById(id));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenPlaylistDoesNotExists() throws Exception {
+        String id = "naoExistePlaylist";
+
+        when(playlistRepositoryPort.findById(id)).thenReturn(null);
+
+        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.findById(id));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenPlaylistIdNotInformed() throws Exception {
+        String playlistId = "";
+
+        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTO1));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenPlaylistIdDoesNotExists() throws Exception {
+        String playlistId = "naoExistePlaylist";
+
+        when(playlistRepositoryPort.findById(playlistId)).thenReturn(null);
+
+        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTO1));
+    }
+
 }

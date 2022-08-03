@@ -15,12 +15,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/musicas?filtro=u2",
-							"protocol": "http",
+							"raw": "{{mymusic-url}}/api/v1/musicas?filter=u2",
 							"host": [
-								"localhost"
+								"{{mymusic-url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -28,7 +26,7 @@
 							],
 							"query": [
 								{
-									"key": "filtro",
+									"key": "filter",
 									"value": "u2"
 								}
 							]
@@ -77,7 +75,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=a",
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=a",
 							"host": [
 								"{{mymusic-url}}"
 							],
@@ -89,7 +87,7 @@
 							],
 							"query": [
 								{
-									"key": "filtro",
+									"key": "filter",
 									"value": "a"
 								}
 							]
@@ -147,13 +145,6 @@
 								"v1",
 								"musicas",
 								""
-							],
-							"query": [
-								{
-									"key": "filtro",
-									"value": "a",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -200,7 +191,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=u2",
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=u2",
 							"host": [
 								"{{mymusic-url}}"
 							],
@@ -212,7 +203,7 @@
 							],
 							"query": [
 								{
-									"key": "filtro",
+									"key": "filter",
 									"value": "u2"
 								}
 							]
@@ -261,7 +252,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=with or without you",
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=with or without you",
 							"host": [
 								"{{mymusic-url}}"
 							],
@@ -273,7 +264,7 @@
 							],
 							"query": [
 								{
-									"key": "filtro",
+									"key": "filter",
 									"value": "with or without you"
 								}
 							]
@@ -322,7 +313,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=NIRVANA",
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=NIRVANA",
 							"host": [
 								"{{mymusic-url}}"
 							],
@@ -334,7 +325,7 @@
 							],
 							"query": [
 								{
-									"key": "filtro",
+									"key": "filter",
 									"value": "NIRVANA"
 								}
 							]
@@ -383,7 +374,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filtro=naoTemRetorno",
+							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=naoTemRetorno",
 							"host": [
 								"{{mymusic-url}}"
 							],
@@ -395,7 +386,7 @@
 							],
 							"query": [
 								{
-									"key": "filtro",
+									"key": "filter",
 									"value": "naoTemRetorno"
 								}
 							]
@@ -404,6 +395,368 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Sprint 2",
+			"item": [
+				{
+					"name": "Add Musics To Playlist - Sem Headers de Autenticacao",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"{{playlistId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Musics To Playlist - Id Playlist Não Existe",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/naoexisteplaylist/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"naoexisteplaylist",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Musics To Playlist - Id Musica Não Existe",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"naoExisteMusica\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"{{playlistId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Musics To Playlist - Payload Body Invalido",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"{{playlistId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Musics To Playlist - Adicionar apenas uma Musica",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"{{playlistId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Musics To Playlist - Adicionar uma lista de Musica",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"name\": \"BU2B2\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"2a809663-6391-413f-a8bb-4b1fc0a42e14\",\n            \"name\": \"\\\"40\\\"\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"c52012c5-6abc-4a7b-91aa-ea403288b36a\",\n            \"name\": \"11 O'Clock Tick Tock\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"{{playlistId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Musics To Playlist - Tentar adicionar Musicas que Já Existem Na Playlist",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Name",
+								"value": "{{Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
+							"host": [
+								"{{mymusic-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"playlists",
+								"{{playlistId}}",
+								"musicas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sprint 3",
+			"item": []
 		}
 	],
 	"event": [
@@ -412,7 +765,20 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"pm.sendRequest({",
+					"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",",
+					"    method: 'POST',",
+					"    header: {",
+					"        'content-type': 'application/json'",
+					"    },",
+					"    body: {",
+					"        mode: 'raw',",
+					"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })",
+					"    }",
+					"}, function (err, res) {",
+					"    let tokenReceived = res.text();",
+					"    pm.environment.set(\"Token\", tokenReceived);",
+					"});"
 				]
 			}
 		},
@@ -439,6 +805,10 @@
 		{
 			"key": "Name",
 			"value": "ana"
+		},
+		{
+			"key": "playlistId",
+			"value": "a39926f4-6acb-4497-884f-d4e5296ef652"
 		}
 	]
 }

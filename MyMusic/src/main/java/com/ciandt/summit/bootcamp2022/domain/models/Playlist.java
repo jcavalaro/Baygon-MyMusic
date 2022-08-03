@@ -1,14 +1,14 @@
 package com.ciandt.summit.bootcamp2022.domain.models;
 
-import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistaDTO;
-import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
+import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,19 +16,15 @@ import java.util.List;
 @Setter
 public class Playlist {
 
-
-    List<Musica> playlistMusic = new ArrayList<>();
-
     private String id;
-    private String musicId;
-    private List<Musica> musicas = new ArrayList<>();
+    private List<Music> musics;
 
-    public Playlist(PlaylistDTO playlistDTO) {
-        playlistDTO.setId(id);
-        playlistDTO.setMusicas(playlistDTO.getMusicas());
+    public PlaylistEntity toPlaylistEntity() {
+        return new PlaylistEntity(getId(), getMusics().stream().map(Music::toMusicEntity).collect(Collectors.toList()));
     }
 
-    public Playlist(String id) {
+    public PlaylistDTO toPlaylistDTO() {
+        return new PlaylistDTO(getId(), getMusics().stream().map(Music::toMusicDTO).collect(Collectors.toList()));
     }
+
 }
-

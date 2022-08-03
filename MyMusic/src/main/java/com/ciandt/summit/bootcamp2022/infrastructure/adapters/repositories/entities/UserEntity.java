@@ -1,7 +1,6 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities;
 
-import com.ciandt.summit.bootcamp2022.domain.models.Playlist;
-import com.ciandt.summit.bootcamp2022.domain.models.Usuario;
+import com.ciandt.summit.bootcamp2022.domain.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Usuarios")
-public class UsuarioEntity implements Serializable {
+public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -33,21 +32,17 @@ public class UsuarioEntity implements Serializable {
     @JoinColumn(name = "PlaylistId", referencedColumnName = "Id")
     private PlaylistEntity playlist;
 
-    public UsuarioEntity(Usuario usuario) {
-        setId(usuario.getId());
-        setNome(usuario.getNome());
-        setPlaylist(new PlaylistEntity(usuario.getPlaylist()));
-    }
-
-    public Usuario toUsuario() {
-        return new Usuario(getId(), getNome(), new Playlist(playlist.getId()));
+    public UserEntity(User user) {
+        setId(user.getId());
+        setNome(user.getNome());
+        setPlaylist(new PlaylistEntity(user.getPlaylist()));
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UsuarioEntity that = (UsuarioEntity) o;
+        UserEntity that = (UserEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 
