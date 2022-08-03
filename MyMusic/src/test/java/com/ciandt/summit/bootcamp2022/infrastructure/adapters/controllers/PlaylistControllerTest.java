@@ -56,8 +56,13 @@ public class PlaylistControllerTest {
 
     MusicDTO music4 = new MusicDTO(UUID.randomUUID().toString(), "Guiding Light", artist4);
 
-    DataDTO dataDTORequest = new DataDTO(new ArrayList<>(Arrays.asList(music1,music2,music3)));
+    MusicDTO music5 = new MusicDTO(UUID.randomUUID().toString(), " ", artist4);
+
+    DataDTO dataDTORequest = new DataDTO(new ArrayList<>(Arrays.asList(music1, music2, music3)));
     DataDTO dataDTORequestError = new DataDTO(new ArrayList<>(Arrays.asList(music4)));
+    DataDTO dataPayloadBodyError = new DataDTO(new ArrayList<>(Arrays.asList(music5)));
+
+
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -66,7 +71,7 @@ public class PlaylistControllerTest {
 
     @Test
     public void mustReturn200WhenListMusicIsAdd() throws Exception {
-        PlaylistDTO playlistDTO = new PlaylistDTO(id,new ArrayList<>(Arrays.asList(music1,music2,music3)));
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
 
         when(playlistService.addMusicsToPlaylist(id, dataDTORequest)).thenReturn(playlistDTO);
 
@@ -74,13 +79,14 @@ public class PlaylistControllerTest {
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post(uri,"playlistId")
-                        .param("playlistId",playlistId)
+                        .post(uri, "playlistId")
+                        .param("playlistId", playlistId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dataDTORequest)))
                 .andExpect(status().isCreated());
 
     }
+
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
@@ -92,7 +98,7 @@ public class PlaylistControllerTest {
     @Test
     public void mustReturn400WhenTheMusicDoesNotExist() throws Exception {
 
-        PlaylistDTO playlistDTO = new PlaylistDTO(id,new ArrayList<>(Arrays.asList(music4)));
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music4)));
 
         when(playlistService.addMusicsToPlaylist(id, dataDTORequestError)).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
 
@@ -100,14 +106,29 @@ public class PlaylistControllerTest {
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri,"playlistId")
-                        .param("playlistId",playlistId)
+                        .post(uri, "playlistId")
+                        .param("playlistId", playlistId)
                         .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isBadRequest());
-
-
+                .andExpect(status().isBadRequest());
 
     }
 
+    @Test
+    public void mustReturn400WhenPayloadBodyDoesNotConformToDocumentation() throws Exception {
 
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music5)));
+
+        when(playlistService.addMusicsToPlaylist(id, dataPayloadBodyError)).thenThrow(new BusinessRuleException("Payload Body Does Not Conform to Documentation."));
+
+        String playlistId = id;
+        String uri = "/api/v1/playlists/{playlistId}/musicas";
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post(uri, "playlistId")
+                        .param("playlistId", playlistId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dataPayloadBodyError)))
+                .andExpect(status().isBadRequest());
+
+    }
 }
