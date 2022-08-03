@@ -4,17 +4,13 @@ import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
 import com.ciandt.summit.bootcamp2022.domain.models.Musica;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePort;
-import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicaEntity;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,19 +28,18 @@ public class PlaylistController {
             @ApiResponse(responseCode = "400", description = "Playlist não existe na base de dados")})
     public ResponseEntity<PlaylistDTO> addMusic(@PathVariable("id") Long id, @RequestBody DataDTO dataDTO){
 
-        List<Musica> musicaList = dataDTO.getData().stream().map(MusicaDTO::toMusica).collect(Collectors.toList());
-       // List<Musica> musicaList2 = findByid();
+        List<Musica> listaVindaDoBody = dataDTO.getData().stream().map(MusicaDTO::toMusica).collect(Collectors.toList());
 
-        for (Musica m: musicaList){
-            boolean bol= musicaList2.stream().anyMatch(mus -> mus.getId().equals(m.getId()));
+        List<Musica> listaQueVaiAdicionar = findByid();
+
+        for (Musica m: listaVindaDoBody){
+            boolean bol= listaQueVaiAdicionar.stream().anyMatch(mus -> mus.getId().equals(m.getId())); //se id vindo do body equals any
             if (bol){
                 break;
             }else {
-                musicaList.add(m);
+                listaQueVaiAdicionar.add(m);
             }
         }
-
-
 
         boolean valid = musicaList.stream().findAny().equals(musica1);
 
