@@ -1,9 +1,14 @@
 package com.ciandt.summit.bootcamp2022.domain.models;
 
+import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistaDTO;
+import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
+import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,6 +16,19 @@ import lombok.Setter;
 @Setter
 public class Playlist {
 
-    private String id;
 
+    List<Musica> playlistMusic = new ArrayList<>();
+
+    private String id;
+    private String musicId;
+    private List<Musica> musicas = new ArrayList<>();
+
+    public Playlist(PlaylistDTO playlistDTO) {
+        playlistDTO.setId(id);
+        playlistDTO.setMusicas(playlistDTO.getMusicas());
+    }
+
+    public Playlist(String id) {
+    }
 }
+
