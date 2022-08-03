@@ -31,7 +31,7 @@ public class MusicRepository implements MusicRepositoryPort {
     @Override
     public Music findById(String id) {
         Optional<MusicEntity> musicaEntity = musicJpaRepository.findById(id);
-        return musicaEntity.get().toMusic();
+        return musicaEntity.isEmpty() ? null : musicaEntity.get().toMusic();
     }
 
 }

@@ -29,7 +29,7 @@ public class PlaylistRepository implements PlaylistRepositoryPort {
     @Override
     public Playlist findById(String id) {
         Optional<PlaylistEntity> playlistEntity = playlistJpaRepository.findById(id);
-        return playlistEntity.get().toPlaylist();
+        return playlistEntity.isEmpty() ? null : playlistEntity.get().toPlaylist();
     }
 
     @Override
