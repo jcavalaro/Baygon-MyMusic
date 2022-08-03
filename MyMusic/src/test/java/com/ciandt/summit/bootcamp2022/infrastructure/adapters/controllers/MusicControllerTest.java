@@ -1,10 +1,10 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers;
 
-import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistaDTO;
-import com.ciandt.summit.bootcamp2022.domain.dtos.MusicaDTO;
-import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicaServicePort;
-import com.ciandt.summit.bootcamp2022.domain.services.exceptions.MusicasNotFoundException;
-import com.ciandt.summit.bootcamp2022.domain.services.exceptions.RuleLengthViolationException;
+import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistDTO;
+import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
+import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicServicePort;
+import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
+import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions.ExceptionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,99 +27,98 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class MusicaControllerTest {
+public class MusicControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @Mock
-    MusicaServicePort musicaServicePort;
+    MusicServicePort musicServicePort;
 
     @InjectMocks
-    MusicaController musicaController;
+    MusicController musicController;
 
-    ArtistaDTO artista1 = new ArtistaDTO(UUID.randomUUID().toString(), "Bruno Mars");
-    MusicaDTO musica1 = new MusicaDTO(UUID.randomUUID().toString(), "Talking to the moon", artista1);
-    ArtistaDTO artista2 = new ArtistaDTO(UUID.randomUUID().toString(), "The Beatles");
-    MusicaDTO musica2 = new MusicaDTO(UUID.randomUUID().toString(), "Here Comes the Sun", artista2);
-    ArtistaDTO artista3 = new ArtistaDTO(UUID.randomUUID().toString(), "Michael Jackson");
-    MusicaDTO musica3 = new MusicaDTO(UUID.randomUUID().toString(), "Billie Jean", artista3);
+    ArtistDTO artist1 = new ArtistDTO(UUID.randomUUID().toString(), "Bruno Mars");
+    MusicDTO music1 = new MusicDTO(UUID.randomUUID().toString(), "Talking to the moon", artist1);
+    ArtistDTO artist2 = new ArtistDTO(UUID.randomUUID().toString(), "The Beatles");
+    MusicDTO music2 = new MusicDTO(UUID.randomUUID().toString(), "Here Comes the Sun", artist2);
+    ArtistDTO artist3 = new ArtistDTO(UUID.randomUUID().toString(), "Michael Jackson");
+    MusicDTO music3 = new MusicDTO(UUID.randomUUID().toString(), "Billie Jean", artist3);
 
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(musicaController).setControllerAdvice(new ExceptionService()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(musicController).setControllerAdvice(new ExceptionService()).build();
     }
 
     @Test
     public void deveRetornar200ComFiltro() throws Exception {
-        List<MusicaDTO> musicas = new ArrayList<>(Arrays.asList(musica2));
+        List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
-        when(musicaServicePort.findByNameArtistaOrNameMusica("Beatles")).thenReturn(musicas);
+        when(musicServicePort.findByNameArtistOrNameMusic("Beatles")).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
             .get("/api/v1/musicas")
-            .param("filtro", "Beatles")
+            .param("filter", "Beatles")
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.data", hasSize(1)))
-            .andExpect(jsonPath("$.data[0].nome", is("Here Comes the Sun")));
+            .andExpect(jsonPath("$.data[0].name", is("Here Comes the Sun")));
     }
 
     @Test
     public void deveRetornar200SemFiltro() throws Exception {
-        List<MusicaDTO> musicas = new ArrayList<>(Arrays.asList(musica1, musica2, musica3));
+        List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music1, music2, music3));
 
-        when(musicaServicePort.findByNameArtistaOrNameMusica(null)).thenReturn(musicas);
+        when(musicServicePort.findByNameArtistOrNameMusic(null)).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/musicas")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data", hasSize(3)))
-                .andExpect(jsonPath("$.data[0].nome", is("Talking to the moon")))
-                .andExpect(jsonPath("$.data[1].nome", is("Here Comes the Sun")))
-                .andExpect(jsonPath("$.data[2].nome", is("Billie Jean")));
+                .andExpect(jsonPath("$.data[0].name", is("Talking to the moon")))
+                .andExpect(jsonPath("$.data[1].name", is("Here Comes the Sun")))
+                .andExpect(jsonPath("$.data[2].name", is("Billie Jean")));
     }
 
     @Test
     public void deveRetornar200QuandoOFiltroForMinusculo() throws Exception {
-        List<MusicaDTO> musicas = new ArrayList<>(Arrays.asList(musica2));
+        List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
-        when(musicaServicePort.findByNameArtistaOrNameMusica("beatles")).thenReturn(musicas);
+        when(musicServicePort.findByNameArtistOrNameMusic("beatles")).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/api/v1/musicas")
-                        .param("filtro", "beatles")
+                        .param("filter", "beatles")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data", hasSize(1)))
-                .andExpect(jsonPath("$.data[0].nome", is("Here Comes the Sun")));
+                .andExpect(jsonPath("$.data[0].name", is("Here Comes the Sun")));
     }
 
     @Test
     public void deveRetornar200QuandoOFiltroForMaiusculo() throws Exception {
-        List<MusicaDTO> musicas = new ArrayList<>(Arrays.asList(musica2));
+        List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
-        when(musicaServicePort.findByNameArtistaOrNameMusica("BEATLES")).thenReturn(musicas);
+        when(musicServicePort.findByNameArtistOrNameMusic("BEATLES")).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/api/v1/musicas")
-                        .param("filtro", "BEATLES")
+                        .param("filter", "BEATLES")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data", hasSize(1)))
-                .andExpect(jsonPath("$.data[0].nome", is("Here Comes the Sun")));
+                .andExpect(jsonPath("$.data[0].name", is("Here Comes the Sun")));
     }
 
     @Test
     public void deveRetornarErro400QuandoFiltroForMenorQue2Caracteres() throws Exception {
-        List<MusicaDTO> musicas = new ArrayList<>();
-        when(musicaServicePort.findByNameArtistaOrNameMusica("a")).thenThrow(new RuleLengthViolationException("Mensagem de exceção"));
+        when(musicServicePort.findByNameArtistOrNameMusic("a")).thenThrow(new BusinessRuleException("Mensagem de exceção"));
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/musicas")
-                .param("filtro", "a")
+                .param("filter", "a")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status", is(400)))
@@ -128,11 +127,11 @@ public class MusicaControllerTest {
 
     @Test
     public void deveRetornarErro204QuandoFiltroNaoApresentarResultado() throws Exception {
-        when(musicaServicePort.findByNameArtistaOrNameMusica("naoExiste")).thenThrow(new MusicasNotFoundException());
+        when(musicServicePort.findByNameArtistOrNameMusic("naoExiste")).thenThrow(new NotFoundException());
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/musicas")
-                .param("filtro", "naoExiste")
+                .param("filter", "naoExiste")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
