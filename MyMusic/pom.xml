@@ -170,6 +170,17 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/ciandt/summit/bootcamp2022/infrastructure/config/**/*</exclude>
+                        <exclude>com/ciandt/summit/bootcamp2022/infrastructure/adapters/repositories/entities/**/*</exclude>
+                        <exclude>com/ciandt/summit/bootcamp2022/infrastructure/adapters/controllers/exceptions/**/*</exclude>
+                        <exclude>com/ciandt/summit/bootcamp2022/domain/models/**/*</exclude>
+                        <exclude>com/ciandt/summit/bootcamp2022/domain/dtos/**/*</exclude>
+                        <exclude>com/ciandt/summit/bootcamp2022/domain/services/exceptions/**/*</exclude>
+                        <exclude>com/ciandt/summit/bootcamp2022/SummitBootcampApplication.class</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
