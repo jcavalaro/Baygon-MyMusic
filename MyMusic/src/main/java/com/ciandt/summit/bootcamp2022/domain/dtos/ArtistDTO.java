@@ -25,7 +25,7 @@ public class ArtistDTO {
         setName(artist.getName());
     }
 
-    public Artist toArtista() {
+    public Artist toArtist() {
         return new Artist(getId(), getName());
     }
 
