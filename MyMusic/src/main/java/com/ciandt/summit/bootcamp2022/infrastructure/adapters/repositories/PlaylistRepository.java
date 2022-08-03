@@ -1,25 +1,24 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories;
 
-import com.ciandt.summit.bootcamp2022.domain.models.Musica;
 import com.ciandt.summit.bootcamp2022.domain.models.Playlist;
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.PlaylistRepositoryPort;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Component
 public class PlaylistRepository implements PlaylistRepositoryPort {
+
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistRepository.class.getName());
 
     @Autowired
     private PlaylistJpaRepository playlistJpaRepository;
-
-    @Override
-    public Playlist findPlaylistById(String id) {
-        Optional<PlaylistEntity> playlist = playlistJpaRepository.findById(id);
-        return playlist.get().toPlayList();
-    }
 
     @Override
     public List<Playlist> findAll() {
@@ -28,7 +27,14 @@ public class PlaylistRepository implements PlaylistRepositoryPort {
     }
 
     @Override
-    public void addMusicRepository(PlaylistEntity playlist) {
-        playlistJpaRepository.save(playlist);
+    public Playlist findById(String id) {
+        Optional<PlaylistEntity> playlistEntity = playlistJpaRepository.findById(id);
+        return playlistEntity.isEmpty() ? null : playlistEntity.get().toPlayList();
+    }
+
+    @Override
+    public Playlist addMusicsToPlaylist(PlaylistEntity playlist) {
+        logger.info("Musics added successfully!");
+        return playlistJpaRepository.save(playlist).toPlayList();
     }
 }

@@ -7,11 +7,10 @@ import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entit
 import java.util.List;
 
 public interface PlaylistRepositoryPort {
-    Playlist findPlaylistById(String id);
+    List<Playlist> findAll();
 
-    List<Playlist>  findAll() ;
+    Playlist findById(String id);
 
-    void addMusicRepository(PlaylistEntity playlist);
-
+    Playlist addMusicsToPlaylist(PlaylistEntity playlist);
 
 }
