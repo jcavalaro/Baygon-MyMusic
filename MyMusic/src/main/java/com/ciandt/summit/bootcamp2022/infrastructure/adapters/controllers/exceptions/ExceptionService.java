@@ -18,6 +18,9 @@ import java.util.Locale;
 @ControllerAdvice
 public class ExceptionService {
 
+    @Autowired
+    private MessageSource messageSource;
+
     @ExceptionHandler
     ResponseEntity<BusinessRuleException> handleBusinessRuleException(BusinessRuleException err) {
         DefaultResponseError defaultResponseError = new DefaultResponseError();
@@ -29,9 +32,9 @@ public class ExceptionService {
     @ExceptionHandler
     ResponseEntity<UnauthorizedException> handleUnauthorizedException(UnauthorizedException err) {
         DefaultResponseError defaultResponseError = new DefaultResponseError();
-        defaultResponseError.setStatus(HttpStatus.FORBIDDEN.value());
+        defaultResponseError.setStatus(HttpStatus.UNAUTHORIZED.value());
         defaultResponseError.setMessage(err.getMessage());
-        return new ResponseEntity(defaultResponseError, HttpStatus.FORBIDDEN);
+        return new ResponseEntity(defaultResponseError, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler

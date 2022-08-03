@@ -22,10 +22,10 @@ import static org.mockito.Mockito.when;
 class MusicServiceImplTest {
 
     @MockBean
-    private MusicRepositoryPort musicRepositoryPort;
+    MusicRepositoryPort musicRepositoryPort;
 
     @Autowired
-    private MusicServicePort musicServicePort;
+    MusicServicePort musicServicePort;
 
     Artist artist1 = new Artist(UUID.randomUUID().toString(), "Bruno Mars");
     Music music1 = new Music(UUID.randomUUID().toString(), "Talking to the moon", artist1);
@@ -35,7 +35,7 @@ class MusicServiceImplTest {
     Music music3 = new Music(UUID.randomUUID().toString(), "Billie Jean", artist3);
 
     @Test
-    void deveRetornarMusicasBaseadoNoParametro() throws Exception {
+    void shouldReturnMusicBasedOnParameter() throws Exception {
         List<Music> music = new ArrayList<>(List.of(music2));
 
         String filtro = "Bea";
@@ -49,7 +49,7 @@ class MusicServiceImplTest {
     }
 
     @Test
-    void deveRetornarMusicasBaseadoNoParametroMinusculo() throws Exception {
+    void shouldReturnMusicBasedOnParameterLowerCase() throws Exception {
         List<Music> music = new ArrayList<>(List.of(music2));
 
         String filtro = "bea";
@@ -63,7 +63,7 @@ class MusicServiceImplTest {
     }
 
     @Test
-    void deveRetornarMusicasBaseadoNoParametroMaiusculo() throws Exception {
+    void shouldReturnMusicBasedOnParameterUpperCase() throws Exception {
         List<Music> music = new ArrayList<>(List.of(music2));
 
         String filtro = "BEA";
@@ -77,7 +77,7 @@ class MusicServiceImplTest {
     }
 
     @Test
-    void deveLancarExcecaoQuandoParametroForMenorQueDoisCaracteres() throws Exception {
+    void shouldThrowExceptionWhenParameterIsLessThanTwoCharacters() throws Exception {
         String filtro = "a";
 
         when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(new ArrayList<>());
@@ -86,7 +86,7 @@ class MusicServiceImplTest {
     }
 
     @Test
-    void deveLancarExcecaoQuandoNaoEncontrarMusicasBaseadoNoParametro() throws Exception {
+    void shouldThrowExceptionWhenNotFindingSongsBasedOnParameter() throws Exception {
         String filtro = "naoExiste";
 
         when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(new ArrayList<>());
@@ -99,7 +99,7 @@ class MusicServiceImplTest {
     }
 
     @Test
-    void deveRetornarTodasAsMusicas() throws Exception {
+    void shouldReturnAllMusic() throws Exception {
         List<Music> music = new ArrayList<>(List.of(music1, music2, music3));
 
         when(musicRepositoryPort.findAll()).thenReturn(music);
@@ -111,7 +111,7 @@ class MusicServiceImplTest {
     }
 
     @Test
-    void deveRetornarListaVazia() throws Exception {
+    void shouldReturnEmptyList() throws Exception {
         when(musicRepositoryPort.findAll()).thenReturn(Collections.emptyList());
 
         List<MusicDTO> musicDTOS = musicServicePort.findAll();

@@ -52,7 +52,7 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200ComFiltro() throws Exception {
+    public void shouldReturn200WithFilter() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
         when(musicServicePort.findByNameArtistOrNameMusic("Beatles")).thenReturn(musics);
@@ -67,7 +67,7 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200SemFiltro() throws Exception {
+    public void shouldReturn200WithoutFilter() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music1, music2, music3));
 
         when(musicServicePort.findByNameArtistOrNameMusic(null)).thenReturn(musics);
@@ -83,7 +83,7 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200QuandoOFiltroForMinusculo() throws Exception {
+    public void shouldReturn200WhenFilterIsLowerCase() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
         when(musicServicePort.findByNameArtistOrNameMusic("beatles")).thenReturn(musics);
@@ -98,7 +98,7 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200QuandoOFiltroForMaiusculo() throws Exception {
+    public void shouldReturn200WhenFilterIsUpperCase() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
         when(musicServicePort.findByNameArtistOrNameMusic("BEATLES")).thenReturn(musics);
@@ -113,7 +113,7 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornarErro400QuandoFiltroForMenorQue2Caracteres() throws Exception {
+    public void shouldReturn400ErrorWhenFilterIsLessThanTwoCharacters() throws Exception {
         when(musicServicePort.findByNameArtistOrNameMusic("a")).thenThrow(new BusinessRuleException("Mensagem de exceção"));
 
         mockMvc.perform(MockMvcRequestBuilders
@@ -126,7 +126,7 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornarErro204QuandoFiltroNaoApresentarResultado() throws Exception {
+    public void shouldReturnError204WhenFilterDoesNotResult() throws Exception {
         when(musicServicePort.findByNameArtistOrNameMusic("naoExiste")).thenThrow(new NotFoundException());
 
         mockMvc.perform(MockMvcRequestBuilders
