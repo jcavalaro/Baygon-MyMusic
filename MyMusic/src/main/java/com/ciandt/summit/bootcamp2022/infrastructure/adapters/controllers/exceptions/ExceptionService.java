@@ -39,7 +39,6 @@ public class ExceptionService {
     }
 
     @ExceptionHandler
-<<<<<<<<< Temporary merge branch 1
     ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException err) {
 
         List<String> errors = new ArrayList<>();
