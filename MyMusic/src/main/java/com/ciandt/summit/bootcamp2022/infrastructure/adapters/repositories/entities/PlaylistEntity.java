@@ -27,10 +27,13 @@ public class PlaylistEntity implements Serializable {
     @Column(name = "Id")
     private String id;
 
+    @Column(name = "musicaId")
+    private String musicId;
+
     @ManyToMany
     @JoinTable(name = "PlaylistMusicas",
             joinColumns = @JoinColumn(name = "PlaylistId", referencedColumnName = "Id"),
-            inverseJoinColumns = @JoinColumn(name = "MusicaId", referencedColumnName = "Id"))
+            inverseJoinColumns = @JoinColumn(name = "musicId", referencedColumnName = "Id"))
     private List<MusicaEntity> musicas = new ArrayList<>();
 
     public PlaylistEntity(Playlist playlist) {
