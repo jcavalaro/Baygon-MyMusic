@@ -9,6 +9,7 @@ import com.ciandt.summit.bootcamp2022.domain.services.PlaylistServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions.ExceptionService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,9 +78,17 @@ public class PlaylistControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .post(uri,"playlistId")
                         .param("playlistId",playlistId)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dataDTORequest)))
                 .andExpect(status().isCreated());
 
+    }
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
