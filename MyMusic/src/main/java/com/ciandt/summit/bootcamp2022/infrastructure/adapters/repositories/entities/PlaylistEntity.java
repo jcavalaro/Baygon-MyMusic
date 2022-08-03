@@ -33,6 +33,7 @@ public class PlaylistEntity implements Serializable {
     @JoinTable(name = "PlaylistMusicas",
             joinColumns = @JoinColumn(name = "PlaylistId", referencedColumnName = "Id"),
             inverseJoinColumns = @JoinColumn(name = "musicId", referencedColumnName = "Id"))
+    
     private List<MusicaEntity> musicas = new ArrayList<>();
 
     public PlaylistEntity(Playlist playlist) {
