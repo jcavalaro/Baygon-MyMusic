@@ -7,8 +7,6 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -32,19 +30,10 @@ public class MusicEntity implements Serializable {
     @JoinColumn(name = "ArtistaId", referencedColumnName = "Id")
     private ArtistEntity artist;
 
-    @ManyToMany(mappedBy = "musics", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<PlaylistEntity> playlists = new ArrayList<>();
-
     public MusicEntity(Music music) {
         setId(music.getId());
         setName(music.getNome());
         setArtist(new ArtistEntity(music.getArtist()));
-    }
-
-    public MusicEntity(String id, String name, ArtistEntity artistEntity) {
-        setId(id);
-        setName(name);
-        setArtist(artistEntity);
     }
 
     public Music toMusic() {

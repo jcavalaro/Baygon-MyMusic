@@ -48,10 +48,6 @@ public class PlaylistEntity implements Serializable {
         return new Playlist(getId(), getMusics().stream().map(MusicEntity::toMusic).collect(Collectors.toList()));
     }
 
-    public void addMusicsToPlaylist(List<MusicEntity> musica) {
-        getMusics().addAll(musica);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

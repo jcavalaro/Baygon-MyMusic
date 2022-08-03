@@ -11,6 +11,6 @@ public interface PlaylistServicePort {
 
     PlaylistDTO findById(String id);
 
-    void addMusicsToPlaylist(String playlistId, DataDTO musics);
+    PlaylistDTO addMusicsToPlaylist(String playlistId, DataDTO musics);
 
 }

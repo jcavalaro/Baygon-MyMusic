@@ -11,6 +11,6 @@ public interface PlaylistRepositoryPort {
 
     Playlist findById(String id);
 
-   void addMusicsToPlaylist(PlaylistEntity playlist);
+    Playlist addMusicsToPlaylist(PlaylistEntity playlist);
 
 }
