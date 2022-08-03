@@ -3,14 +3,15 @@ package com.ciandt.summit.bootcamp2022.domain.services;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.models.Artist;
 import com.ciandt.summit.bootcamp2022.domain.models.Music;
-import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicServicePort;
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.MusicRepositoryPort;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.*;
 
@@ -19,105 +20,161 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class MusicServiceImplTest {
+public class MusicServiceImplTest {
 
-    @MockBean
-    private MusicRepositoryPort musicRepositoryPort;
+    @Mock
+    MusicRepositoryPort musicRepositoryPort;
 
-    @Autowired
-    private MusicServicePort musicServicePort;
+    @InjectMocks
+    MusicServiceImpl musicServiceImpl;
 
-    Artist artist1 = new Artist(UUID.randomUUID().toString(), "Bruno Mars");
-    Music music1 = new Music(UUID.randomUUID().toString(), "Talking to the moon", artist1);
-    Artist artist2 = new Artist(UUID.randomUUID().toString(), "The Beatles");
-    Music music2 = new Music(UUID.randomUUID().toString(), "Here Comes the Sun", artist2);
-    Artist artist3 = new Artist(UUID.randomUUID().toString(), "Michael Jackson");
-    Music music3 = new Music(UUID.randomUUID().toString(), "Billie Jean", artist3);
+    @Before
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    Artist artist1 = new Artist("Id Artist 1", "Bruno Mars");
+    Music music1 = new Music("Id Music 1", "Talking to the moon", artist1);
+    Artist artist2 = new Artist("Id Artist 2", "The Beatles");
+    Music music2 = new Music("Id Music 2", "Here Comes the Sun", artist2);
+    Artist artist3 = new Artist("Id Artist 3", "Michael Jackson");
+    Music music3 = new Music("Id Music 3", "Billie Jean", artist3);
 
     @Test
-    void deveRetornarMusicasBaseadoNoParametro() throws Exception {
-        List<Music> music = new ArrayList<>(List.of(music2));
+    public void shouldReturnMusicBasedOnParameter() throws Exception {
+        List<Music> musics = new ArrayList<>(List.of(music2));
 
-        String filtro = "Bea";
+        String filter = "Bea";
 
-        when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(music);
+        when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(musics);
 
-        List<MusicDTO> musicDTOS = musicServicePort.findByNameArtistOrNameMusic(filtro);
+        List<MusicDTO> musicsDTO = musicServiceImpl.findByNameArtistOrNameMusic(filter);
 
-        assertNotNull(musicDTOS);
-        assertEquals(music.size(), musicDTOS.size());
+        assertNotNull(musicsDTO);
+        assertEquals(musics.size(), musicsDTO.size());
+        assertEquals("The Beatles", musicsDTO.get(0).getArtist().getName());
     }
 
     @Test
-    void deveRetornarMusicasBaseadoNoParametroMinusculo() throws Exception {
-        List<Music> music = new ArrayList<>(List.of(music2));
+    public void shouldReturnMusicBasedOnParameterLowerCase() throws Exception {
+        List<Music> musics = new ArrayList<>(List.of(music2));
 
-        String filtro = "bea";
+        String filter = "bea";
 
-        when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(music);
+        when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(musics);
 
-        List<MusicDTO> musicDTOS = musicServicePort.findByNameArtistOrNameMusic(filtro);
+        List<MusicDTO> musicsDTO = musicServiceImpl.findByNameArtistOrNameMusic(filter);
 
-        assertNotNull(musicDTOS);
-        assertEquals(music.size(), musicDTOS.size());
+        assertNotNull(musicsDTO);
+        assertEquals(musics.size(), musicsDTO.size());
+        assertEquals("The Beatles", musicsDTO.get(0).getArtist().getName());
     }
 
     @Test
-    void deveRetornarMusicasBaseadoNoParametroMaiusculo() throws Exception {
-        List<Music> music = new ArrayList<>(List.of(music2));
+    public void shouldReturnMusicBasedOnParameterUpperCase() throws Exception {
+        List<Music> musics = new ArrayList<>(List.of(music2));
 
-        String filtro = "BEA";
+        String filter = "BEA";
 
-        when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(music);
+        when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(musics);
 
-        List<MusicDTO> musicDTOS = musicServicePort.findByNameArtistOrNameMusic(filtro);
+        List<MusicDTO> musicsDTO = musicServiceImpl.findByNameArtistOrNameMusic(filter);
 
-        assertNotNull(musicDTOS);
-        assertEquals(music.size(), musicDTOS.size());
+        assertNotNull(musicsDTO);
+        assertEquals(musics.size(), musicsDTO.size());
+        assertEquals("The Beatles", musicsDTO.get(0).getArtist().getName());
     }
 
     @Test
-    void deveLancarExcecaoQuandoParametroForMenorQueDoisCaracteres() throws Exception {
-        String filtro = "a";
+    public void shouldReturnAllSongsWhenParameterNotInformed() throws Exception {
+        List<Music> musics = new ArrayList<>(List.of(music1, music2, music3));
 
-        when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(new ArrayList<>());
+        when(musicRepositoryPort.findAll()).thenReturn(musics);
 
-        Exception exception = assertThrows(BusinessRuleException.class, () -> musicServicePort.findByNameArtistOrNameMusic(filtro));
+        List<MusicDTO> musicsDTO = musicServiceImpl.findByNameArtistOrNameMusic(null);
+
+        assertNotNull(musicsDTO);
+        assertEquals(musics.size(), musicsDTO.size());
+        assertEquals("Bruno Mars", musicsDTO.get(0).getArtist().getName());
+        assertEquals("The Beatles", musicsDTO.get(1).getArtist().getName());
+        assertEquals("Michael Jackson", musicsDTO.get(2).getArtist().getName());
     }
 
     @Test
-    void deveLancarExcecaoQuandoNaoEncontrarMusicasBaseadoNoParametro() throws Exception {
-        String filtro = "naoExiste";
+    public void shouldThrowExceptionWhenParameterIsLessThanTwoCharacters() throws Exception {
+        String filter = "a";
 
-        when(musicRepositoryPort.findByNameArtistOrNameMusic(filtro)).thenReturn(new ArrayList<>());
+        when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(new ArrayList<>());
+
+        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findByNameArtistOrNameMusic(filter));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenNotFindingSongsBasedOnParameter() throws Exception {
+        String filter = "naoExiste";
+
+        when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(new ArrayList<>());
 
         try {
-            musicServicePort.findByNameArtistOrNameMusic(filtro);
+            musicServiceImpl.findByNameArtistOrNameMusic(filter);
         } catch (Throwable e) {
             assertEquals(NotFoundException.class, e.getClass());
         }
     }
 
     @Test
-    void deveRetornarTodasAsMusicas() throws Exception {
-        List<Music> music = new ArrayList<>(List.of(music1, music2, music3));
+    public void shouldReturnAllMusic() throws Exception {
+        List<Music> musics = new ArrayList<>(List.of(music1, music2, music3));
 
-        when(musicRepositoryPort.findAll()).thenReturn(music);
+        when(musicRepositoryPort.findAll()).thenReturn(musics);
 
-        List<MusicDTO> musicDTOS = musicServicePort.findAll();
+        List<MusicDTO> musicsDTO = musicServiceImpl.findAll();
 
-        assertNotNull(musicDTOS);
-        assertEquals(music.size(), musicDTOS.size());
+        assertNotNull(musicsDTO);
+        assertEquals(musics.size(), musicsDTO.size());
+        assertEquals("Bruno Mars", musicsDTO.get(0).getArtist().getName());
+        assertEquals("The Beatles", musicsDTO.get(1).getArtist().getName());
+        assertEquals("Michael Jackson", musicsDTO.get(2).getArtist().getName());
     }
 
     @Test
-    void deveRetornarListaVazia() throws Exception {
+    public void shouldReturnEmptyList() throws Exception {
         when(musicRepositoryPort.findAll()).thenReturn(Collections.emptyList());
 
-        List<MusicDTO> musicDTOS = musicServicePort.findAll();
+        List<MusicDTO> musicsDTO = musicServiceImpl.findAll();
 
-        assertThat(musicDTOS).isEmpty();
-        assertThat(musicDTOS.size()).isEqualTo(0);
+        assertThat(musicsDTO).isEmpty();
+        assertThat(musicsDTO.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnMusicById() throws Exception {
+        String id = "Id Music 3";
+
+        when(musicRepositoryPort.findById(id)).thenReturn(music3);
+
+        MusicDTO musicFound = musicServiceImpl.findById(id);
+
+        assertNotNull(musicFound);
+        assertEquals("Id Music 3", musicFound.getId());
+        assertEquals("Billie Jean", musicFound.getName());
+        assertEquals("Michael Jackson", musicFound.getArtist().getName());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIdNotInformed() throws Exception {
+        String id = "";
+
+        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findById(id));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenMusicDoesNotExists() throws Exception {
+        String id = "naoExisteMusica";
+
+        when(musicRepositoryPort.findById(id)).thenReturn(null);
+
+        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findById(id));
     }
 
 }

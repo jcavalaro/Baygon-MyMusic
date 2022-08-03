@@ -2,18 +2,17 @@ package com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers;
 
 import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
-import com.ciandt.summit.bootcamp2022.domain.services.MusicServiceImpl;
+import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.MusicServicePort;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions.ExceptionService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,17 +26,17 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class MusicControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Mock
-    private MusicServiceImpl musicService;
+    MusicServicePort musicServicePort;
 
     @InjectMocks
-    private MusicController musicController;
+    MusicController musicController;
 
     ArtistDTO artist1 = new ArtistDTO(UUID.randomUUID().toString(), "Bruno Mars");
     MusicDTO music1 = new MusicDTO(UUID.randomUUID().toString(), "Talking to the moon", artist1);
@@ -53,10 +52,10 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200ComFiltro() throws Exception {
+    public void shouldReturn200WithFilter() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
-        when(musicService.findByNameArtistOrNameMusic("Beatles")).thenReturn(musics);
+        when(musicServicePort.findByNameArtistOrNameMusic("Beatles")).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
             .get("/api/v1/musicas")
@@ -68,10 +67,10 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200SemFiltro() throws Exception {
+    public void shouldReturn200WithoutFilter() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music1, music2, music3));
 
-        when(musicService.findByNameArtistOrNameMusic(null)).thenReturn(musics);
+        when(musicServicePort.findByNameArtistOrNameMusic(null)).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/musicas")
@@ -84,10 +83,10 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200QuandoOFiltroForMinusculo() throws Exception {
+    public void shouldReturn200WhenFilterIsLowerCase() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
-        when(musicService.findByNameArtistOrNameMusic("beatles")).thenReturn(musics);
+        when(musicServicePort.findByNameArtistOrNameMusic("beatles")).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/api/v1/musicas")
@@ -99,10 +98,10 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornar200QuandoOFiltroForMaiusculo() throws Exception {
+    public void shouldReturn200WhenFilterIsUpperCase() throws Exception {
         List<MusicDTO> musics = new ArrayList<>(Arrays.asList(music2));
 
-        when(musicService.findByNameArtistOrNameMusic("BEATLES")).thenReturn(musics);
+        when(musicServicePort.findByNameArtistOrNameMusic("BEATLES")).thenReturn(musics);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/api/v1/musicas")
@@ -114,8 +113,8 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornarErro400QuandoFiltroForMenorQue2Caracteres() throws Exception {
-        when(musicService.findByNameArtistOrNameMusic("a")).thenThrow(new BusinessRuleException("Mensagem de exceção"));
+    public void shouldReturn400ErrorWhenFilterIsLessThanTwoCharacters() throws Exception {
+        when(musicServicePort.findByNameArtistOrNameMusic("a")).thenThrow(new BusinessRuleException("Mensagem de exceção"));
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/musicas")
@@ -127,8 +126,8 @@ public class MusicControllerTest {
     }
 
     @Test
-    public void deveRetornarErro204QuandoFiltroNaoApresentarResultado() throws Exception {
-        when(musicService.findByNameArtistOrNameMusic("naoExiste")).thenThrow(new NotFoundException());
+    public void shouldReturnError204WhenFilterDoesNotResult() throws Exception {
+        when(musicServicePort.findByNameArtistOrNameMusic("naoExiste")).thenThrow(new NotFoundException());
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/musicas")

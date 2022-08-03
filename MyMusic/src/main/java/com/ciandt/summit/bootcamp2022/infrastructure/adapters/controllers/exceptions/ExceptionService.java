@@ -32,9 +32,9 @@ public class ExceptionService {
     @ExceptionHandler
     ResponseEntity<UnauthorizedException> handleUnauthorizedException(UnauthorizedException err) {
         DefaultResponseError defaultResponseError = new DefaultResponseError();
-        defaultResponseError.setStatus(HttpStatus.FORBIDDEN.value());
+        defaultResponseError.setStatus(HttpStatus.UNAUTHORIZED.value());
         defaultResponseError.setMessage(err.getMessage());
-        return new ResponseEntity(defaultResponseError, HttpStatus.FORBIDDEN);
+        return new ResponseEntity(defaultResponseError, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler

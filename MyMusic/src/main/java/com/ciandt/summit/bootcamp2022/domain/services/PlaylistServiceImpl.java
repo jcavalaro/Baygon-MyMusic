@@ -8,7 +8,6 @@ import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePor
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.MusicRepositoryPort;
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.PlaylistRepositoryPort;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
-import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.PlaylistJpaRepository;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicEntity;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
 import org.apache.commons.lang3.StringUtils;
@@ -30,9 +29,6 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
 
     @Autowired
     private MusicRepositoryPort musicRepositoryPort;
-
-    @Autowired
-    private PlaylistJpaRepository playlistJpaRepository;
 
     @Override
     public List<PlaylistDTO> findAll() {
@@ -64,8 +60,6 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
             throw new BusinessRuleException("Playlist Id not informed!");
         }
 
-        List<MusicEntity> musicEntityList = musics.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
-
         Playlist playlist = playlistRepositoryPort.findById(playlistId);
         if (playlist == null) {
             logger.info("Playlist not found.");
@@ -74,6 +68,7 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
 
         PlaylistEntity playlistEntity = playlist.toPlaylistEntity();
 
+        List<MusicEntity> musicEntityList = musics.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
         for (MusicEntity music : musicEntityList) {
              if (musicRepositoryPort.findById(music.getId()) == null) {
                  logger.info("Music not found.");

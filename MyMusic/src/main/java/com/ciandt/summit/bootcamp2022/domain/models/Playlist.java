@@ -1,8 +1,6 @@
 package com.ciandt.summit.bootcamp2022.domain.models;
 
-import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
-import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicEntity;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

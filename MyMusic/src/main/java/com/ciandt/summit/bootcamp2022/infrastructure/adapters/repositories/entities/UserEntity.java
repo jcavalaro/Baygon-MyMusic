@@ -1,6 +1,5 @@
 package com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities;
 
-import com.ciandt.summit.bootcamp2022.domain.models.Playlist;
 import com.ciandt.summit.bootcamp2022.domain.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
