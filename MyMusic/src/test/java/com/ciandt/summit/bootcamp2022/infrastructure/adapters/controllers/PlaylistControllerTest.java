@@ -4,7 +4,6 @@ import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
-import com.ciandt.summit.bootcamp2022.domain.services.MusicServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.PlaylistServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
@@ -21,15 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,8 +33,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlaylistControllerTest {
-
-
 
     @Autowired
     private MockMvc mockMvc;
@@ -58,8 +52,12 @@ public class PlaylistControllerTest {
     ArtistDTO artist3 = new ArtistDTO(UUID.randomUUID().toString(), "Michael Jackson");
     MusicDTO music3 = new MusicDTO(UUID.randomUUID().toString(), "Billie Jean", artist3);
 
-    DataDTO dataDTORequest = new DataDTO(new ArrayList<>(Arrays.asList(music1,music2,music3)));
+    ArtistDTO artist4 = new ArtistDTO(UUID.randomUUID().toString(), "Mumford and Sons");
 
+    MusicDTO music4 = new MusicDTO(UUID.randomUUID().toString(), "Guiding Light", artist4);
+
+    DataDTO dataDTORequest = new DataDTO(new ArrayList<>(Arrays.asList(music1,music2,music3)));
+    DataDTO dataDTORequestError = new DataDTO(new ArrayList<>(Arrays.asList(music4)));
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -89,6 +87,26 @@ public class PlaylistControllerTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    public void mustReturn400WhenTheMusicDoesNotExist() throws Exception {
+
+        PlaylistDTO playlistDTO = new PlaylistDTO(id,new ArrayList<>(Arrays.asList(music4)));
+
+        when(playlistService.addMusicsToPlaylist(id, dataDTORequestError)).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
+
+        String playlistId = id;
+        String uri = "/api/v1/playlists/{playlistId}/musicas";
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post(uri,"playlistId")
+                        .param("playlistId",playlistId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                        .andExpect(status().isBadRequest());
+
+
+
     }
 
 
