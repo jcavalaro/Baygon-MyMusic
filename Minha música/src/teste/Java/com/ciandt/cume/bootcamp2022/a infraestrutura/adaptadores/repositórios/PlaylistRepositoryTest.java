@@ -46,12 +46,8 @@ public class PlaylistRepositoryTest {
 
     @Test
     public void findAllSucess() throws Exception {
-        //playlist - com todas as musicas
-
         List<PlaylistEntity> playlistEntityTest = List.of(playlistEntity1, playlistEntity2);
-
         when(playlistJpaRepository.findAll()).thenReturn(playlistEntityTest);
-
         List<Playlist> playlist = playlistRepository.findAll();
 
         assertNotNull(playlist);
@@ -61,21 +57,16 @@ public class PlaylistRepositoryTest {
 
     }
 
-   @Test
+    @Test
     public void findByIdSucess() throws Exception {
-
-       Optional<PlaylistEntity> playlistEntityTest = Optional.of(playlistEntity1);
-
+        Optional<PlaylistEntity> playlistEntityTest = Optional.of(playlistEntity1);
         String id = "My Playlist 1";
-
         when(playlistJpaRepository.findById(id)).thenReturn(playlistEntityTest);
-
         Optional<Playlist> playlist = Optional.ofNullable(playlistRepository.findById(id));
-
-       assertNotNull(playlist);
-       assertEquals(playlistEntityTest.get().getId(), playlist.get().getId());
-       assertEquals("My Playlist 1", playlistEntityTest.get().getId());
-
+       
+        assertNotNull(playlist);
+        assertEquals(playlistEntityTest.get().getId(), playlist.get().getId());
+        assertEquals("My Playlist 1", playlistEntityTest.get().getId());
     }
 
     @Test
@@ -83,13 +74,10 @@ public class PlaylistRepositoryTest {
         Optional<PlaylistEntity> playlistEntityTest = Optional.ofNullable(null);
         System.out.println(playlistEntityTest);
         String id = null;
-
         when(playlistJpaRepository.findById(id)).thenReturn(playlistEntityTest);
-
         Optional<Playlist> playlist = Optional.ofNullable(playlistRepository.findById(id));
 
         assertTrue(playlist.isEmpty());
-
     }
 
     @Test
@@ -98,7 +86,6 @@ public class PlaylistRepositoryTest {
        when(playlistJpaRepository.save(playlistEntity1)).thenReturn(playlistEntity1);
        this.playlistRepository.addMusicsToPlaylist(playlistEntity1);
        Mockito.verify(playlistJpaRepository, Mockito.times(1))
-                .save(playlistEntity1);
+       .save(playlistEntity1);
     }
-
 }
