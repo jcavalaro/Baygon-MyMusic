@@ -26,7 +26,7 @@ public class UserEntity implements Serializable {
     private String id;
 
     @Column(name = "Nome")
-    private String nome;
+    private String name;
 
     @OneToOne
     @JoinColumn(name = "PlaylistId", referencedColumnName = "Id")
@@ -34,7 +34,7 @@ public class UserEntity implements Serializable {
 
     public UserEntity(User user) {
         setId(user.getId());
-        setNome(user.getNome());
+        setName(user.getName());
         setPlaylist(new PlaylistEntity(user.getPlaylist()));
     }
 

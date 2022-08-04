@@ -16,27 +16,27 @@ import lombok.Setter;
 public class Music {
 
     private String id;
-    private String nome;
+    private String name;
     private Artist artist;
 
     public Music(MusicDTO musicDTO) {
         setId(musicDTO.getId());
-        setNome(musicDTO.getName());
+        setName(musicDTO.getName());
         setArtist(new Artist(musicDTO.getArtist()));
     }
 
-    public Music(String id, String nome, ArtistDTO artist) {
+    public Music(String id, String name, ArtistDTO artist) {
         setId(id);
-        setNome(nome);
+        setName(name);
         setArtist(new Artist(artist));
     }
 
     public MusicDTO toMusicDTO() {
-        return new MusicDTO(getId(), getNome(), new ArtistDTO(getArtist()));
+        return new MusicDTO(getId(), getName(), new ArtistDTO(getArtist()));
     }
 
     public MusicEntity toMusicEntity() {
-        return new MusicEntity(getId(), getNome(), new ArtistEntity(getArtist()));
+        return new MusicEntity(getId(), getName(), new ArtistEntity(getArtist()));
     }
 
 }

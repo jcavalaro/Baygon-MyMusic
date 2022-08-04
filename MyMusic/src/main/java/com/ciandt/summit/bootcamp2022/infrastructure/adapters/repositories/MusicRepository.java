@@ -18,20 +18,20 @@ public class MusicRepository implements MusicRepositoryPort {
 
     @Override
     public List<Music> findByNameArtistOrNameMusic(String name) {
-        List<MusicEntity> musicas = musicJpaRepository.findByNameArtistOrNameMusic(name);
-        return musicas.stream().map(MusicEntity::toMusic).collect(Collectors.toList());
+        List<MusicEntity> musics = musicJpaRepository.findByNameArtistOrNameMusic(name);
+        return musics.stream().map(MusicEntity::toMusic).collect(Collectors.toList());
     }
 
     @Override
     public List<Music> findAll() {
-        List<MusicEntity> musicas = musicJpaRepository.findAll();
-        return musicas.stream().map(MusicEntity::toMusic).collect(Collectors.toList());
+        List<MusicEntity> musics = musicJpaRepository.findAll();
+        return musics.stream().map(MusicEntity::toMusic).collect(Collectors.toList());
     }
 
     @Override
     public Music findById(String id) {
-        Optional<MusicEntity> musicaEntity = musicJpaRepository.findById(id);
-        return musicaEntity.isEmpty() ? null : musicaEntity.get().toMusic();
+        Optional<MusicEntity> musicEntity = musicJpaRepository.findById(id);
+        return musicEntity.isEmpty() ? null : musicEntity.get().toMusic();
     }
 
 }

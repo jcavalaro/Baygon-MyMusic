@@ -32,7 +32,7 @@ public class MusicEntity implements Serializable {
 
     public MusicEntity(Music music) {
         setId(music.getId());
-        setName(music.getNome());
+        setName(music.getName());
         setArtist(new ArtistEntity(music.getArtist()));
     }
 

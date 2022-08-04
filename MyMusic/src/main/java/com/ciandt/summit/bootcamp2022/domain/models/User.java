@@ -12,7 +12,7 @@ import lombok.Setter;
 public class User {
 
     private String id;
-    private String nome;
+    private String name;
     private Playlist playlist;
 
 }
