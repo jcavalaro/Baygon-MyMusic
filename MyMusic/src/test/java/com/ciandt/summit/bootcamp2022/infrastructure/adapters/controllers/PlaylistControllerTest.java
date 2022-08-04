@@ -119,16 +119,16 @@ public class PlaylistControllerTest {
 
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music4)));
 
-        when(playlistService.addMusicsToPlaylist(id, dataDTORequestError)).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
+        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, "playlistId")
-                        .param("playlistId", playlistId)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                        .post(uri, id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dataDTORequestError)))
+                        .andExpect(status().isBadRequest());
 
     }
 
@@ -137,16 +137,15 @@ public class PlaylistControllerTest {
 
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music5)));
 
-        when(playlistService.addMusicsToPlaylist(id, dataPayloadBodyError)).thenThrow(new BusinessRuleException("Payload Body Does Not Conform to Documentation."));
+        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Payload Body Does Not Conform to Documentation."));
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, "playlistId")
-                        .param("playlistId", playlistId)
+                        .post(uri, id)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(dataPayloadBodyError)))
+                        .content(asJsonString(dataDTORequestError)))
                 .andExpect(status().isBadRequest());
 
     }
