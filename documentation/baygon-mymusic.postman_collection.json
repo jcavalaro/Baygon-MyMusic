@@ -7,756 +7,1354 @@
 	},
 	"item": [
 		{
-			"name": "Sprint 1",
+			"name": "Local",
 			"item": [
 				{
-					"name": "Get Music By Filter Sem Headers De Autenticacao",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas?filter=u2",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas"
-							],
-							"query": [
-								{
-									"key": "filter",
-									"value": "u2"
+					"name": "Sprint 1",
+					"item": [
+						{
+							"name": "Get Music By Filter Sem Headers De Autenticacao",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas?filter=u2",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Menor que 2 Caracteres",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=a",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "a"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Sem Filtro",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=u2",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=with or without you",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "with or without you"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Artista",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=NIRVANA",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "NIRVANA"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Mas Sem Retorno",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=naoTemRetorno",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "naoTemRetorno"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Get Music By Filter Filtro Menor que 2 Caracteres",
-					"event": [
+					"name": "Sprint 2",
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'content-type': 'application/json'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    let tokenReceived = res.text();\r",
-									"    pm.environment.set(\"Token\", tokenReceived);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=a",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas",
-								""
-							],
-							"query": [
+							"name": "Add Musics To Playlist - Sem Headers de Autenticacao",
+							"event": [
 								{
-									"key": "filter",
-									"value": "a"
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Music By Filter Sem Filtro",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'content-type': 'application/json'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    let tokenReceived = res.text();\r",
-									"    pm.environment.set(\"Token\", tokenReceived);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
 							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Music By Filter Filtro Valido",
-					"event": [
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'content-type': 'application/json'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    let tokenReceived = res.text();\r",
-									"    pm.environment.set(\"Token\", tokenReceived);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=u2",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas",
-								""
-							],
-							"query": [
+							"name": "Add Musics To Playlist - Id Playlist Não Existe",
+							"event": [
 								{
-									"key": "filter",
-									"value": "u2"
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Music By Filter Filtro Valido Musica",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'content-type': 'application/json'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    let tokenReceived = res.text();\r",
-									"    pm.environment.set(\"Token\", tokenReceived);\r",
-									"});"
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
 								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=with or without you",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas",
-								""
-							],
-							"query": [
-								{
-									"key": "filter",
-									"value": "with or without you"
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/naoexisteplaylist/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"naoexisteplaylist",
+										"musicas"
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Music By Filter Filtro Valido Artista",
-					"event": [
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'content-type': 'application/json'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    let tokenReceived = res.text();\r",
-									"    pm.environment.set(\"Token\", tokenReceived);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=NIRVANA",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas",
-								""
-							],
-							"query": [
+							"name": "Add Musics To Playlist - Id Musica Não Existe",
+							"event": [
 								{
-									"key": "filter",
-									"value": "NIRVANA"
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Music By Filter Filtro Valido Mas Sem Retorno",
-					"event": [
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"naoExisteMusica\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest({\r",
-									"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'content-type': 'application/json'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })\r",
-									"    }\r",
-									"}, function (err, res) {\r",
-									"    let tokenReceived = res.text();\r",
-									"    pm.environment.set(\"Token\", tokenReceived);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/musicas/?filter=naoTemRetorno",
-							"host": [
-								"{{mymusic-url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"musicas",
-								""
-							],
-							"query": [
+							"name": "Add Musics To Playlist - Payload Body Invalido",
+							"event": [
 								{
-									"key": "filter",
-									"value": "naoTemRetorno"
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name: \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Adicionar apenas uma Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Adicionar uma lista de Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"name\": \"BU2B2\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"2a809663-6391-413f-a8bb-4b1fc0a42e14\",\n            \"name\": \"\\\"40\\\"\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"c52012c5-6abc-4a7b-91aa-ea403288b36a\",\n            \"name\": \"11 O'Clock Tick Tock\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Tentar adicionar Musicas que Já Existem Na Playlist",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
 		{
-			"name": "Sprint 2",
+			"name": "Heroku",
 			"item": [
 				{
-					"name": "Add Musics To Playlist - Sem Headers de Autenticacao",
-					"event": [
+					"name": "Sprint 1",
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Get Music By Filter Sem Headers De Autenticacao",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas?filter=u2",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
-							"host": [
-								"{{mymusic-url}}"
+						{
+							"name": "Get Music By Filter Filtro Menor que 2 Caracteres",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"{{playlistId}}",
-								"musicas"
-							]
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=a",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "a"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Sem Filtro",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=u2",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=with or without you",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "with or without you"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Artista",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=NIRVANA",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "NIRVANA"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Mas Sem Retorno",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=naoTemRetorno",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "naoTemRetorno"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Add Musics To Playlist - Id Playlist Não Existe",
-					"event": [
+					"name": "Sprint 2",
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Add Musics To Playlist - Sem Headers de Autenticacao",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/naoexisteplaylist/musicas",
-							"host": [
-								"{{mymusic-url}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"naoexisteplaylist",
-								"musicas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Musics To Playlist - Id Musica Não Existe",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"naoExisteMusica\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Add Musics To Playlist - Id Playlist Não Existe",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
-							"host": [
-								"{{mymusic-url}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"{{playlistId}}",
-								"musicas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Musics To Playlist - Payload Body Invalido",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/naoexisteplaylist/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"naoexisteplaylist",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Add Musics To Playlist - Id Musica Não Existe",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
-							"host": [
-								"{{mymusic-url}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"{{playlistId}}",
-								"musicas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Musics To Playlist - Adicionar apenas uma Musica",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"naoExisteMusica\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Add Musics To Playlist - Payload Body Invalido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
-							"host": [
-								"{{mymusic-url}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"{{playlistId}}",
-								"musicas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Musics To Playlist - Adicionar uma lista de Musica",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"name\": \"BU2B2\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"2a809663-6391-413f-a8bb-4b1fc0a42e14\",\n            \"name\": \"\\\"40\\\"\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"c52012c5-6abc-4a7b-91aa-ea403288b36a\",\n            \"name\": \"11 O'Clock Tick Tock\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Add Musics To Playlist - Adicionar apenas uma Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
-							"host": [
-								"{{mymusic-url}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"{{playlistId}}",
-								"musicas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Musics To Playlist - Tentar adicionar Musicas que Já Existem Na Playlist",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Name",
-								"value": "{{Name}}",
-								"type": "text"
-							},
-							{
-								"key": "Token",
-								"value": "{{Token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Add Musics To Playlist - Adicionar uma lista de Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{mymusic-url}}/api/v1/playlists/{{playlistId}}/musicas",
-							"host": [
-								"{{mymusic-url}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"playlists",
-								"{{playlistId}}",
-								"musicas"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"name\": \"BU2B2\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"2a809663-6391-413f-a8bb-4b1fc0a42e14\",\n            \"name\": \"\\\"40\\\"\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"c52012c5-6abc-4a7b-91aa-ea403288b36a\",\n            \"name\": \"11 O'Clock Tick Tock\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Tentar adicionar Musicas que Já Existem Na Playlist",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
-		},
-		{
-			"name": "Sprint 3",
-			"item": []
 		}
 	],
 	"event": [
@@ -794,11 +1392,16 @@
 	],
 	"variable": [
 		{
-			"key": "token-url",
-			"value": "http://localhost:8080"
+			"key": "heroku_token_url",
+			"value": "https://baygon-token-provider.herokuapp.com"
 		},
 		{
-			"key": "mymusic-url",
+			"key": "heroku_mymusic_url",
+			"value": "https://baygon-mymusic.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "local_mymusic_url",
 			"value": "http://localhost:8080",
 			"type": "string"
 		},
