@@ -10,6 +10,7 @@ import com.ciandt.summit.bootcamp2022.domain.ports.repositories.MusicRepositoryP
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.PlaylistRepositoryPort;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicEntity;
+import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -24,7 +25,6 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -51,24 +51,30 @@ public class PlaylistServiceImplTest {
     Artist artist3 = new Artist("Id Artist 3", "Michael Jackson");
     Music music3 = new Music("Id Music 3", "Billie Jean", artist3);
 
-    List<Music> musics1 = new ArrayList<>(List.of(music1, music2, music3));
-    List<Music> musics2 = new ArrayList<>();
+    List<Music> musics1 = new ArrayList<>(List.of(music1));
 
-    Playlist playlist1 = new Playlist("Id Playlist 1", musics1);
-    Playlist playlist2 = new Playlist("Id Playlist 2", musics2);
+    List<Music> musics2 = new ArrayList<>(List.of(music1, music2, music3));
 
-    List<MusicDTO> musicsDTO1 = musics1.stream().map(Music::toMusicDTO).collect(Collectors.toList());
-    List<MusicDTO> musicsDTO2 = musics2.stream().map(Music::toMusicDTO).collect(Collectors.toList());
+    Playlist playlistEmpty = new Playlist("Id Playlist Empty", new ArrayList<>());
+    Playlist playlistWithOneMusic = new Playlist("Id Playlist With One Music", musics1);
+    PlaylistEntity playlistEntityEmpty = playlistEmpty.toPlaylistEntity();
+    PlaylistEntity playlistEntityWithOneMusic = playlistWithOneMusic.toPlaylistEntity();
 
-    DataDTO dataDTO1 = new DataDTO(musicsDTO1);
-    DataDTO dataDTO2 = new DataDTO(musicsDTO2);
+    Playlist playlistUpdatedWithOneMusic = new Playlist("Id Playlist Updated With One Music", musics1);
+    Playlist playlistUpdatedWithThreeMusic = new Playlist("Id Playlist Updated With Three Music", musics2);
 
-    List<MusicEntity> musicsEntity1 = dataDTO1.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
-    List<MusicEntity> musicsEntity2 = dataDTO2.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
+    List<MusicDTO> musicsDTOWithOneMusic = musics1.stream().map(Music::toMusicDTO).collect(Collectors.toList());
+    List<MusicDTO> musicsDTOWithThreeMusic = musics2.stream().map(Music::toMusicDTO).collect(Collectors.toList());
+
+    DataDTO dataDTOWithOneMusic = new DataDTO(musicsDTOWithOneMusic);
+    DataDTO dataDTOWithThreeMusic = new DataDTO(musicsDTOWithThreeMusic);
+
+    List<MusicEntity> musicsEntityWithOneMusic = dataDTOWithOneMusic.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
+    List<MusicEntity> musicsEntityWithThreeMusic = dataDTOWithThreeMusic.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
 
     @Test
     public void shouldReturnAllPlaylist() throws Exception {
-        List<Playlist> playlists = new ArrayList<>(List.of(playlist1, playlist2));
+        List<Playlist> playlists = new ArrayList<>(List.of(playlistEmpty, playlistWithOneMusic));
 
         when(playlistRepositoryPort.findAll()).thenReturn(playlists);
 
@@ -76,8 +82,8 @@ public class PlaylistServiceImplTest {
 
         assertNotNull(playlistsDTO);
         assertEquals(playlists.size(), playlistsDTO.size());
-        assertEquals("Id Playlist 1", playlistsDTO.get(0).getId());
-        assertEquals("Id Playlist 2", playlistsDTO.get(1).getId());
+        assertEquals("Id Playlist Empty", playlistsDTO.get(0).getId());
+        assertEquals("Id Playlist With One Music", playlistsDTO.get(1).getId());
     }
 
     @Test
@@ -92,24 +98,27 @@ public class PlaylistServiceImplTest {
 
     @Test
     public void shouldReturnPlaylistById() throws Exception {
-        String id = "Id Playlist 1";
+        String id = "Id Playlist With One Music";
 
-        when(playlistRepositoryPort.findById(id)).thenReturn(playlist1);
+        when(playlistRepositoryPort.findById(id)).thenReturn(playlistWithOneMusic);
 
         PlaylistDTO playlistFound = playlistServiceImpl.findById(id);
 
         assertNotNull(playlistFound);
-        assertEquals("Id Playlist 1", playlistFound.getId());
+        assertEquals("Id Playlist With One Music", playlistFound.getId());
         assertEquals("Id Music 1", playlistFound.getMusics().get(0).getId());
-        assertEquals("Id Music 2", playlistFound.getMusics().get(1).getId());
-        assertEquals("Id Music 3", playlistFound.getMusics().get(2).getId());
     }
 
     @Test
     public void shouldThrowExceptionWhenIdNotInformed() throws Exception {
         String id = "";
 
-        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.findById(id));
+        try {
+            playlistServiceImpl.findById(id);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Playlist Id not informed.", e.getMessage());
+        }
     }
 
     @Test
@@ -118,23 +127,109 @@ public class PlaylistServiceImplTest {
 
         when(playlistRepositoryPort.findById(id)).thenReturn(null);
 
-        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.findById(id));
+        try {
+            playlistServiceImpl.findById(id);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Playlist does not exist in the database.", e.getMessage());
+        }
     }
 
     @Test
     public void shouldThrowExceptionWhenPlaylistIdNotInformed() throws Exception {
         String playlistId = "";
 
-        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTO1));
+        try {
+            playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTOWithOneMusic);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Playlist Id not informed.", e.getMessage());
+        }
     }
 
     @Test
     public void shouldThrowExceptionWhenPlaylistIdDoesNotExists() throws Exception {
-        String playlistId = "naoExistePlaylist";
+        String playlistId = "Id Playlist Does Not Exists";
 
         when(playlistRepositoryPort.findById(playlistId)).thenReturn(null);
 
-        assertThrows(BusinessRuleException.class, () -> playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTO1));
+        try {
+            playlistServiceImpl.addMusicsToPlaylist(playlistId, dataDTOWithOneMusic);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Playlist does not exist in the database.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenMusicIdDoesNotExists() throws Exception {
+        String musicId = "Id Music Does Not Exists";
+
+        when(playlistRepositoryPort.findById(playlistEmpty.getId())).thenReturn(playlistEmpty);
+        when(musicRepositoryPort.findById(musicId)).thenReturn(null);
+
+        try {
+            playlistServiceImpl.addMusicsToPlaylist(playlistEmpty.getId(), dataDTOWithOneMusic);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music does not exist in the database.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldAddASongToThePlaylist() throws Exception {
+        String id = "Id Playlist Empty";
+
+        when(playlistRepositoryPort.findById(id)).thenReturn(playlistEmpty);
+        when(musicRepositoryPort.findById(musicsEntityWithOneMusic.get(0).getId())).thenReturn(music1);
+        when(playlistRepositoryPort.addMusicsToPlaylist(playlistEntityEmpty)).thenReturn(playlistUpdatedWithOneMusic);
+
+        PlaylistDTO playlistWithNewMusics = playlistServiceImpl.addMusicsToPlaylist(id, dataDTOWithOneMusic);
+
+        assertNotNull(playlistWithNewMusics);
+        assertEquals("Id Playlist Updated With One Music", playlistWithNewMusics.getId());
+        assertEquals(1, playlistWithNewMusics.getMusics().size());
+        assertEquals("Id Music 1", playlistWithNewMusics.getMusics().get(0).getId());
+    }
+
+    @Test
+    public void shouldAddAListOfSongsToThePlaylist() throws Exception {
+        String id = "Id Playlist Empty";
+
+        when(playlistRepositoryPort.findById(id)).thenReturn(playlistEmpty);
+        when(musicRepositoryPort.findById(musicsEntityWithThreeMusic.get(0).getId())).thenReturn(music1);
+        when(musicRepositoryPort.findById(musicsEntityWithThreeMusic.get(1).getId())).thenReturn(music2);
+        when(musicRepositoryPort.findById(musicsEntityWithThreeMusic.get(2).getId())).thenReturn(music3);
+        when(playlistRepositoryPort.addMusicsToPlaylist(playlistEntityEmpty)).thenReturn(playlistUpdatedWithThreeMusic);
+
+        PlaylistDTO playlistWithNewMusics = playlistServiceImpl.addMusicsToPlaylist(id, dataDTOWithThreeMusic);
+
+        assertNotNull(playlistWithNewMusics);
+        assertEquals("Id Playlist Updated With Three Music", playlistWithNewMusics.getId());
+        assertEquals(3, playlistWithNewMusics.getMusics().size());
+        assertEquals("Id Music 1", playlistWithNewMusics.getMusics().get(0).getId());
+        assertEquals("Id Music 2", playlistWithNewMusics.getMusics().get(1).getId());
+        assertEquals("Id Music 3", playlistWithNewMusics.getMusics().get(2).getId());
+    }
+
+    @Test
+    public void shouldNotAddAMusicThatAlreadyExistsInThePlaylist() throws Exception {
+        String id = "Id Playlist With One Music";
+
+        when(playlistRepositoryPort.findById(id)).thenReturn(playlistWithOneMusic);
+        when(musicRepositoryPort.findById(musicsEntityWithThreeMusic.get(0).getId())).thenReturn(music1);
+        when(musicRepositoryPort.findById(musicsEntityWithThreeMusic.get(1).getId())).thenReturn(music2);
+        when(musicRepositoryPort.findById(musicsEntityWithThreeMusic.get(2).getId())).thenReturn(music3);
+        when(playlistRepositoryPort.addMusicsToPlaylist(playlistEntityWithOneMusic)).thenReturn(playlistUpdatedWithThreeMusic);
+
+        PlaylistDTO playlistWithNewMusics = playlistServiceImpl.addMusicsToPlaylist(id, dataDTOWithThreeMusic);
+
+        assertNotNull(playlistWithNewMusics);
+        assertEquals("Id Playlist Updated With Three Music", playlistWithNewMusics.getId());
+        assertEquals(3, playlistWithNewMusics.getMusics().size());
+        assertEquals("Id Music 1", playlistWithNewMusics.getMusics().get(0).getId());
+        assertEquals("Id Music 2", playlistWithNewMusics.getMusics().get(1).getId());
+        assertEquals("Id Music 3", playlistWithNewMusics.getMusics().get(2).getId());
     }
 
 }

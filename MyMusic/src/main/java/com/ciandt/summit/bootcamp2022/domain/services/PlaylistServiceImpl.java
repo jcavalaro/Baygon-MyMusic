@@ -40,14 +40,14 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
     public PlaylistDTO findById(String id) {
         if (StringUtils.isBlank(id)) {
             logger.info("Playlist Id not informed.");
-            throw new BusinessRuleException("Playlist Id not informed!");
+            throw new BusinessRuleException("Playlist Id not informed.");
         }
 
         Playlist playlist = playlistRepositoryPort.findById(id);
 
         if (playlist == null) {
-            logger.info("Playlist not found.");
-            throw new BusinessRuleException("Playlist not found!");
+            logger.info("Playlist does not exist.");
+            throw new BusinessRuleException("Playlist does not exist in the database.");
         }
 
         return playlist.toPlaylistDTO();
@@ -57,13 +57,13 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
     public PlaylistDTO addMusicsToPlaylist(String playlistId, DataDTO musics) {
         if (StringUtils.isBlank(playlistId)) {
             logger.info("Playlist Id not informed.");
-            throw new BusinessRuleException("Playlist Id not informed!");
+            throw new BusinessRuleException("Playlist Id not informed.");
         }
 
         Playlist playlist = playlistRepositoryPort.findById(playlistId);
         if (playlist == null) {
-            logger.info("Playlist not found.");
-            throw new BusinessRuleException("Playlist not found!");
+            logger.info("Playlist does not exist.");
+            throw new BusinessRuleException("Playlist does not exist in the database.");
         }
 
         PlaylistEntity playlistEntity = playlist.toPlaylistEntity();
@@ -71,8 +71,8 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
         List<MusicEntity> musicEntityList = musics.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
         for (MusicEntity music : musicEntityList) {
              if (musicRepositoryPort.findById(music.getId()) == null) {
-                 logger.info("Music not found.");
-                throw new BusinessRuleException("Music not found!");
+                 logger.info("Music does not exist.");
+                 throw new BusinessRuleException("Music does not exist in the database.");
             }
 
              if (!playlist.getMusics().stream().anyMatch(m -> music.getId().equals(m.getId()))) {

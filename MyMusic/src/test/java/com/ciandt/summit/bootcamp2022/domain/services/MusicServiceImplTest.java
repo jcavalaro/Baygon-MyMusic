@@ -106,7 +106,12 @@ public class MusicServiceImplTest {
 
         when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(new ArrayList<>());
 
-        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findByNameArtistOrNameMusic(filter));
+        try {
+            musicServiceImpl.findByNameArtistOrNameMusic(filter);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Filter must be at least 2 characters long.", e.getMessage());
+        }
     }
 
     @Test
@@ -165,7 +170,12 @@ public class MusicServiceImplTest {
     public void shouldThrowExceptionWhenIdNotInformed() throws Exception {
         String id = "";
 
-        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findById(id));
+        try {
+            musicServiceImpl.findById(id);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music Id not informed.", e.getMessage());
+        }
     }
 
     @Test
@@ -174,7 +184,12 @@ public class MusicServiceImplTest {
 
         when(musicRepositoryPort.findById(id)).thenReturn(null);
 
-        assertThrows(BusinessRuleException.class, () -> musicServiceImpl.findById(id));
+        try {
+            musicServiceImpl.findById(id);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music does not exist in the database.", e.getMessage());
+        }
     }
 
 }
