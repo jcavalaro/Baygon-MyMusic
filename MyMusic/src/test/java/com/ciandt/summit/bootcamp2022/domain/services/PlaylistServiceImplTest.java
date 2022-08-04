@@ -213,7 +213,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldNotAddASongThatAlreadyExistsInThePlaylist() throws Exception {
+    public void shouldNotAddAMusicThatAlreadyExistsInThePlaylist() throws Exception {
         String id = "Id Playlist With One Music";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistWithOneMusic);
