@@ -23,18 +23,19 @@ public class PlaylistRepository implements PlaylistRepositoryPort {
     @Override
     public List<Playlist> findAll() {
         List<PlaylistEntity> playlist = playlistJpaRepository.findAll();
-        return playlist.stream().map(PlaylistEntity::toPlayList).collect(Collectors.toList());
+        return playlist.stream().map(PlaylistEntity::toPlaylist).collect(Collectors.toList());
     }
 
     @Override
     public Playlist findById(String id) {
         Optional<PlaylistEntity> playlistEntity = playlistJpaRepository.findById(id);
-        return playlistEntity.isEmpty() ? null : playlistEntity.get().toPlayList();
+        return playlistEntity.isEmpty() ? null : playlistEntity.get().toPlaylist();
     }
 
     @Override
     public Playlist addMusicsToPlaylist(PlaylistEntity playlist) {
         logger.info("Musics added successfully!");
-        return playlistJpaRepository.save(playlist).toPlayList();
+        return playlistJpaRepository.save(playlist).toPlaylist();
     }
+
 }
