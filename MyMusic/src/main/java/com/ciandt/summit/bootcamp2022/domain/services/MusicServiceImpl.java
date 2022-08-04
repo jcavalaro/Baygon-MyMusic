@@ -9,6 +9,7 @@ import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundExcepti
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,6 +25,7 @@ public class MusicServiceImpl implements MusicServicePort {
     private MusicRepositoryPort musicRepositoryPort;
 
     @Override
+    @Cacheable(value = "musics_cache")
     public List<MusicDTO> findByNameArtistOrNameMusic(String name) {
         if (StringUtils.isBlank(name)) {
             logger.info("Filter not informed, returning all songs.");
@@ -48,6 +50,7 @@ public class MusicServiceImpl implements MusicServicePort {
     }
 
     @Override
+    @Cacheable(value = "musics_cache")
     public List<MusicDTO> findAll() {
         List<Music> music = musicRepositoryPort.findAll();
         return music.stream().map(Music::toMusicDTO).collect(Collectors.toList());
