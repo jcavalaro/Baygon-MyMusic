@@ -4,6 +4,7 @@ import com.ciandt.summit.bootcamp2022.domain.dtos.ArtistDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
+import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePort;
 import com.ciandt.summit.bootcamp2022.domain.services.MusicServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.PlaylistServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,7 @@ public class PlaylistControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Mock
-    PlaylistServiceImpl playlistService;
+    PlaylistServicePort playlistService;
     @InjectMocks
     private PlaylistController playlistController;
 
@@ -69,18 +71,19 @@ public class PlaylistControllerTest {
     public void mustReturn200WhenListMusicIsAdd() throws Exception {
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
 
-        when(playlistService.addMusicsToPlaylist(id, dataDTORequest)).thenReturn(playlistDTO);
+
+        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenReturn(playlistDTO);
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, "playlistId")
-                        .param("playlistId", playlistId)
+                        .post(uri, playlistId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dataDTORequest)))
                         .andExpect(status().isCreated())
-                        .andExpect(MockMvcResultMatchers.jsonPath("$.id",hasSize(1)));
+                        .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
+                        .andExpect(jsonPath("$.musics[0].name", is("Talking to the moon")));
 
     }
 
