@@ -5,10 +5,7 @@ import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePort;
-import com.ciandt.summit.bootcamp2022.domain.services.MusicServiceImpl;
-import com.ciandt.summit.bootcamp2022.domain.services.PlaylistServiceImpl;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
-import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions.ExceptionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -60,7 +57,6 @@ public class PlaylistControllerTest {
     DataDTO dataDTORequestError = new DataDTO(new ArrayList<>(Arrays.asList(music4)));
     DataDTO dataPayloadBodyError = new DataDTO(new ArrayList<>(Arrays.asList(music5)));
 
-
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -84,9 +80,7 @@ public class PlaylistControllerTest {
                         .andExpect(status().isCreated())
                         .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
                         .andExpect(jsonPath("$.musics[0].name", is("Talking to the moon")));
-
     }
-
 
     @Test
     public void mustReturn400WhenPlaylistDoesntExists() throws Exception {
@@ -102,8 +96,6 @@ public class PlaylistControllerTest {
                         .content(asJsonString(dataDTORequest)))
                         .andExpect(status().isBadRequest())
                         .andExpect(jsonPath("$.message", is("Playlist not found!")));
-
-
     }
 
     public static String asJsonString(final Object obj) {
@@ -116,7 +108,6 @@ public class PlaylistControllerTest {
 
     @Test
     public void mustReturn400WhenTheMusicDoesNotExist() throws Exception {
-
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music4)));
 
         when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
@@ -129,12 +120,10 @@ public class PlaylistControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dataDTORequestError)))
                         .andExpect(status().isBadRequest());
-
     }
 
     @Test
     public void mustReturn400WhenPayloadBodyDoesNotConformToDocumentation() throws Exception {
-
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music5)));
 
         when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Payload Body Does Not Conform to Documentation."));
@@ -147,6 +136,6 @@ public class PlaylistControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dataDTORequestError)))
                 .andExpect(status().isBadRequest());
-
     }
+
 }

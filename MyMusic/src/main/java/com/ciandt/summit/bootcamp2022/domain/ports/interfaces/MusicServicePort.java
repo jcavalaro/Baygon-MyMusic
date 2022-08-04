@@ -7,6 +7,7 @@ import java.util.List;
 public interface MusicServicePort {
 
     List<MusicDTO> findByNameArtistOrNameMusic(String name);
+
     List<MusicDTO> findAll();
 
     MusicDTO findById(String id);

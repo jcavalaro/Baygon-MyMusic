@@ -10,14 +10,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -34,12 +30,12 @@ public class MusicRepositoryTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    ArtistEntity artist1 = new ArtistEntity(UUID.randomUUID().toString(), "Bruno Mars");
-    MusicEntity music1 = new MusicEntity(UUID.randomUUID().toString(), "Talking to the moon", artist1);
-    ArtistEntity artist2 = new ArtistEntity(UUID.randomUUID().toString(), "The Beatles");
-    MusicEntity music2 = new MusicEntity(UUID.randomUUID().toString(), "Here Comes the Sun", artist2);
-    ArtistEntity artist3 = new ArtistEntity(UUID.randomUUID().toString(), "Michael Jackson");
-    MusicEntity music3 = new MusicEntity(UUID.randomUUID().toString(), "Billie Jean", artist3);
+    ArtistEntity artist1 = new ArtistEntity("Id Artist 1", "Bruno Mars");
+    MusicEntity music1 = new MusicEntity("Id Music 1", "Talking to the moon", artist1);
+    ArtistEntity artist2 = new ArtistEntity("Id Artist 2", "The Beatles");
+    MusicEntity music2 = new MusicEntity("Id Music 2", "Here Comes the Sun", artist2);
+    ArtistEntity artist3 = new ArtistEntity("Id Artist 3", "Michael Jackson");
+    MusicEntity music3 = new MusicEntity("Id Music 3", "Billie Jean", artist3);
 
     @Test
     public void shouldReturnMusicBasedOnParameter() throws Exception {
@@ -119,6 +115,30 @@ public class MusicRepositoryTest {
 
         assertThat(musics).isEmpty();
         assertThat(musics.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldReturnMusicById() throws Exception {
+        Optional<MusicEntity> musicEntityTest = Optional.of(music1);
+        String id = "Id Music 1";
+
+        when(musicJpaRepository.findById(id)).thenReturn(musicEntityTest);
+        Optional<Music> music = Optional.ofNullable(musicRepository.findById(id));
+
+        assertNotNull(music);
+        assertEquals(musicEntityTest.get().getId(), music.get().getId());
+        assertEquals("Id Music 1", musicEntityTest.get().getId());
+    }
+
+    @Test
+    public void shouldNotReturnMusicById() throws Exception {
+        Optional<MusicEntity> musicEntityTest = Optional.ofNullable(null);
+        String id = null;
+
+        when(musicJpaRepository.findById(id)).thenReturn(musicEntityTest);
+        Optional<Music> music = Optional.ofNullable(musicRepository.findById(id));
+
+        assertTrue(music.isEmpty());
     }
 
 }

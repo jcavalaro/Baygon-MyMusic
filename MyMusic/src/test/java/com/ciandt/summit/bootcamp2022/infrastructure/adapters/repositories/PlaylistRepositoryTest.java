@@ -42,7 +42,6 @@ public class PlaylistRepositoryTest {
     List<MusicEntity> musics2 = List.of(music2);
     PlaylistEntity playlistEntity2 = new PlaylistEntity("My Playlist 2", musics2);
 
-
     @Test
     public void findAllSucess() throws Exception {
         List<PlaylistEntity> playlistEntityTest = List.of(playlistEntity1, playlistEntity2);
