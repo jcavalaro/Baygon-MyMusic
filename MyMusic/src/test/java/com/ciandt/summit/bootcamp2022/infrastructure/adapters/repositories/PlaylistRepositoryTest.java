@@ -72,7 +72,6 @@ public class PlaylistRepositoryTest {
     @Test
     public void findByIdFailure() throws Exception {
         Optional<PlaylistEntity> playlistEntityTest = Optional.ofNullable(null);
-        System.out.println(playlistEntityTest);
         String id = null;
 
         when(playlistJpaRepository.findById(id)).thenReturn(playlistEntityTest);
