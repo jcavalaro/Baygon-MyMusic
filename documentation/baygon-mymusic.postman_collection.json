@@ -470,7 +470,7 @@
 							"response": []
 						},
 						{
-							"name": "Add Musics To Playlist - Payload Body Invalido",
+							"name": "Add Musics To Playlist - Payload Body Campos Preenchidos Errado",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -498,7 +498,59 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name: \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\n            }\n        }\n    ]\n}",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Payload Body Com Mais Campos que o Esperado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"genre\": \"Pop\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
