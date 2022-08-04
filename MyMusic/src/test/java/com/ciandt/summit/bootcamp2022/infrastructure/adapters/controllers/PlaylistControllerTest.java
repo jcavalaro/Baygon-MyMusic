@@ -87,6 +87,25 @@ public class PlaylistControllerTest {
 
     }
 
+
+    @Test
+    public void mustReturn400WhenPlaylistDoesntExists() throws Exception {
+
+        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Playlist not found!"));
+
+        String playlistId = id;
+        String uri = "/api/v1/playlists/{playlistId}/musicas";
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post(uri, playlistId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dataDTORequest)))
+                        .andExpect(status().isBadRequest())
+                        .andExpect(jsonPath("$.message", is("Playlist not found!")));
+
+
+    }
+
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
