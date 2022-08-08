@@ -3,6 +3,7 @@ package com.ciandt.summit.bootcamp2022.domain.services;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
+import com.ciandt.summit.bootcamp2022.domain.models.Music;
 import com.ciandt.summit.bootcamp2022.domain.models.Playlist;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePort;
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.MusicRepositoryPort;
@@ -23,6 +24,13 @@ import java.util.stream.Collectors;
 public class PlaylistServiceImpl implements PlaylistServicePort {
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistServiceImpl.class.getName());
+    private static final String PLAYLIST_NOT_INFORMED = "Playlist Id not informed.";
+    private static final String MUSIC_NOT_INFORMED = "Music Id not informed.";
+    private static final String PLAYLIST_DOES_NOT_EXISTS = "Playlist does not exist in the database.";
+    private static final String MUSIC_DOES_NOT_EXISTS = "Music does not exist in the database.";
+    private static final String MUSIC_NOT_EXISTS_IN_PLAYLIST = "Music does not exist in the playlist.";
+    private static final String MUSIC_DOES_NOT_EXISTS_IN_PLAYLIST = "Music %s does not exist in the playlist %s.";
+    private static final String MUSIC_EXISTS_IN_PLAYLIST = "Music %s already exists in the playlist %s.";
 
     @Autowired
     private PlaylistRepositoryPort playlistRepositoryPort;
@@ -39,15 +47,15 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
     @Override
     public PlaylistDTO findById(String id) {
         if (StringUtils.isBlank(id)) {
-            logger.info("Playlist Id not informed.");
-            throw new BusinessRuleException("Playlist Id not informed.");
+            logger.info(PLAYLIST_NOT_INFORMED);
+            throw new BusinessRuleException(PLAYLIST_NOT_INFORMED);
         }
 
         Playlist playlist = playlistRepositoryPort.findById(id);
 
         if (playlist == null) {
-            logger.info("Playlist does not exist.");
-            throw new BusinessRuleException("Playlist does not exist in the database.");
+            logger.info(PLAYLIST_DOES_NOT_EXISTS);
+            throw new BusinessRuleException(PLAYLIST_DOES_NOT_EXISTS);
         }
 
         return playlist.toPlaylistDTO();
@@ -56,14 +64,14 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
     @Override
     public PlaylistDTO addMusicsToPlaylist(String playlistId, DataDTO musics) {
         if (StringUtils.isBlank(playlistId)) {
-            logger.info("Playlist Id not informed.");
-            throw new BusinessRuleException("Playlist Id not informed.");
+            logger.info(PLAYLIST_NOT_INFORMED);
+            throw new BusinessRuleException(PLAYLIST_NOT_INFORMED);
         }
 
         Playlist playlist = playlistRepositoryPort.findById(playlistId);
         if (playlist == null) {
-            logger.info("Playlist does not exist.");
-            throw new BusinessRuleException("Playlist does not exist in the database.");
+            logger.info(PLAYLIST_DOES_NOT_EXISTS);
+            throw new BusinessRuleException(PLAYLIST_DOES_NOT_EXISTS);
         }
 
         PlaylistEntity playlistEntity = playlist.toPlaylistEntity();
@@ -71,19 +79,58 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
         List<MusicEntity> musicEntityList = musics.getData().stream().map(MusicDTO::toMusicEntity).collect(Collectors.toList());
         for (MusicEntity music : musicEntityList) {
              if (musicRepositoryPort.findById(music.getId()) == null) {
-                 logger.info("Music does not exist.");
-                 throw new BusinessRuleException("Music does not exist in the database.");
+                 logger.info(MUSIC_DOES_NOT_EXISTS);
+                 throw new BusinessRuleException(MUSIC_DOES_NOT_EXISTS);
             }
 
-             if (!playlist.getMusics().stream().anyMatch(m -> music.getId().equals(m.getId()))) {
-                 logger.info("Music " + music.getId() + " does not exist in the playlist " + playlistId + ", adding.");
+             if (playlistEntity.getMusics().stream().noneMatch(m -> music.getId().equals(m.getId()))) {
+                 logger.info(String.format(MUSIC_DOES_NOT_EXISTS_IN_PLAYLIST, music.getId(), playlistEntity.getId()));
                  playlistEntity.getMusics().add(music);
              } else {
-                 logger.info("Music " + music.getId() + " already exists in the playlist " + playlistId);
+                 logger.info(String.format(MUSIC_EXISTS_IN_PLAYLIST, music.getId(), playlistEntity.getId()));
              }
         }
 
         return playlistRepositoryPort.addMusicsToPlaylist(playlistEntity).toPlaylistDTO();
+    }
+
+    @Override
+    public PlaylistDTO removeMusicFromPlaylist(String playlistId, String musicId) {
+        if (StringUtils.isBlank(playlistId)) {
+            logger.info(PLAYLIST_NOT_INFORMED);
+            throw new BusinessRuleException(PLAYLIST_NOT_INFORMED);
+        }
+
+        if (StringUtils.isBlank(musicId)) {
+            logger.info(MUSIC_NOT_INFORMED);
+            throw new BusinessRuleException(MUSIC_NOT_INFORMED);
+        }
+
+        Playlist playlist = playlistRepositoryPort.findById(playlistId);
+        if (playlist == null) {
+            logger.info(PLAYLIST_DOES_NOT_EXISTS);
+            throw new BusinessRuleException(PLAYLIST_DOES_NOT_EXISTS);
+        }
+
+        PlaylistEntity playlistEntity = playlist.toPlaylistEntity();
+
+        Music music = musicRepositoryPort.findById(musicId);
+        if (music == null) {
+            logger.info(MUSIC_DOES_NOT_EXISTS);
+            throw new BusinessRuleException(MUSIC_DOES_NOT_EXISTS);
+        }
+
+        MusicEntity musicEntity = music.toMusicEntity();
+
+        if (playlistEntity.getMusics().stream().noneMatch(m -> m.equals(musicEntity))) {
+            logger.info(String.format(MUSIC_DOES_NOT_EXISTS_IN_PLAYLIST, music.getId(), playlistEntity.getId()));
+            throw new BusinessRuleException(MUSIC_NOT_EXISTS_IN_PLAYLIST);
+        } else {
+            playlistEntity.getMusics().remove(musicEntity);
+            logger.info(String.format(MUSIC_EXISTS_IN_PLAYLIST, music.getId(), playlistEntity.getId()));
+        }
+
+        return playlistRepositoryPort.removeMusicFromPlaylist(playlistEntity).toPlaylistDTO();
     }
 
 }

@@ -13,4 +13,6 @@ public interface PlaylistServicePort {
 
     PlaylistDTO addMusicsToPlaylist(String playlistId, DataDTO musics);
 
+    PlaylistDTO removeMusicFromPlaylist(String playlistId, String musicId);
+
 }

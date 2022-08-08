@@ -16,6 +16,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 public class DbConfig {
 
+    private static final String HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
+    private static final String HIBERNATE_DIALECT = "hibernate.dialect";
+    private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+
     @Autowired
     private Environment env;
 
@@ -33,7 +37,7 @@ public class DbConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities"});
+        em.setPackagesToScan("com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(additionalProperties());
         return em;
@@ -41,14 +45,14 @@ public class DbConfig {
 
     final Properties additionalProperties() {
         final Properties hibernateProperties = new Properties();
-        if (env.getProperty("hibernate.hbm2ddl.auto") != null) {
-            hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        if (env.getProperty(HIBERNATE_HBM2DDL_AUTO) != null) {
+            hibernateProperties.setProperty(HIBERNATE_HBM2DDL_AUTO, env.getProperty(HIBERNATE_HBM2DDL_AUTO));
         }
-        if (env.getProperty("hibernate.dialect") != null) {
-            hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        if (env.getProperty(HIBERNATE_DIALECT) != null) {
+            hibernateProperties.setProperty(HIBERNATE_DIALECT, env.getProperty(HIBERNATE_DIALECT));
         }
-        if (env.getProperty("hibernate.show_sql") != null) {
-            hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        if (env.getProperty(HIBERNATE_SHOW_SQL) != null) {
+            hibernateProperties.setProperty(HIBERNATE_SHOW_SQL, env.getProperty(HIBERNATE_SHOW_SQL));
         }
         return hibernateProperties;
     }

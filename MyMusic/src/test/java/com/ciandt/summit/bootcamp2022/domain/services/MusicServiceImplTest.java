@@ -149,7 +149,6 @@ public class MusicServiceImplTest {
         List<MusicDTO> musicsDTO = musicServiceImpl.findAll();
 
         assertThat(musicsDTO).isEmpty();
-        assertThat(musicsDTO.size()).isEqualTo(0);
     }
 
     @Test

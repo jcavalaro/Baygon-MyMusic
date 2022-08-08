@@ -22,22 +22,39 @@ import javax.validation.Valid;
 public class PlaylistController {
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistController.class.getName());
+    private static final String ADDING_MUSICS = "Adding musics to the playlist %s.";
+    private static final String REMOVING_MUSIC = "Removing music %s from the playlist %s.";
+    private static final String UPDATED_PLAYLIST = "Returning updated playlist.";
 
     @Autowired
     private PlaylistServicePort playlistServicePort;
 
     @PostMapping("/{playlistId}/musicas")
-    @Operation(summary = "Add songs to a playlist", description = "Receives a list of songs and adds them to the playlist")
+    @Operation(summary = "Add musics to a playlist", description = "Receives a list of musics and adds them to the playlist")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "201", description = "Successful Operation"),
             @ApiResponse(responseCode = "400", description = "Music Does Not Exist in the Base OR Playlist Does Not Exist in the Base or Payload Body Does Not Conform to Documentation"),
             @ApiResponse(responseCode = "401", description = "Unauthorized")})
     public ResponseEntity<?> addMusicsToPlaylist(@PathVariable("playlistId") String playlistId, @Valid @RequestBody DataDTO musics) {
-        logger.info("Adding songs to the playlist " + playlistId);
+        logger.info(String.format(ADDING_MUSICS, playlistId));
         PlaylistDTO playlistDTO = playlistServicePort.addMusicsToPlaylist(playlistId, musics);
 
-        logger.info("Returning updated playlist");
+        logger.info(UPDATED_PLAYLIST);
         return new ResponseEntity<>(playlistDTO, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{playlistId}/musicas/{musicaId}")
+    @Operation(summary = "Remove music from playlist", description = "Receives music and removes it from the playlist.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "400", description = "Music Does Not Exist in the Base OR Playlist Does Not Exist in the Base"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized")})
+    public ResponseEntity<?> removeMusicFromPlaylist(@PathVariable("playlistId") String playlistId, @PathVariable("musicaId") String musicId) {
+        logger.info(String.format(REMOVING_MUSIC, musicId, playlistId));
+        PlaylistDTO playlistDTO = playlistServicePort.removeMusicFromPlaylist(playlistId, musicId);
+
+        logger.info(UPDATED_PLAYLIST);
+        return new ResponseEntity<>(playlistDTO, HttpStatus.OK);
     }
 
 }

@@ -25,6 +25,8 @@ import java.util.List;
 public class MusicController {
 
     private static final Logger logger = LoggerFactory.getLogger(MusicController.class.getName());
+    private static final String SEARCHING = "Searching for music.";
+    private static final String RETURNING = "Returning all songs found.";
 
     @Autowired
     private MusicServicePort musicServicePort;
@@ -37,10 +39,10 @@ public class MusicController {
             @ApiResponse(responseCode = "400", description = "Not enough characters"),
             @ApiResponse(responseCode = "401", description = "Unauthorized")})
     public ResponseEntity<?> findMusicas(@RequestParam(required = false, name = "filter") String filter) {
-        logger.info("Searching for music!");
+        logger.info(SEARCHING);
         List<MusicDTO> musicas = musicServicePort.findByNameArtistOrNameMusic(filter);
 
-        logger.info("Returning all songs found!");
+        logger.info(RETURNING);
         return new ResponseEntity<>(new DataDTO(musicas), HttpStatus.OK);
     }
 
