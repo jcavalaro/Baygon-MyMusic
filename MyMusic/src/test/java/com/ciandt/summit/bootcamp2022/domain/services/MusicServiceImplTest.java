@@ -86,7 +86,7 @@ public class MusicServiceImplTest {
     }
 
     @Test
-    public void shouldReturnAllSongsWhenParameterNotInformed() throws Exception {
+    public void shouldReturnAllMusicsWhenParameterNotInformed() throws Exception {
         List<Music> musics = new ArrayList<>(List.of(music1, music2, music3));
 
         when(musicRepositoryPort.findAll()).thenReturn(musics);
@@ -115,7 +115,7 @@ public class MusicServiceImplTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenNotFindingSongsBasedOnParameter() throws Exception {
+    public void shouldThrowExceptionWhenNotFindingMusicsBasedOnParameter() throws Exception {
         String filter = "naoExiste";
 
         when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(new ArrayList<>());

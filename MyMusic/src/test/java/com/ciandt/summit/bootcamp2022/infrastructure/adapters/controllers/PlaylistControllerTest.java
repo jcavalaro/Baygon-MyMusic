@@ -10,13 +10,12 @@ import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.except
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -28,18 +27,19 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class PlaylistControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     @Mock
     PlaylistServicePort playlistService;
+
     @InjectMocks
     private PlaylistController playlistController;
 
@@ -63,10 +63,17 @@ public class PlaylistControllerTest {
         this.mockMvc = MockMvcBuilders.standaloneSetup(playlistController).setControllerAdvice(new ExceptionService()).build();
     }
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     public void mustReturn200WhenListMusicIsAdd() throws Exception {
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
-
 
         when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenReturn(playlistDTO);
 
@@ -84,7 +91,6 @@ public class PlaylistControllerTest {
 
     @Test
     public void mustReturn400WhenPlaylistDoesntExists() throws Exception {
-
         when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Playlist not found!"));
 
         String playlistId = id;
@@ -96,14 +102,6 @@ public class PlaylistControllerTest {
                         .content(asJsonString(dataDTORequest)))
                         .andExpect(status().isBadRequest())
                         .andExpect(jsonPath("$.message", is("Playlist not found!")));
-    }
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Test
