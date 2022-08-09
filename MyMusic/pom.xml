@@ -136,6 +136,25 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.4.3</version>
+                <configuration>
+                    <targetClasses>
+                        <param>com.ciandt.summit.bootcamp2022.domain.services*</param>
+                        <param>com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers*</param>
+                        <param>com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>com.ciandt.summit.bootcamp2022*</param>
+                    </targetTests>
+                    <excludedClasses>
+                        <param>com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions*</param>
+                        <param>com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities*</param>
+                    </excludedClasses>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${parent.version}</version>

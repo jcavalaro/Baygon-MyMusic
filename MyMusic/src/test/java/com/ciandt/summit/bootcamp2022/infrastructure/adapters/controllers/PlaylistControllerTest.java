@@ -138,4 +138,25 @@ public class PlaylistControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    public void mustReturn200WhenMusicRemove() throws Exception {
+
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
+
+        when(playlistService.removeMusicFromPlaylist(Mockito.anyString(), Mockito.anyString())).thenReturn(playlistDTO);
+
+        String uri = "/api/v1/playlists/{playlistId}/musicas/{musicaId}";
+
+        String playlistId = id;
+        String musicaId = music1.getId();
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete(uri, id, musicaId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.musics",hasSize(3)));
+
+    }
+
 }
