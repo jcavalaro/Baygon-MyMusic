@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 public class PlaylistRepository implements PlaylistRepositoryPort {
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistRepository.class.getName());
+    private static final String MUSICS_ADDED = "Musics added successfully!";
+    private static final String MUSIC_REMOVE = "Music remove from playlist successfully.";
 
     @Autowired
     private PlaylistJpaRepository playlistJpaRepository;
@@ -34,7 +36,13 @@ public class PlaylistRepository implements PlaylistRepositoryPort {
 
     @Override
     public Playlist addMusicsToPlaylist(PlaylistEntity playlist) {
-        logger.info("Musics added successfully!");
+        logger.info(MUSICS_ADDED);
+        return playlistJpaRepository.save(playlist).toPlaylist();
+    }
+
+    @Override
+    public Playlist removeMusicFromPlaylist(PlaylistEntity playlist) {
+        logger.info(MUSIC_REMOVE);
         return playlistJpaRepository.save(playlist).toPlaylist();
     }
 

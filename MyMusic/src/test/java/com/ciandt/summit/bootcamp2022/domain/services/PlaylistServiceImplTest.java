@@ -93,7 +93,6 @@ public class PlaylistServiceImplTest {
         List<PlaylistDTO> playlistsDTO = playlistServiceImpl.findAll();
 
         assertThat(playlistsDTO).isEmpty();
-        assertThat(playlistsDTO.size()).isEqualTo(0);
     }
 
     @Test

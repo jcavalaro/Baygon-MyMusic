@@ -89,7 +89,6 @@ public class MusicRepositoryTest {
         List<Music> musics = musicRepository.findByNameArtistOrNameMusic(null);
 
         assertThat(musics).isEmpty();
-        assertThat(musics.size()).isEqualTo(0);
     }
 
     @Test
@@ -114,7 +113,6 @@ public class MusicRepositoryTest {
         List<Music> musics = musicRepository.findAll();
 
         assertThat(musics).isEmpty();
-        assertThat(musics.size()).isEqualTo(0);
     }
 
     @Test
