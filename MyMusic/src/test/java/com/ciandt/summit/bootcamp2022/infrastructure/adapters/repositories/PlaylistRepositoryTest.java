@@ -82,9 +82,19 @@ public class PlaylistRepositoryTest {
     @Test
     public void addMusicsToPlaylistSucess() {
         when(playlistJpaRepository.save(playlistEntity1)).thenReturn(playlistEntity1);
-        this.playlistRepository.addMusicsToPlaylist(playlistEntity1);
+        Playlist playlistUpdated = playlistRepository.addMusicsToPlaylist(playlistEntity1);
         Mockito.verify(playlistJpaRepository, Mockito.times(1))
                 .save(playlistEntity1);
+        assertNotNull(playlistUpdated);
+    }
+
+    @Test
+    public void removeMusicFromPlaylistSucess() {
+        when(playlistJpaRepository.save(playlistEntity1)).thenReturn(playlistEntity1);
+        Playlist playlistUpdated = playlistRepository.removeMusicFromPlaylist(playlistEntity1);
+        Mockito.verify(playlistJpaRepository, Mockito.times(1))
+                .save(playlistEntity1);
+        assertNotNull(playlistUpdated);
     }
 
 }
