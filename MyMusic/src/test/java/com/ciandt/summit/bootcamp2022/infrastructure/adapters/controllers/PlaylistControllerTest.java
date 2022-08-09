@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -152,8 +153,8 @@ public class PlaylistControllerTest {
                 .delete(uri, id, musicaId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.musics",hasSize(3)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(id)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.musics", hasSize(3)));
     }
 
 }

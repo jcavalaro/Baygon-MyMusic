@@ -193,7 +193,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldAddAListOfSongsToThePlaylist() throws Exception {
+    public void shouldAddAListOfMusicsToThePlaylist() throws Exception {
         String id = "Id Playlist Empty";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistEmpty);
