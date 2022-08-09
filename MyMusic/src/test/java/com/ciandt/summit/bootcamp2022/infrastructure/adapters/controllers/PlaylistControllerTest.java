@@ -74,12 +74,12 @@ public class PlaylistControllerTest {
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, playlistId)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(dataDTORequest)))
-                        .andExpect(status().isCreated())
-                        .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
-                        .andExpect(jsonPath("$.musics[0].name", is("Talking to the moon")));
+                .post(uri, playlistId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(dataDTORequest)))
+                .andExpect(status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
+                .andExpect(jsonPath("$.musics[0].name", is("Talking to the moon")));
     }
 
     @Test
@@ -91,11 +91,11 @@ public class PlaylistControllerTest {
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, playlistId)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(dataDTORequest)))
-                        .andExpect(status().isBadRequest())
-                        .andExpect(jsonPath("$.message", is("Playlist not found!")));
+                .post(uri, playlistId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(dataDTORequest)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message", is("Playlist not found!")));
     }
 
     public static String asJsonString(final Object obj) {
@@ -116,10 +116,10 @@ public class PlaylistControllerTest {
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, id)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(dataDTORequestError)))
-                        .andExpect(status().isBadRequest());
+                .post(uri, id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(dataDTORequestError)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -132,10 +132,30 @@ public class PlaylistControllerTest {
         String uri = "/api/v1/playlists/{playlistId}/musicas";
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post(uri, id)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(dataDTORequestError)))
+                .post(uri, id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(dataDTORequestError)))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void mustReturn200WhenMusicRemove() throws Exception {
+
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
+
+        when(playlistService.removeMusicFromPlaylist(Mockito.anyString(), Mockito.anyString())).thenReturn(playlistDTO);
+
+        String uri = "/api/v1/playlists/{playlistId}/musicas/{musicaId}";
+
+        String playlistId = id;
+        String musicaId = music1.getId();
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .delete(uri, id, musicaId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id",is(id)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.musics",hasSize(3)));
     }
 
 }
