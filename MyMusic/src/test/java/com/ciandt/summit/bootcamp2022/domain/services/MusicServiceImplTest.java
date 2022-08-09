@@ -115,6 +115,21 @@ public class MusicServiceImplTest {
     }
 
     @Test
+    public void shouldThrowExceptionWhenParameterIsEqualThanTwoCharacters() throws Exception {
+        List<Music> musics = new ArrayList<>(List.of(music2));
+
+        String filter = "be";
+
+        when(musicRepositoryPort.findByNameArtistOrNameMusic(filter)).thenReturn(musics);
+
+        List<MusicDTO> musicsDTO = musicServiceImpl.findByNameArtistOrNameMusic(filter);
+
+        assertNotNull(musicsDTO);
+        assertEquals(musics.size(), musicsDTO.size());
+        assertEquals("The Beatles", musicsDTO.get(0).getArtist().getName());
+    }
+
+    @Test
     public void shouldThrowExceptionWhenNotFindingMusicsBasedOnParameter() throws Exception {
         String filter = "naoExiste";
 

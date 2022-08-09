@@ -177,7 +177,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldRemoveAMusicToThePlaylist() throws Exception {
+    public void shouldAddAMusicToThePlaylist() throws Exception {
         String id = "Id Playlist Empty";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistEmpty);
