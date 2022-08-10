@@ -15,7 +15,7 @@ B A Y G O N
  <a href="#-contribuidores">Contribuidores</a> • 
  <a href="#user-content--licença">Licença</a>
 </p>
----
+<br>
 ## 💻 Sobre o projeto
 
 <h4>Narrativa do negócio</h4>
