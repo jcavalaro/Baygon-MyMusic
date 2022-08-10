@@ -1,5 +1,7 @@
 # My Music 2022 - Bygon
 
+<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/lqSDx8SI1916ysr4eq" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/lqSDx8SI1916ysr4eq">via GIPHY</a></p>
+
 API responsável por gerenciar as musicas favoritas do usuário. Possui como principais funcionalidades:
 
 ● Permitir o usuário buscar novas músicas:
