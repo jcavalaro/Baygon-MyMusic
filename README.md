@@ -1,4 +1,4 @@
-# My Music 2022
+# My Music 2022 - Bygon
 
 API responsável por gerenciar as musicas favoritas do usuário. Possui como principais funcionalidades:
 
