@@ -1,5 +1,10 @@
 package com.ciandt.summit.bootcamp2022.domain.services;
 
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
@@ -60,6 +65,7 @@ public class PlaylistServiceImplTest {
     PlaylistEntity playlistEntityEmpty = playlistEmpty.toPlaylistEntity();
     PlaylistEntity playlistEntityWithOneMusic = playlistWithOneMusic.toPlaylistEntity();
 
+    Playlist playlistUpdatedEmpty = new Playlist("Id Playlist Updated Empty", new ArrayList<>());
     Playlist playlistUpdatedWithOneMusic = new Playlist("Id Playlist Updated With One Music", musics1);
     Playlist playlistUpdatedWithThreeMusic = new Playlist("Id Playlist Updated With Three Music", musics2);
 
@@ -135,7 +141,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenPlaylistIdNotInformed() throws Exception {
+    public void shouldThrowExceptionWhenAddMusicAndPlaylistIdNotInformed() throws Exception {
         String playlistId = "";
 
         try {
@@ -147,7 +153,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenPlaylistIdDoesNotExists() throws Exception {
+    public void shouldThrowExceptionWhenAddMusicAndPlaylistIdDoesNotExists() throws Exception {
         String playlistId = "Id Playlist Does Not Exists";
 
         when(playlistRepositoryPort.findById(playlistId)).thenReturn(null);
@@ -161,7 +167,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenMusicIdDoesNotExists() throws Exception {
+    public void shouldThrowExceptionWhenAddMusicAndMusicIdDoesNotExists() throws Exception {
         String musicId = "Id Music Does Not Exists";
 
         when(playlistRepositoryPort.findById(playlistEmpty.getId())).thenReturn(playlistEmpty);
@@ -176,7 +182,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldAddASongToThePlaylist() throws Exception {
+    public void shouldAddAMusicToThePlaylist() throws Exception {
         String id = "Id Playlist Empty";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistEmpty);
@@ -192,7 +198,7 @@ public class PlaylistServiceImplTest {
     }
 
     @Test
-    public void shouldAddAListOfSongsToThePlaylist() throws Exception {
+    public void shouldAddAListOfMusicsToThePlaylist() throws Exception {
         String id = "Id Playlist Empty";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistEmpty);
@@ -213,6 +219,12 @@ public class PlaylistServiceImplTest {
 
     @Test
     public void shouldNotAddAMusicThatAlreadyExistsInThePlaylist() throws Exception {
+        Logger logger = (Logger) LoggerFactory.getLogger(PlaylistServiceImpl.class.getName());
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        listAppender.start();
+        logger.addAppender(listAppender);
+        List<ILoggingEvent> logsList = listAppender.list;
+
         String id = "Id Playlist With One Music";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistWithOneMusic);
@@ -224,11 +236,100 @@ public class PlaylistServiceImplTest {
         PlaylistDTO playlistWithNewMusics = playlistServiceImpl.addMusicsToPlaylist(id, dataDTOWithThreeMusic);
 
         assertNotNull(playlistWithNewMusics);
+        assertEquals("Music Id Music 1 already exists in the playlist Id Playlist With One Music.", logsList.get(0).getMessage());
+        assertEquals(Level.INFO, logsList.get(0).getLevel());
         assertEquals("Id Playlist Updated With Three Music", playlistWithNewMusics.getId());
         assertEquals(3, playlistWithNewMusics.getMusics().size());
         assertEquals("Id Music 1", playlistWithNewMusics.getMusics().get(0).getId());
         assertEquals("Id Music 2", playlistWithNewMusics.getMusics().get(1).getId());
         assertEquals("Id Music 3", playlistWithNewMusics.getMusics().get(2).getId());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenRemoveMusicAndPlaylistIdNotInformed() throws Exception {
+        String playlistId = "";
+        String musicId = "Id Music";
+
+        try {
+            playlistServiceImpl.removeMusicFromPlaylist(playlistId, musicId);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Playlist Id not informed.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenRemoveMusicAndMusicIdNotInformed() throws Exception {
+        String playlistId = "Id Playlist";
+        String musicId = "";
+
+        try {
+            playlistServiceImpl.removeMusicFromPlaylist(playlistId, musicId);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music Id not informed.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenRemoveMusicAndPlaylistIdDoesNotExists() throws Exception {
+        String playlistId = "Id Playlist Does Not Exists";
+
+        when(playlistRepositoryPort.findById(playlistId)).thenReturn(null);
+
+        try {
+            playlistServiceImpl.removeMusicFromPlaylist(playlistId, music1.getId());
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Playlist does not exist in the database.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenRemoveMusicAndMusicIdDoesNotExists() throws Exception {
+        String musicId = "Id Music Does Not Exists";
+
+        when(playlistRepositoryPort.findById(playlistEmpty.getId())).thenReturn(playlistEmpty);
+        when(musicRepositoryPort.findById(musicId)).thenReturn(null);
+
+        try {
+            playlistServiceImpl.removeMusicFromPlaylist(playlistEmpty.getId(), musicId);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music does not exist in the database.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldRemoveAMusicFromThePlaylist() throws Exception {
+        String playlistId = "Id Playlist With One Music";
+        String musicId = "Id Music 1";
+
+        when(playlistRepositoryPort.findById(playlistId)).thenReturn(playlistWithOneMusic);
+        when(musicRepositoryPort.findById(musicsEntityWithOneMusic.get(0).getId())).thenReturn(music1);
+        when(playlistRepositoryPort.removeMusicFromPlaylist(playlistEntityWithOneMusic)).thenReturn(playlistUpdatedEmpty);
+
+        PlaylistDTO playlistUpdated = playlistServiceImpl.removeMusicFromPlaylist(playlistId, musicId);
+
+        assertNotNull(playlistUpdated);
+        assertEquals("Id Playlist Updated Empty", playlistUpdated.getId());
+        assertEquals(0, playlistUpdated.getMusics().size());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenRemoveAMusicThatDoesNotExistsInThePlaylist() throws Exception {
+        String playlistId = "Id Playlist With One Music";
+        String musicId = "Id Music 2";
+
+        when(playlistRepositoryPort.findById(playlistId)).thenReturn(playlistWithOneMusic);
+        when(musicRepositoryPort.findById(musicId)).thenReturn(music2);
+
+        try {
+            playlistServiceImpl.removeMusicFromPlaylist(playlistId, musicId);
+        } catch (Throwable e) {
+            assertEquals(BusinessRuleException.class, e.getClass());
+            assertEquals("Music does not exist in the playlist.", e.getMessage());
+        }
     }
 
 }
