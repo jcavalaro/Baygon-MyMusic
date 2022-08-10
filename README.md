@@ -10,7 +10,7 @@ B A Y G O N
 <p align="center">
  <a href="#-about-the-project">About</a> •
  <a href="#gear-features">Features</a> • 
- <a href="#-technologies-and-tools">Technologies and tools</a> • 
+ <a href="#hammer_and_wrench-technologies-and-tools">Technologies and tools</a> • 
  <a href="#-project-management">Project management</a> •
  <a href="#-contribuidores">Contribuidores</a> • 
  <a href="#user-content--licença">Licença</a>
