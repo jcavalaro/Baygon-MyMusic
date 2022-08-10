@@ -1,4 +1,7 @@
-# My Music 2022 - Bygon
+<h1 align="center" color="#ff8716">
+My Music 2022
+B A Y G O N
+</h1>
 
 <h3 align="center"> 
 <img src="https://media.giphy.com/media/lqSDx8SI1916ysr4eq/giphy.gif">
