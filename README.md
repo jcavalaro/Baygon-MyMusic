@@ -27,3 +27,9 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 - Demo e retrospective;
 - Checkpoint Técnico semanal;
 
+## :gear: Features
+- [X]  Authentication and authorization (Login/Logout);
+- [X]  Allows the user to search for new songs in the database;
+- [X]  Allow the user to choose the songs from the search result they want to add to their playlist;
+- [X]  Allow the user to remove songs from their playlist;
+
