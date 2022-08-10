@@ -9,12 +9,12 @@ B A Y G O N
 </h3>
 <p align="center">
  <a href="#-about-the-project">About</a> •
+ <a href="#triangular_ruler-architecture">Architecture</a> • 
  <a href="#gear-features">Features</a> • 
  <a href="#hammer_and_wrench-technologies-and-tools">Technologies and tools</a> • 
- <a href="#about-our-team-">Team</a> • 
+ <a href="#t-e-a-m-">Team</a> • 
  <a href="#handshake-project-management">Project management</a> •
- <a href="#-contribuidores">Contribuidores</a> • 
- <a href="#user-content--licença">Licença</a>
+ <a href="#robot-contributors">Contributors</a>
 </p>
 <br>
 
