@@ -62,4 +62,6 @@ T E A M
 - [X]  Demo e retrospective;
 - [X]  Checkpoint Técnico semanal;
 
+## :robot: Contributors
+
 ---
