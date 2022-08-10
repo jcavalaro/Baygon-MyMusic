@@ -21,6 +21,13 @@ B A Y G O N
 ## 💻 About the project
 In order to apply all the content studied in CI&T’s Bootcamp, our team had the challenge of developing new services to replace the legacy APIs layer using the existing database. 
 
+## :triangular_ruler: Architecture
+To carry out this project we chose the Hexagonal architecture. The reason for this choice is that with hexagonal architecture we have the following benefits:
+- [X]  Independent External Services Solution, that is, if there is any external auteration, our service will not be impacted;
+- [X]  Creation and replacement of adapters;
+- [X]  Easy to test the application;
+- [X]  Technologies that are easy to exchange;
+
 ## :gear: Features
 - [X]  Authentication and authorization (Login/Logout);
 - [X]  Allows the user to search for new songs in the database;
