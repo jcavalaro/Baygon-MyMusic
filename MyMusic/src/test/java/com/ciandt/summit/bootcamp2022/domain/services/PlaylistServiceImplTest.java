@@ -1,5 +1,10 @@
 package com.ciandt.summit.bootcamp2022.domain.services;
 
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import com.ciandt.summit.bootcamp2022.domain.dtos.DataDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
@@ -214,6 +219,12 @@ public class PlaylistServiceImplTest {
 
     @Test
     public void shouldNotAddAMusicThatAlreadyExistsInThePlaylist() throws Exception {
+        Logger logger = (Logger) LoggerFactory.getLogger(PlaylistServiceImpl.class.getName());
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        listAppender.start();
+        logger.addAppender(listAppender);
+        List<ILoggingEvent> logsList = listAppender.list;
+
         String id = "Id Playlist With One Music";
 
         when(playlistRepositoryPort.findById(id)).thenReturn(playlistWithOneMusic);
@@ -225,6 +236,8 @@ public class PlaylistServiceImplTest {
         PlaylistDTO playlistWithNewMusics = playlistServiceImpl.addMusicsToPlaylist(id, dataDTOWithThreeMusic);
 
         assertNotNull(playlistWithNewMusics);
+        assertEquals("Music Id Music 1 already exists in the playlist Id Playlist With One Music.", logsList.get(0).getMessage());
+        assertEquals(Level.INFO, logsList.get(0).getLevel());
         assertEquals("Id Playlist Updated With Three Music", playlistWithNewMusics.getId());
         assertEquals(3, playlistWithNewMusics.getMusics().size());
         assertEquals("Id Music 1", playlistWithNewMusics.getMusics().get(0).getId());
