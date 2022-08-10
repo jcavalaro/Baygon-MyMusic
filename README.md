@@ -48,6 +48,8 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 - [X]  Intellij IDEA;
 - [X]  Git & GitHub;
 
+----
+
 <h1 align="center">
 About our Team
  <img alt="Baygon" title="#Baygon" src="./.github/midia/BannerBaygon.png"/>
