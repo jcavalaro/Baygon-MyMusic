@@ -20,12 +20,6 @@ B A Y G O N
 ## 💻 About the project
 In order to apply all the content studied in CI&T’s Bootcamp, our team had the challenge of developing new services to replace the legacy APIs layer using the existing database. 
 
-## :handshake: Project management
-##### To manage the project, the following rites were performed:
-- Daily;
-- Planning;
-- Demo e retrospective;
-- Checkpoint Técnico semanal;
 
 ## :gear: Features
 - [X]  Authentication and authorization (Login/Logout);
@@ -41,3 +35,10 @@ About our Team
    <br>
 B A Y G O N
 </h1>
+
+## :handshake: Project management
+##### To manage the project, the following rites were performed:
+- Daily;
+- Planning;
+- Demo e retrospective;
+- Checkpoint Técnico semanal;
