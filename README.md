@@ -33,20 +33,20 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 
 ## :hammer_and_wrench: Technologies and tools
 - [X]  Java  11;
-- [X]  Spring Boot
-- [X]  Maven
-- [X]  Spring Boot Actuator
-- [X]  JPA / Hibernate
-- [X]  SQLite
-- [X]  JUnit
-- [X]  Mockito
-- [X]  JaCoCo (Java Code Coverage Library)
-- [X]  Pitest (PIT Mutation Testing)
-- [X]  Swagger
-- [X]  Heroku
-- [X]  Postman
-- [X]  Intellij IDEA
-- [X]  Git & GitHub
+- [X]  Spring Boot;
+- [X]  Maven;
+- [X]  Spring Boot Actuator;
+- [X]  JPA / Hibernate;
+- [X]  SQLite;
+- [X]  JUnit;
+- [X]  Mockito;
+- [X]  JaCoCo (Java Code Coverage Library);
+- [X]  Pitest (PIT Mutation Testing);
+- [X]  Swagger;
+- [X]  Heroku;
+- [X]  Postman;
+- [X]  Intellij IDEA;
+- [X]  Git & GitHub;
 
 <h1 align="center">
 About our Team
