@@ -1,6 +1,6 @@
-<h1 align="center" color="#ff8716">
+<h1 align="center">
 My Music 2022
-------------
+<br>--</br>
 B A Y G O N
 </h1>
 
