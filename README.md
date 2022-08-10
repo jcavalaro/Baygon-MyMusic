@@ -23,10 +23,10 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 
 ## :triangular_ruler: Architecture
 To carry out this project we chose the Hexagonal architecture. The reason for this choice is that with hexagonal architecture we have the following benefits:
-- [X]  Independent External Services Solution, that is, if there is any external auteration, our service will not be impacted;
-- [X]  Creation and replacement of adapters;
-- [X]  Easy to test the application;
-- [X]  Technologies that are easy to exchange;
+- Independent External Services Solution, that is, if there is any external auteration, our service will not be impacted;
+- Creation and replacement of adapters;
+- Easy to test the application;
+- Technologies that are easy to exchange;
 
 ## :gear: Features
 - [X]  Authentication and authorization (Login/Logout);
@@ -39,21 +39,21 @@ To carry out this project we chose the Hexagonal architecture. The reason for th
 - [X]  Pipeline creation with github actions for automated API publishing;
 
 ## :hammer_and_wrench: Technologies and tools
-- [X]  Java  11;
-- [X]  Spring Boot;
-- [X]  Maven;
-- [X]  Spring Boot Actuator;
-- [X]  JPA / Hibernate;
-- [X]  SQLite;
-- [X]  JUnit;
-- [X]  Mockito;
-- [X]  JaCoCo (Java Code Coverage Library);
-- [X]  Pitest (PIT Mutation Testing);
-- [X]  Swagger;
-- [X]  Heroku;
-- [X]  Postman;
-- [X]  Intellij IDEA;
-- [X]  Git & GitHub;
+- Java 11;
+- Spring Boot;
+- Maven;
+- Spring Boot Actuator;
+- JPA / Hibernate;
+- SQLite;
+- JUnit;
+- Mockito;
+- JaCoCo (Java Code Coverage Library);
+- Pitest (PIT Mutation Testing);
+- Swagger;
+- Heroku;
+- Postman;
+- Intellij IDEA;
+- Git & GitHub;
 
 ----
 
@@ -64,10 +64,10 @@ T E A M
 
 ## :handshake: Project management
 ##### To manage the project, the following rites were performed:
-- [X]  Daily;
-- [X]  Planning;
-- [X]  Demo e retrospective;
-- [X]  Checkpoint Técnico semanal;
+- Daily;
+- Planning;
+- Demo e retrospective;
+- Checkpoint Técnico semanal;
 
 ## :robot: Contributors
 
