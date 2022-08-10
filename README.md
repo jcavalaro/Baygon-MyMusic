@@ -32,8 +32,7 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 
 <h1 align="center">
 About our Team
-   <br>
-B A Y G O N
+ <img alt="Baygon" title="#Baygon" src="./.github/midia/BannerBaygon.png"/>
 </h1>
 
 ## :handshake: Project management
