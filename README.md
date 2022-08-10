@@ -12,7 +12,7 @@ B A Y G O N
 ## 💻 Sobre o projeto
 
 <h4>Narrativa do negócio</h4>
-Um cliente possui uma aplicação #Java Spring Boot para controle de músicas favoritas de seus usuários. Esta é uma aplicação legada onde o usuário pode interagir com sua lista de músicas favoritas, além disso ele possui um banco de dados que armazena estas informações e um serviço de APIs que realizam a integração deste cliente com o banco de dados.
+Um cliente possui uma aplicação ##Java Spring Boot para controle de músicas favoritas de seus usuários. Esta é uma aplicação legada onde o usuário pode interagir com sua lista de músicas favoritas, além disso ele possui um banco de dados que armazena estas informações e um serviço de APIs que realizam a integração deste cliente com o banco de dados.
 Após diversas análises de desempenho foi identificado que existe um gargalo na aplicação legada, principalmente na camada de APIs sendo que a mesma está em um servidor monolítico que não comporta a demanda atual e também não permite o fácil e rápido dimensionamento de servidores para atender à demanda.
 É necessário desenvolver novos serviços para substituir a camada de APIs utilizando o banco de dados existente.
 
