@@ -8,8 +8,8 @@ B A Y G O N
 <img src="https://media.giphy.com/media/lqSDx8SI1916ysr4eq/giphy.gif">
 </h3>
 <p align="center">
- <a href="#-sobre-o-projeto">Sobre</a> •
- <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-about-the-project">About</a> •
+ <a href="#-project-management">Project management</a> •
  <a href="#-layout">Layout</a> • 
  <a href="#-tecnologias-e-ferramentas">Tecnologias e Ferramentas</a> • 
  <a href="#-contribuidores">Contribuidores</a> • 
@@ -17,8 +17,13 @@ B A Y G O N
 </p>
 <br>
 
-## 💻 Sobre o projeto
-Afim de aplicar todo conteúdo estudado no BootCamp da CI&T nosso time teve como desafio desenvolver novos serviços para substituir a camada de APIs legado utilizando o banco de dados já existente. 
+## 💻 About the project
+In order to apply all the content studied in CI&T’s Bootcamp, our team had the challenge of developing new services to replace the legacy APIs layer using the existing database. 
 
-## :handshake: Gerenciamento do projeto
+## :handshake: Project management
+##### To manage the project, the following rites were performed:
+- Daily;
+- Planning;
+- Demo e retrospective;
+- Checkpoint Técnico semanal;
 
