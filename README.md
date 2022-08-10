@@ -4,14 +4,14 @@ My Music 2022
 B A Y G O N
    </br>
 </h1>
----
-## 💻 Sobre o projeto
-
-
 
 <h3 align="center"> 
 <img src="https://media.giphy.com/media/lqSDx8SI1916ysr4eq/giphy.gif">
 </h3>
+
+---
+## 💻 Sobre o projeto
+
 API responsável por gerenciar as musicas favoritas do usuário. Possui como principais funcionalidades:
 
 ● Permitir o usuário buscar novas músicas:
