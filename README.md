@@ -51,7 +51,7 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 ----
 
 <h1 align="center">
-About our Team
+T E A M
  <img alt="Baygon" title="#Baygon" src="./.github/midia/BannerBaygon.png"/>
 </h1>
 
