@@ -55,7 +55,9 @@ About our Team
 
 ## :handshake: Project management
 ##### To manage the project, the following rites were performed:
-- Daily;
-- Planning;
-- Demo e retrospective;
-- Checkpoint Técnico semanal;
+- [X]  Daily;
+- [X]  Planning;
+- [X]  Demo e retrospective;
+- [X]  Checkpoint Técnico semanal;
+
+---
