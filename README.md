@@ -82,7 +82,7 @@ T E A M
     <td align="center"><a href="https://github.com/enonnemacher-ciandt"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105384086?v=4" width="100px;"/><br /><sub><b>
 Ederson Rafael</b></sub></a><br /><a href="https://github.com/enonnemacher-ciandt" title="Perfil Ederson">🚀</a></td> 
     <td align="center"><a href="https://github.com/gabrielalichy"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105449193?v=4" width="100px;"/><br/><sub><b>Gabriela Lichy</b></sub></a><br/><a href="https://github.com/gabrielalichy" title="Perfil Gabriela">🚀</a></td> 
-    <td align="center"><a href="https://github.com/jcavalaro"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105381406?v=4" width="100px;"/><br /><sub><b>Jaqueline Cavalaro</b></sub></a><br /><a href="https://github.com/jcavalaro" title="Perfil Jaqueline">🚀</a></td> 
+    <td align="center"><a href="https://github.com/jcavalaro"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105381406?v=4" width="100px;"/><br /><sub><b>Jaque Cavalaro</b></sub></a><br /><a href="https://github.com/jcavalaro" title="Perfil Jaqueline">🚀</a></td> 
     <td align="center"><a href="https://github.com/iteixeira465"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105372092?v=4" width="100px;"/><br/><sub><b>Igor Teixeira</b></sub></a><br/><a href="https://github.com/iteixeira465" title="Perfil Igor">🚀</a></td> 
   </tr>
 </table>
