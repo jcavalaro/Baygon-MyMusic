@@ -28,7 +28,7 @@ To carry out this project we chose the Hexagonal architecture. The reason for th
 - Easy to test the application;
 - Technologies that are easy to exchange;
 <h1 align="center">
- <img alt="Baygon" title="#Baygon" src="./.github/midia/hexagonalarquitetur.png"/>
+ <img alt="Baygon" title="#Baygon" src="./.github/midia/hexagonalbaygon.png"/>
 </h1>
 
 ## :gear: Features
