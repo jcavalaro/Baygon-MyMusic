@@ -33,7 +33,7 @@ In order to apply all the content studied in CI&T’s Bootcamp, our team had the
 - [X]  Allow the user to choose the songs from the search result they want to add to their playlist;
 - [X]  Allow the user to remove songs from their playlist;
 
-## hammer_and_wrench Technologies and tools
+## :hammer_and_wrench: Technologies and tools
 
 
 <h1 align="center">
