@@ -9,7 +9,7 @@ B A Y G O N
 </h3>
 <p align="center">
  <a href="#-about-the-project">About</a> •
- <a href="#-features">Features</a> • 
+ <a href="#-gear-features">Features</a> • 
  <a href="#-technologies-and-tools">Technologies and tools</a> • 
  <a href="#-project-management">Project management</a> •
  <a href="#-contribuidores">Contribuidores</a> • 
