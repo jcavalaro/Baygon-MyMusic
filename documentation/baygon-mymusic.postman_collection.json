@@ -1,0 +1,2361 @@
+{
+	"info": {
+		"_postman_id": "715aafdd-083a-47cb-82c9-5601b692e2d3",
+		"name": "baygon-mymusic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21574223"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Sprint 1",
+					"item": [
+						{
+							"name": "Get Music By Filter Sem Headers De Autenticacao",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas?filter=u2",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Menor que 2 Caracteres",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=a",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "a"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Sem Filtro",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=u2",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=with or without you",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "with or without you"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Artista",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=NIRVANA",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "NIRVANA"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Mas Sem Retorno",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/musicas/?filter=naoTemRetorno",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "naoTemRetorno"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sprint 2",
+					"item": [
+						{
+							"name": "Add Musics To Playlist - Retorno 401 - Sem Headers de Autenticacao",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Id Playlist Não Informado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/ /musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										" ",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Playlist Não Existe",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"naoExistePlaylist",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist  - Retorno 400 - Musica Não Existe",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"naoExisteMusica\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Payload Body Campos Preenchidos Errado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Payload Body Com Mais Campos que o Esperado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"genre\": \"Pop\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 200 - Adicionar apenas uma Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 200 - Adicionar uma lista de Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"name\": \"BU2B2\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"2a809663-6391-413f-a8bb-4b1fc0a42e14\",\n            \"name\": \"\\\"40\\\"\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"c52012c5-6abc-4a7b-91aa-ea403288b36a\",\n            \"name\": \"11 O'Clock Tick Tock\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Tentar adicionar Musicas que Já Existem Na Playlist",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{local_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sprint 3",
+					"item": [
+						{
+							"name": "Remove Music From Playlist",
+							"item": [
+								{
+									"name": "Remove Music From Playlist - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Playlist Não Informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/ /musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												" ",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Musica Não informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/ ",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												" "
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Playlist Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"naoExistePlaylist",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/naoExisteMusica",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"naoExisteMusica"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe Na Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/67f5976c-eb1e-404e-8220-2c2a8a23be47",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"67f5976c-eb1e-404e-8220-2c2a8a23be47"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 200 - Remover Musica da Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Playlist By User",
+							"item": [
+								{
+									"name": "Get Playlist By User  - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 400 - Sem Informar Parametro Obrigatorio",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 204 - Sem Resultados",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/?user=naoExiste",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "naoExiste"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 200 - User Name Valido",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Heroku",
+			"item": [
+				{
+					"name": "Sprint 1",
+					"item": [
+						{
+							"name": "Get Music By Filter Sem Headers De Autenticacao",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas?filter=u2",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Menor que 2 Caracteres",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=a",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "a"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Sem Filtro",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=u2",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "u2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=with or without you",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "with or without you"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Artista",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=NIRVANA",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "NIRVANA"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Music By Filter Filtro Valido Mas Sem Retorno",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/musicas/?filter=naoTemRetorno",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"musicas",
+										""
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "naoTemRetorno"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sprint 2",
+					"item": [
+						{
+							"name": "Add Musics To Playlist - Retorno 401 - Sem Headers de Autenticacao",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Id Playlist Não Informado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/ /musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										" ",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Playlist Não Existe",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"b45bf9ce-dfa9-4ac8-9d74-e77f640e80db\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"4f69cca2-1a1d-4706-853e-b5622469aa3e\",\n            \"name\": \"City Of Blinding Lights\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"naoExistePlaylist",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist  - Retorno 400 - Musica Não Existe",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"naoExisteMusica\",\n            \"name\": \"Boy-Girl\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Payload Body Campos Preenchidos Errado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 400 - Payload Body Com Mais Campos que o Esperado",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"genre\": \"Pop\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 200 - Adicionar apenas uma Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Retorno 200 - Adicionar uma lista de Musica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"0c5f66e0-1547-4736-99d7-225f3b12f76f\",\n            \"name\": \"BU2B\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"9748777a-ad1f-476f-a19a-1d9244497b3e\",\n            \"name\": \"BU2B2\",\n            \"artist\": {\n                \"id\": \"1ca66264-5949-48b2-b6ed-41c855a8fd94\",\n                \"name\": \"Rush\"\n            }\n        },\n        {\n            \"id\": \"2a809663-6391-413f-a8bb-4b1fc0a42e14\",\n            \"name\": \"\\\"40\\\"\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        },\n        {\n            \"id\": \"c52012c5-6abc-4a7b-91aa-ea403288b36a\",\n            \"name\": \"11 O'Clock Tick Tock\",\n            \"artist\": {\n                \"id\": \"8a56e0f6-8639-46b2-828c-4b043af2a321\",\n                \"name\": \"U2\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Musics To Playlist - Tentar adicionar Musicas que Já Existem Na Playlist",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Name",
+										"value": "{{Name}}",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "{{Token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        {\n            \"id\": \"23bc0ca5-7640-49a8-a0a9-611f7defff1c\",\n            \"name\": \"Post-Concert Arizona Interview (U2 Zoo Tour)\",\n            \"artist\": {\n                \"id\": \"38bb1af4-108b-4543-9cfe-f6a8fdf630b4\",\n                \"name\": \"Public Enemy\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas",
+									"host": [
+										"{{heroku_mymusic_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"playlists",
+										"{{playlistId}}",
+										"musicas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sprint 3",
+					"item": [
+						{
+							"name": "Remove Music From Playlist",
+							"item": [
+								{
+									"name": "Remove Music From Playlist - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Playlist Não Informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/ /musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												" ",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Musica Não informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/ ",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												" "
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Playlist Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"naoExistePlaylist",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/naoExisteMusica",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"naoExisteMusica"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe Na Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/67f5976c-eb1e-404e-8220-2c2a8a23be47",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"67f5976c-eb1e-404e-8220-2c2a8a23be47"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 200 - Remover Musica da Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Playlist By User",
+							"item": [
+								{
+									"name": "Get Playlist By User  - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 400 - Sem Informar Parametro Obrigatorio",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 204 - Sem Resultados",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/?user=naoExiste",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "naoExiste"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 200 - User Name Valido",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.sendRequest({",
+					"    url: \"https://baygon-token-provider.herokuapp.com/api/v1/token\",",
+					"    method: 'POST',",
+					"    header: {",
+					"        'content-type': 'application/json'",
+					"    },",
+					"    body: {",
+					"        mode: 'raw',",
+					"        raw: JSON.stringify({ \"data\": { \"name\": pm.collectionVariables.get(\"Name\") } })",
+					"    }",
+					"}, function (err, res) {",
+					"    let tokenReceived = res.text();",
+					"    pm.environment.set(\"Token\", tokenReceived);",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "heroku_token_url",
+			"value": "https://baygon-token-provider.herokuapp.com"
+		},
+		{
+			"key": "heroku_mymusic_url",
+			"value": "https://baygon-mymusic.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "local_mymusic_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "Name",
+			"value": "ana"
+		},
+		{
+			"key": "playlistId",
+			"value": "a39926f4-6acb-4497-884f-d4e5296ef652"
+		},
+		{
+			"key": "musicaId",
+			"value": "23bc0ca5-7640-49a8-a0a9-611f7defff1c"
+		}
+	]
+}
