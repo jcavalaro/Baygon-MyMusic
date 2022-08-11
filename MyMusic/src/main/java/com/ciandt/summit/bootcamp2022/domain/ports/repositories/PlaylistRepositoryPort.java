@@ -13,4 +13,8 @@ public interface PlaylistRepositoryPort {
 
     Playlist addMusicsToPlaylist(PlaylistEntity playlist);
 
+    Playlist removeMusicFromPlaylist(PlaylistEntity playlist);
+
+    List<Playlist> findByUserName(String userName);
+
 }

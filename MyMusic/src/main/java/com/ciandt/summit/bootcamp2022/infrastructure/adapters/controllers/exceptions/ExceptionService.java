@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -58,6 +59,14 @@ public class ExceptionService {
         DefaultResponseError defaultResponseError = new DefaultResponseError();
         defaultResponseError.setStatus(HttpStatus.BAD_REQUEST.value());
         defaultResponseError.setMessage("Request Body were not filled in correctly");
+        return new ResponseEntity(defaultResponseError, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    ResponseEntity<MissingServletRequestParameterException> handleMissingServletRequestParameterException(MissingServletRequestParameterException err) {
+        DefaultResponseError defaultResponseError = new DefaultResponseError();
+        defaultResponseError.setStatus(HttpStatus.BAD_REQUEST.value());
+        defaultResponseError.setMessage("Parameter is Required");
         return new ResponseEntity(defaultResponseError, HttpStatus.BAD_REQUEST);
     }
 

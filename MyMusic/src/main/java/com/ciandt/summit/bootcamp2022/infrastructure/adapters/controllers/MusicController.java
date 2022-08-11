@@ -25,22 +25,24 @@ import java.util.List;
 public class MusicController {
 
     private static final Logger logger = LoggerFactory.getLogger(MusicController.class.getName());
+    private static final String SEARCHING = "Searching for musics.";
+    private static final String RETURNING = "Returning all musics found.";
 
     @Autowired
     private MusicServicePort musicServicePort;
 
     @GetMapping
-    @Operation(summary = "Search songs by artist name or song name", description = "Search by artist name or song name. If you do not enter a filter, all songs will be returned. The filter search is case insensitive. The filter must have at least 2 characters.")
+    @Operation(summary = "Search musics by artist name or song name", description = "Search by artist name or song name. If you do not enter a filter, all songs will be returned. The filter search is case insensitive. The filter must have at least 2 characters.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful Operation"),
             @ApiResponse(responseCode = "204", description = "No results"),
             @ApiResponse(responseCode = "400", description = "Not enough characters"),
             @ApiResponse(responseCode = "401", description = "Unauthorized")})
-    public ResponseEntity<?> findMusicas(@RequestParam(required = false, name = "filter") String filter) {
-        logger.info("Searching for music!");
+    public ResponseEntity<?> findMusics(@RequestParam(required = false, name = "filter") String filter) {
+        logger.info(SEARCHING);
         List<MusicDTO> musicas = musicServicePort.findByNameArtistOrNameMusic(filter);
 
-        logger.info("Returning all songs found!");
+        logger.info(RETURNING);
         return new ResponseEntity<>(new DataDTO(musicas), HttpStatus.OK);
     }
 
