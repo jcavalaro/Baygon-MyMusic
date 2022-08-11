@@ -787,224 +787,365 @@
 					"name": "Sprint 3",
 					"item": [
 						{
-							"name": "Remove Music From Playlist - Retorno 401 - Sem Headers de Autenticacao",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"{{musicaId}}"
-									]
+							"name": "Remove Music From Playlist",
+							"item": [
+								{
+									"name": "Remove Music From Playlist - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Playlist Não Informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/ /musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												" ",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Musica Não informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/ ",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												" "
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Playlist Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"naoExistePlaylist",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/naoExisteMusica",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"naoExisteMusica"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe Na Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/67f5976c-eb1e-404e-8220-2c2a8a23be47",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"67f5976c-eb1e-404e-8220-2c2a8a23be47"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 200 - Remover Musica da Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						},
 						{
-							"name": "Remove Music From Playlist - Retorno 400 - Id Playlist Não Informado",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+							"name": "Get Playlist By User",
+							"item": [
+								{
+									"name": "Get Playlist By User  - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/ /musicas/{{musicaId}}",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										" ",
-										"musicas",
-										"{{musicaId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Id Musica Não informado",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 400 - Sem Informar Parametro Obrigatorio",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/ ",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										" "
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Playlist Não Existe",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 204 - Sem Resultados",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/?user=naoExiste",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "naoExiste"
+												}
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas/{{musicaId}}",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"naoExistePlaylist",
-										"musicas",
-										"{{musicaId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 200 - User Name Valido",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{local_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{local_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/naoExisteMusica",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"naoExisteMusica"
-									]
+									"response": []
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe Na Playlist",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
-									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/67f5976c-eb1e-404e-8220-2c2a8a23be47",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"67f5976c-eb1e-404e-8220-2c2a8a23be47"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 200 - Remover Musica da Playlist",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
-									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
-									"host": [
-										"{{local_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"{{musicaId}}"
-									]
-								}
-							},
-							"response": []
+							]
 						}
 					]
 				}
@@ -1791,224 +1932,365 @@
 					"name": "Sprint 3",
 					"item": [
 						{
-							"name": "Remove Music From Playlist - Retorno 401 - Sem Headers de Autenticacao",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"{{musicaId}}"
-									]
+							"name": "Remove Music From Playlist",
+							"item": [
+								{
+									"name": "Remove Music From Playlist - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Playlist Não Informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/ /musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												" ",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Id Musica Não informado",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/ ",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												" "
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Playlist Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"naoExistePlaylist",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/naoExisteMusica",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"naoExisteMusica"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe Na Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/67f5976c-eb1e-404e-8220-2c2a8a23be47",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"67f5976c-eb1e-404e-8220-2c2a8a23be47"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove Music From Playlist - Retorno 200 - Remover Musica da Playlist",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												"{{playlistId}}",
+												"musicas",
+												"{{musicaId}}"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						},
 						{
-							"name": "Remove Music From Playlist - Retorno 400 - Id Playlist Não Informado",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+							"name": "Get Playlist By User",
+							"item": [
+								{
+									"name": "Get Playlist By User  - Retorno 401 - Sem Headers de Autenticacao",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/ /musicas/{{musicaId}}",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										" ",
-										"musicas",
-										"{{musicaId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Id Musica Não informado",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 400 - Sem Informar Parametro Obrigatorio",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/ ",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										" "
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Playlist Não Existe",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 204 - Sem Resultados",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/?user=naoExiste",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "naoExiste"
+												}
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/naoExistePlaylist/musicas/{{musicaId}}",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"naoExistePlaylist",
-										"musicas",
-										"{{musicaId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
+									"response": []
+								},
+								{
+									"name": "Get Playlist By User  - Retorno 200 - User Name Valido",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Name",
+												"value": "{{Name}}",
+												"type": "text"
+											},
+											{
+												"key": "Token",
+												"value": "{{Token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{heroku_mymusic_url}}/api/v1/playlists/?user=default",
+											"host": [
+												"{{heroku_mymusic_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"playlists",
+												""
+											],
+											"query": [
+												{
+													"key": "user",
+													"value": "default"
+												}
+											]
+										}
 									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/naoExisteMusica",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"naoExisteMusica"
-									]
+									"response": []
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 400 - Musica Não Existe Na Playlist",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
-									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/67f5976c-eb1e-404e-8220-2c2a8a23be47",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"67f5976c-eb1e-404e-8220-2c2a8a23be47"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remove Music From Playlist - Retorno 200 - Remover Musica da Playlist",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Name",
-										"value": "{{Name}}",
-										"type": "text"
-									},
-									{
-										"key": "Token",
-										"value": "{{Token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{heroku_mymusic_url}}/api/v1/playlists/{{playlistId}}/musicas/{{musicaId}}",
-									"host": [
-										"{{heroku_mymusic_url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"playlists",
-										"{{playlistId}}",
-										"musicas",
-										"{{musicaId}}"
-									]
-								}
-							},
-							"response": []
+							]
 						}
 					]
 				}
