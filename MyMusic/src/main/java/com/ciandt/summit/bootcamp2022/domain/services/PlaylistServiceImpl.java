@@ -9,6 +9,7 @@ import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePor
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.MusicRepositoryPort;
 import com.ciandt.summit.bootcamp2022.domain.ports.repositories.PlaylistRepositoryPort;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
+import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.MusicEntity;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.repositories.entities.PlaylistEntity;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +32,8 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
     private static final String MUSIC_NOT_EXISTS_IN_PLAYLIST = "Music does not exist in the playlist.";
     private static final String MUSIC_DOES_NOT_EXISTS_IN_PLAYLIST = "Music %s does not exist in the playlist %s.";
     private static final String MUSIC_EXISTS_IN_PLAYLIST = "Music %s already exists in the playlist %s.";
+    private static final String PLAYLIST_NOT_FOUND = "Playlists not found with the user name %s.";
+    private static final String PLAYLIST_FOUND = "Were found %d playlists with the user name %s.";
 
     @Autowired
     private PlaylistRepositoryPort playlistRepositoryPort;
@@ -131,6 +134,20 @@ public class PlaylistServiceImpl implements PlaylistServicePort {
         }
 
         return playlistRepositoryPort.removeMusicFromPlaylist(playlistEntity).toPlaylistDTO();
+    }
+
+    @Override
+    public List<PlaylistDTO> findByUserName(String userName) {
+        List<Playlist> playlists = playlistRepositoryPort.findByUserName(userName);
+
+        if (playlists.isEmpty()) {
+            logger.info(String.format(PLAYLIST_NOT_FOUND, userName));
+            throw new NotFoundException();
+        } else {
+            logger.info(String.format(PLAYLIST_FOUND, playlists.size(), userName));
+        }
+
+        return playlists.stream().map(Playlist::toPlaylistDTO).collect(Collectors.toList());
     }
 
 }

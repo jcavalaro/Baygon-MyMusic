@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/playlists")
@@ -25,6 +26,8 @@ public class PlaylistController {
     private static final String ADDING_MUSICS = "Adding musics to the playlist %s.";
     private static final String REMOVING_MUSIC = "Removing music %s from the playlist %s.";
     private static final String UPDATED_PLAYLIST = "Returning updated playlist.";
+    private static final String SEARCHING = "Searching for playlist.";
+    private static final String RETURNING = "Returning playlist found.";
 
     @Autowired
     private PlaylistServicePort playlistServicePort;
@@ -54,6 +57,21 @@ public class PlaylistController {
         PlaylistDTO playlistDTO = playlistServicePort.removeMusicFromPlaylist(playlistId, musicId);
 
         logger.info(UPDATED_PLAYLIST);
+        return new ResponseEntity<>(playlistDTO, HttpStatus.OK);
+    }
+
+    @GetMapping
+    @Operation(summary = "Search playlist by user name", description = "Search by user name.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful Operation"),
+            @ApiResponse(responseCode = "204", description = "No results"),
+            @ApiResponse(responseCode = "400", description = "Parameter Not Informed"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized")})
+    public ResponseEntity<?> findPlaylist(@RequestParam(name = "user") String userName) {
+        logger.info(SEARCHING);
+        List<PlaylistDTO> playlistDTO = playlistServicePort.findByUserName(userName);
+
+        logger.info(RETURNING);
         return new ResponseEntity<>(playlistDTO, HttpStatus.OK);
     }
 

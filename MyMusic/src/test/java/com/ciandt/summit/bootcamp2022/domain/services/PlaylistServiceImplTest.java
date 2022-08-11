@@ -1,5 +1,6 @@
 package com.ciandt.summit.bootcamp2022.domain.services;
 
+import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -329,6 +330,67 @@ public class PlaylistServiceImplTest {
         } catch (Throwable e) {
             assertEquals(BusinessRuleException.class, e.getClass());
             assertEquals("Music does not exist in the playlist.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void shouldReturnPlaylistBasedOnParameter() throws Exception {
+        List<Playlist> playlists = new ArrayList<>(List.of(playlistWithOneMusic));
+
+        String userName = "Mariana";
+
+        when(playlistRepositoryPort.findByUserName(userName)).thenReturn(playlists);
+
+        List<PlaylistDTO> playlistsDTO = playlistServiceImpl.findByUserName(userName);
+
+        assertNotNull(playlistsDTO);
+        assertEquals(playlists.size(), playlistsDTO.size());
+        assertEquals("Id Playlist With One Music", playlistsDTO.get(0).getId());
+        assertEquals(1, playlistsDTO.get(0).getMusics().size());
+    }
+
+    @Test
+    public void shouldReturnPlaylistBasedOnParameterLowerCase() throws Exception {
+        List<Playlist> playlists = new ArrayList<>(List.of(playlistWithOneMusic));
+
+        String userName = "mariana";
+
+        when(playlistRepositoryPort.findByUserName(userName)).thenReturn(playlists);
+
+        List<PlaylistDTO> playlistsDTO = playlistServiceImpl.findByUserName(userName);
+
+        assertNotNull(playlistsDTO);
+        assertEquals(playlists.size(), playlistsDTO.size());
+        assertEquals("Id Playlist With One Music", playlistsDTO.get(0).getId());
+        assertEquals(1, playlistsDTO.get(0).getMusics().size());
+    }
+
+    @Test
+    public void shouldReturnPlaylistBasedOnParameterUpperCase() throws Exception {
+        List<Playlist> playlists = new ArrayList<>(List.of(playlistWithOneMusic));
+
+        String userName = "MARIANA";
+
+        when(playlistRepositoryPort.findByUserName(userName)).thenReturn(playlists);
+
+        List<PlaylistDTO> playlistsDTO = playlistServiceImpl.findByUserName(userName);
+
+        assertNotNull(playlistsDTO);
+        assertEquals(playlists.size(), playlistsDTO.size());
+        assertEquals("Id Playlist With One Music", playlistsDTO.get(0).getId());
+        assertEquals(1, playlistsDTO.get(0).getMusics().size());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenNotFindingPlaylistsBasedOnParameter() throws Exception {
+        String userName = "naoExiste";
+
+        when(playlistRepositoryPort.findByUserName(userName)).thenReturn(new ArrayList<>());
+
+        try {
+            playlistServiceImpl.findByUserName(userName);
+        } catch (Throwable e) {
+            assertEquals(NotFoundException.class, e.getClass());
         }
     }
 

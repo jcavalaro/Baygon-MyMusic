@@ -15,4 +15,6 @@ public interface PlaylistServicePort {
 
     PlaylistDTO removeMusicFromPlaylist(String playlistId, String musicId);
 
+    List<PlaylistDTO> findByUserName(String userName);
+
 }

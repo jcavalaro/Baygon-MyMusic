@@ -6,6 +6,7 @@ import com.ciandt.summit.bootcamp2022.domain.dtos.MusicDTO;
 import com.ciandt.summit.bootcamp2022.domain.dtos.PlaylistDTO;
 import com.ciandt.summit.bootcamp2022.domain.ports.interfaces.PlaylistServicePort;
 import com.ciandt.summit.bootcamp2022.domain.services.exceptions.BusinessRuleException;
+import com.ciandt.summit.bootcamp2022.domain.services.exceptions.NotFoundException;
 import com.ciandt.summit.bootcamp2022.infrastructure.adapters.controllers.exceptions.ExceptionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -39,7 +41,7 @@ public class PlaylistControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    PlaylistServicePort playlistService;
+    PlaylistServicePort playlistServicePort;
 
     @InjectMocks
     private PlaylistController playlistController;
@@ -76,7 +78,7 @@ public class PlaylistControllerTest {
     public void mustReturn200WhenListMusicIsAdd() throws Exception {
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
 
-        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenReturn(playlistDTO);
+        when(playlistServicePort.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenReturn(playlistDTO);
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
@@ -92,7 +94,7 @@ public class PlaylistControllerTest {
 
     @Test
     public void mustReturn400WhenPlaylistDoesntExists() throws Exception {
-        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Playlist not found!"));
+        when(playlistServicePort.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Playlist not found!"));
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
@@ -109,7 +111,7 @@ public class PlaylistControllerTest {
     public void mustReturn400WhenTheMusicDoesNotExist() throws Exception {
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music4)));
 
-        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
+        when(playlistServicePort.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Music Does Not Exist in the Base."));
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
@@ -125,7 +127,7 @@ public class PlaylistControllerTest {
     public void mustReturn400WhenPayloadBodyDoesNotConformToDocumentation() throws Exception {
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music5)));
 
-        when(playlistService.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Payload Body Does Not Conform to Documentation."));
+        when(playlistServicePort.addMusicsToPlaylist(Mockito.anyString(), Mockito.any(DataDTO.class))).thenThrow(new BusinessRuleException("Payload Body Does Not Conform to Documentation."));
 
         String playlistId = id;
         String uri = "/api/v1/playlists/{playlistId}/musicas";
@@ -142,7 +144,7 @@ public class PlaylistControllerTest {
 
         PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(Arrays.asList(music1, music2, music3)));
 
-        when(playlistService.removeMusicFromPlaylist(Mockito.anyString(), Mockito.anyString())).thenReturn(playlistDTO);
+        when(playlistServicePort.removeMusicFromPlaylist(Mockito.anyString(), Mockito.anyString())).thenReturn(playlistDTO);
 
         String uri = "/api/v1/playlists/{playlistId}/musicas/{musicaId}";
 
@@ -155,6 +157,75 @@ public class PlaylistControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(id)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.musics", hasSize(3)));
+    }
+
+    @Test
+    public void shouldReturn200WithUserName() throws Exception {
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(List.of(music1, music2, music3)));
+        List<PlaylistDTO> playlistsDTO = new ArrayList<>(List.of(playlistDTO));
+
+        when(playlistServicePort.findByUserName(Mockito.anyString())).thenReturn(playlistsDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/playlists")
+                        .param("user", "Mariana")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", is(id)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].musics", hasSize(3)));
+    }
+
+    @Test
+    public void shouldReturn200WhenFilterIsLowerCase() throws Exception {
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(List.of(music1, music2, music3)));
+        List<PlaylistDTO> playlistsDTO = new ArrayList<>(List.of(playlistDTO));
+
+        when(playlistServicePort.findByUserName(Mockito.anyString())).thenReturn(playlistsDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/playlists")
+                        .param("user", "mariana")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", is(id)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].musics", hasSize(3)));
+    }
+
+    @Test
+    public void shouldReturn200WhenFilterIsUpperCase() throws Exception {
+        PlaylistDTO playlistDTO = new PlaylistDTO(id, new ArrayList<>(List.of(music1, music2, music3)));
+        List<PlaylistDTO> playlistsDTO = new ArrayList<>(List.of(playlistDTO));
+
+        when(playlistServicePort.findByUserName(Mockito.anyString())).thenReturn(playlistsDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/playlists")
+                        .param("user", "MARIANA")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", is(id)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].musics", hasSize(3)));
+    }
+
+    @Test
+    public void shouldReturn400WithoutUserName() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/playlists")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.status", is(400)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", is("Parameter is Required")));
+    }
+
+    @Test
+    public void shouldReturnError204WhenUserNameDoesNotResult() throws Exception {
+        when(playlistServicePort.findByUserName(Mockito.anyString())).thenThrow(new NotFoundException());
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/api/v1/playlists")
+                .param("user", "naoExiste")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
     }
 
 }
