@@ -2,6 +2,12 @@
   <a href="https://github.com/jcavalaro/Baygon-MyMusic/actions/workflows/unit-test.yml">
     <img src="https://github.com/jcavalaro/Baygon-MyMusic/actions/workflows/unit-test.yml/badge.svg">
   </a>
+  <a href=".github/badges/jacoco.svg">
+    <img src=".github/badges/jacoco.svg">
+  </a>
+   <a href=".github/badges/branches.svg">
+    <img src=".github/badges/branches.svg">
+  </a>
 </p>
 
 <h1 align="center">
