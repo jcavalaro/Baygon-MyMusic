@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/jcavalaro/Baygon-MyMusic/actions/workflows/unit-test.yml">
+    <img src="https://github.com/jcavalaro/Baygon-MyMusic/actions/workflows/unit-test.yml/badge.svg">
+  </a>
+</p>
+
 <h1 align="center">
 My Music 2022
    <br>
