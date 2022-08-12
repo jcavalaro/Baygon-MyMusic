@@ -52,12 +52,13 @@ To carry out this project we chose the Hexagonal architecture. The reason for th
 
 ## :gear: Features
 - [X]  Authentication and authorization (Login/Logout);
-- [X]  Allows the user to search for new songs in the database;
-- [X]  Allow the user to choose the songs from the search result they want to add to their playlist;
-- [X]  Allow the user to remove songs from their playlist;
+- [X]  Allows the user to search for new musics in the database;
+- [X]  Allows the user to search his playlist in the database;
+- [X]  Allow the user to choose the musics from the search result they want to add to their playlist;
+- [X]  Allow the user to remove musics from their playlist;
 - [X]  100% covered unit test cases (Jacoco);
-- [X]  Covered 100% mutation test case (PiTest);
-- [X]  Cache implementation in search of songs;
+- [X]  100% covered mutation test case (PiTest);
+- [X]  Cache implementation in search of musics;
 - [X]  Pipeline creation with github actions for automated API publishing;
 
 ## :hammer_and_wrench: Technologies and tools
